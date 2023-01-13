@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('title')
-    预设配置: {{ $egg->name }} &rarr; 安装脚本
+    預設配置: {{ $egg->name }} &rarr; 安裝腳本
 @endsection
 
 @section('content-header')
-    <h1>{{ $egg->name }}<small>管理预设使用的安装脚本.</small></h1>
+    <h1>{{ $egg->name }}<small>管理預設使用的安裝腳本.</small></h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('admin.index') }}">管理</a></li>
-        <li><a href="{{ route('admin.nests') }}">预设组</a></li>
+        <li><a href="{{ route('admin.nests') }}">預設組</a></li>
         <li><a href="{{ route('admin.nests.view', $egg->nest->id) }}">{{ $egg->nest->name }}</a></li>
         <li><a href="{{ route('admin.nests.egg.view', $egg->id) }}">{{ $egg->name }}</a></li>
         <li class="active">{{ $egg->name }}</li>
@@ -20,9 +20,9 @@
     <div class="col-xs-12">
         <div class="nav-tabs-custom nav-tabs-floating">
             <ul class="nav nav-tabs">
-                <li><a href="{{ route('admin.nests.egg.view', $egg->id) }}">设置</a></li>
-                <li><a href="{{ route('admin.nests.egg.variables', $egg->id) }}">变量</a></li>
-                <li class="active"><a href="{{ route('admin.nests.egg.scripts', $egg->id) }}">安装脚本</a></li>
+                <li><a href="{{ route('admin.nests.egg.view', $egg->id) }}">設置</a></li>
+                <li><a href="{{ route('admin.nests.egg.variables', $egg->id) }}">變數</a></li>
+                <li class="active"><a href="{{ route('admin.nests.egg.scripts', $egg->id) }}">安裝腳本</a></li>
             </ul>
         </div>
     </div>
@@ -32,12 +32,12 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">安装脚本</h3>
+                    <h3 class="box-title">安裝腳本</h3>
                 </div>
                 @if(! is_null($egg->copyFrom))
                     <div class="box-body">
                         <div class="callout callout-warning no-margin">
-                            这个选项是复制预设配置于另一个配置 <a href="{{ route('admin.nests.egg.view', $egg->copyFrom->id) }}">{{ $egg->copyFrom->name }}</a>. 除非您从下面的下拉框中选择“无”，否则您对此脚本所做的任何更改都不会应用.
+                            這個選項是複製預設配置於另一個配置 <a href="{{ route('admin.nests.egg.view', $egg->copyFrom->id) }}">{{ $egg->copyFrom->name }}</a>. 除非您從下面的下拉清單中選擇“無”，否則您對此腳本所做的任何更改都不會應用.
                         </div>
                     </div>
                 @endif
@@ -47,29 +47,29 @@
                 <div class="box-body">
                     <div class="row">
                         <div class="form-group col-sm-4">
-                            <label class="control-label">脚本复制于</label>
+                            <label class="control-label">腳本複製於</label>
                             <select id="pCopyScriptFrom" name="copy_script_from">
-                                <option value="">无</option>
+                                <option value="">無</option>
                                 @foreach($copyFromOptions as $opt)
                                     <option value="{{ $opt->id }}" {{ $egg->copy_script_from !== $opt->id ?: 'selected' }}>{{ $opt->name }}</option>
                                 @endforeach
                             </select>
-                            <p class="text-muted small">如果选中，上方的安装脚本将被忽略，所选选项中的安装脚本将被使用.</p>
+                            <p class="text-muted small">如果選中，上方的安裝腳本將被忽略，所選選項中的安裝腳本將被使用.</p>
                         </div>
                         <div class="form-group col-sm-4">
-                            <label class="control-label">脚本容器</label>
+                            <label class="control-label">腳本容器</label>
                             <input type="text" name="script_container" class="form-control" value="{{ $egg->script_container }}" />
-                            <p class="text-muted small">在为服务器运行此脚本时使用的 Docker 容器，以供脚本能够正常运行。</p>
+                            <p class="text-muted small">在為伺服器運行此腳本時使用的 Docker 容器，以供腳本能夠正常運行。</p>
                         </div>
                         <div class="form-group col-sm-4">
-                            <label class="control-label">脚本入口命令</label>
+                            <label class="control-label">腳本入口命令</label>
                             <input type="text" name="script_entry" class="form-control" value="{{ $egg->script_entry }}" />
-                            <p class="text-muted small">用于此脚本的入口命令.</p>
+                            <p class="text-muted small">用於此腳本的入口命令.</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 text-muted">
-                            以下服务选项依赖于此脚本:
+                            以下服務選項依賴於此腳本:
                             @if(count($relyOnScript) > 0)
                                 @foreach($relyOnScript as $rely)
                                     <a href="{{ route('admin.nests.egg.view', $rely->id) }}">
@@ -77,7 +77,7 @@
                                     </a>
                                 @endforeach
                             @else
-                                <em>无</em>
+                                <em>無</em>
                             @endif
                         </div>
                     </div>
@@ -116,3 +116,4 @@
     </script>
 
 @endsection
+

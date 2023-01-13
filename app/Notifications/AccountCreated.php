@@ -40,7 +40,7 @@ class AccountCreated extends Notification implements ShouldQueue
             ->line('帳號電子郵件: ' . $this->user->email);
 
         if (!is_null($this->token)) {
-            return $message->action('点此设置您的帐户', url('/auth/password/reset/' . $this->token . '?email=' . urlencode($this->user->email)));
+            return $message->action('點此設置您的帳戶', url('/auth/password/reset/' . $this->token . '?email=' . urlencode($this->user->email)));
         }
 
         return $message;

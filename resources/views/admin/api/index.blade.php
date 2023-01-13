@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('title')
-    应用 API
+    應用 API
 @endsection
 
 @section('content-header')
-    <h1>应用 API<small>通过 API 控制管理此面板的访问凭证.</small></h1>
+    <h1>應用 API<small>通過 API 控制管理此面板的訪問憑證.</small></h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('admin.index') }}">管理</a></li>
-        <li class="active">应用 API</li>
+        <li class="active">應用 API</li>
     </ol>
 @endsection
 
@@ -17,7 +17,7 @@
         <div class="col-xs-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">凭证列表</h3>
+                    <h3 class="box-title">憑證列表</h3>
                     <div class="box-tools">
                         <a href="{{ route('admin.api.new') }}" class="btn btn-sm btn-primary">新建</a>
                     </div>
@@ -25,10 +25,10 @@
                 <div class="box-body table-responsive no-padding">
                     <table class="table table-hover">
                         <tr>
-                            <th>密钥 KEY</th>
-                            <th>备注</th>
-                            <th>上次使用于</th>
-                            <th>创建于</th>
+                            <th>金鑰 KEY</th>
+                            <th>備註</th>
+                            <th>上次使用於</th>
+                            <th>創建於</th>
                             <th></th>
                         </tr>
                         @foreach($keys as $key)
@@ -66,12 +66,12 @@
                 event.preventDefault();
                 swal({
                     type: 'error',
-                    title: '删除 API 密钥',
-                    text: '一旦此 API 密钥被删除，当前使用它的任何应用程序都将停止工作。',
+                    title: '刪除 API 金鑰',
+                    text: '一旦此 API 金鑰被刪除，當前使用它的任何應用程式都將停止工作。',
                     showCancelButton: true,
                     allowOutsideClick: true,
                     closeOnConfirm: false,
-                    confirmButtonText: '删除',
+                    confirmButtonText: '刪除',
                     confirmButtonColor: '#d9534f',
                     showLoaderOnConfirm: true
                 }, function () {
@@ -85,15 +85,15 @@
                         swal({
                             type: 'success',
                             title: '',
-                            text: '此 API 密钥已被删除.'
+                            text: '此 API 金鑰已被刪除.'
                         });
                         self.parent().parent().slideUp();
                     }).fail(function (jqXHR) {
                         console.error(jqXHR);
                         swal({
                             type: 'error',
-                            title: '离了个大谱!',
-                            text: '删除此 API 密钥时发生错误，此操作无法继续进行.'
+                            title: '離了個大譜!',
+                            text: '刪除此 API 金鑰時發生錯誤，此操作無法繼續進行.'
                         });
                     });
                 });
@@ -101,3 +101,4 @@
         });
     </script>
 @endsection
+
