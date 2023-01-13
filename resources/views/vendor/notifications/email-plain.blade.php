@@ -18,5 +18,5 @@ if (! empty($outroLines)) {
     echo implode("\n", $outroLines), "\n\n";
 }
 
-echo '向您问候,', "\n";
+echo '您好,', "\n";
 echo config('app.name'), "\n";

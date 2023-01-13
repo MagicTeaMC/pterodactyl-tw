@@ -43,7 +43,7 @@
                 </a>
                 <nav class="navbar navbar-static-top">
                     <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                        <span class="sr-only">切换导航</span>
+                        <span class="sr-only">切換導航</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -69,26 +69,26 @@
             <aside class="main-sidebar">
                 <section class="sidebar">
                     <ul class="sidebar-menu">
-                        <li class="header">基础管理</li>
+                        <li class="header">基礎管理</li>
                         <li class="{{ Route::currentRouteName() !== 'admin.index' ?: 'active' }}">
                             <a href="{{ route('admin.index') }}">
-                                <i class="fa fa-home"></i> <span>概况</span>
+                                <i class="fa fa-home"></i> <span>概況</span>
                             </a>
                         </li>
                         <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.settings') ?: 'active' }}">
                             <a href="{{ route('admin.settings')}}">
-                                <i class="fa fa-wrench"></i> <span>设置</span>
+                                <i class="fa fa-wrench"></i> <span>設置</span>
                             </a>
                         </li>
                         <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.api') ?: 'active' }}">
                             <a href="{{ route('admin.api.index')}}">
-                                <i class="fa fa-gamepad"></i> <span>应用 API</span>
+                                <i class="fa fa-gamepad"></i> <span>應用API</span>
                             </a>
                         </li>
                         <li class="header">高级管理</li>
                         <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.databases') ?: 'active' }}">
                             <a href="{{ route('admin.databases') }}">
-                                <i class="fa fa-database"></i> <span>数据库</span>
+                                <i class="fa fa-database"></i> <span>數據庫</span>
                             </a>
                         </li>
                         <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.locations') ?: 'active' }}">
@@ -98,28 +98,28 @@
                         </li>
                         <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.nodes') ?: 'active' }}">
                             <a href="{{ route('admin.nodes') }}">
-                                <i class="fa fa-sitemap"></i> <span>节点</span>
+                                <i class="fa fa-sitemap"></i> <span>節點</span>
                             </a>
                         </li>
                         <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.servers') ?: 'active' }}">
                             <a href="{{ route('admin.servers') }}">
-                                <i class="fa fa-server"></i> <span>服务器</span>
+                                <i class="fa fa-server"></i> <span>伺服器</span>
                             </a>
                         </li>
                         <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.users') ?: 'active' }}">
                             <a href="{{ route('admin.users') }}">
-                                <i class="fa fa-users"></i> <span>用户</span>
+                                <i class="fa fa-users"></i> <span>用戶</span>
                             </a>
                         </li>
-                        <li class="header">服务管理</li>
+                        <li class="header">服務管理</li>
                         <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.mounts') ?: 'active' }}">
                             <a href="{{ route('admin.mounts') }}">
-                                <i class="fa fa-magic"></i> <span>挂载</span>
+                                <i class="fa fa-magic"></i> <span>掛載</span>
                             </a>
                         </li>
                         <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.nests') ?: 'active' }}">
                             <a href="{{ route('admin.nests') }}">
-                                <i class="fa fa-th-large"></i> <span>预设组</span>
+                                <i class="fa fa-th-large"></i> <span>預設組</span>
                             </a>
                         </li>
                     </ul>
@@ -134,7 +134,7 @@
                         <div class="col-xs-12">
                             @if (count($errors) > 0)
                                 <div class="alert alert-danger">
-                                    验证提供的数据时出错.<br><br>
+                                    驗證提供的數據時出錯.<br><br>
                                     <ul>
                                         @foreach ($errors->all() as $error)
                                             <li>{{ $error }}</li>
@@ -159,7 +159,7 @@
                     <strong><i class="fa fa-fw {{ $appIsGit ? 'fa-git-square' : 'fa-code-fork' }}"></i></strong> {{ $appVersion }}<br />
                     <strong><i class="fa fa-fw fa-clock-o"></i></strong> {{ round(microtime(true) - LARAVEL_START, 3) }}s
                 </div>
-                Copyright &copy; 2015 - {{ date('Y') }} <a href="https://pterodactyl.io/">Pterodactyl Software</a>. | Sinicizated by <a href="https://pterodactyl.top">翼龙中国</a>
+                Copyright &copy; 2015 - {{ date('Y') }} <a href="https://pterodactyl.io/">Pterodactyl Software</a>. | 繁體中文翻譯來自 <a href="https://github.com/MagicTeaMC/">Maoyue</a>
             </footer>
         </div>
         @section('footer-scripts')
@@ -183,7 +183,7 @@
 
                         var that = this;
                         swal({
-                            title: '你要登出此账户吗?',
+                            title: '你要登出此帳戶嗎?',
                             type: 'warning',
                             showCancelButton: true,
                             confirmButtonColor: '#d9534f',

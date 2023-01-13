@@ -9,10 +9,10 @@
 
 return [
     'exceptions' => [
-        'no_new_default_allocation' => '您正在试图删除此服务器的默认分配，但没有可供使用的备用分配。',
-        'marked_as_failed' => '由于该服务器之前被标记为安装失败。在此状态下无法切换当前状态。',
-        'bad_variable' => ':name 变量存在验证错误。',
-        'daemon_exception' => '尝试与守护程序通信时出现异常，导致 HTTP/:code 响应代码。已记录此异常。(请求 id: :request_id)',
+        'no_new_default_allocation' => '您正在試圖刪除此服務器的默認端口，但沒有可供使用的備用端口。',
+        'marked_as_failed' => '由於該伺服器之前被標記為安裝失敗。 在此狀態下無法切換當前狀態。',
+        'bad_variable' => ':name 變數驗證錯誤。',
+        'daemon_exception' => '嘗試與守護程序通信時出現異常，導致 HTTP/:code 回應碼。 已記錄此異常。(請求 id: :request_id)',
         'default_allocation_not_found' => '在此服务器的分配中找不到所请求的默认分配。',
     ],
     'alerts' => [

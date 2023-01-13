@@ -41,11 +41,11 @@ function PageContentBlock({ title, showFlashKey, className, children }: PageCont
                     &nbsp;| Sinicizated by&nbsp;
                     <a
                         rel={'noopener nofollow noreferrer'}
-                        href={'https://pterodactyl.top'}
+                        href={'https://github.com/MagicTeaMC'}
                         target={'_blank'}
                         css={tw`no-underline text-neutral-500 hover:text-neutral-300`}
                     >
-                        翼龙中国&reg;
+                        Maoyue&reg;
                     </a>
                 </p>
             </ContentContainer>
