@@ -133,12 +133,12 @@ const FileDropdownMenu = ({ file }: { file: FileObject }) => {
             <Dialog.Confirm
                 open={showConfirmation}
                 onClose={() => setShowConfirmation(false)}
-                title={`删除 ${file.isFile ? '文件' : '目录'}`}
-                confirm={'删除'}
+                title={`刪除 ${file.isFile ? '文件' : '目錄'}`}
+                confirm={'刪除'}
                 onConfirmed={doDeletion}
             >
-                一旦删除，您将永远无法恢复&nbsp;
-                <span className={'font-semibold text-gray-50'}>{file.name}</span> ，你确定要这样吗？
+                一旦刪除，您將永遠無法恢復&nbsp;
+                <span className={'font-semibold text-gray-50'}>{file.name}</span> ，你確定要這樣嗎？
             </Dialog.Confirm>
             <DropdownMenu
                 ref={onClickRef}
@@ -169,26 +169,26 @@ const FileDropdownMenu = ({ file }: { file: FileObject }) => {
             >
                 <Can action={'file.update'}>
                     <Row onClick={() => setModal('rename')} icon={faPencilAlt} title={'重命名'} />
-                    <Row onClick={() => setModal('move')} icon={faLevelUpAlt} title={'移动'} />
-                    <Row onClick={() => setModal('chmod')} icon={faFileCode} title={'权限'} />
+                    <Row onClick={() => setModal('move')} icon={faLevelUpAlt} title={'移動'} />
+                    <Row onClick={() => setModal('chmod')} icon={faFileCode} title={'許可權'} />
                 </Can>
                 {file.isFile && (
                     <Can action={'file.create'}>
-                        <Row onClick={doCopy} icon={faCopy} title={'复制'} />
+                        <Row onClick={doCopy} icon={faCopy} title={'複製'} />
                     </Can>
                 )}
                 {file.isArchiveType() ? (
                     <Can action={'file.create'}>
-                        <Row onClick={doUnarchive} icon={faBoxOpen} title={'解压'} />
+                        <Row onClick={doUnarchive} icon={faBoxOpen} title={'解壓'} />
                     </Can>
                 ) : (
                     <Can action={'file.archive'}>
-                        <Row onClick={doArchive} icon={faFileArchive} title={'压缩'} />
+                        <Row onClick={doArchive} icon={faFileArchive} title={'壓縮'} />
                     </Can>
                 )}
-                {file.isFile && <Row onClick={doDownload} icon={faFileDownload} title={'下载'} />}
+                {file.isFile && <Row onClick={doDownload} icon={faFileDownload} title={'下載'} />}
                 <Can action={'file.delete'}>
-                    <Row onClick={() => setShowConfirmation(true)} icon={faTrashAlt} title={'删除'} $danger />
+                    <Row onClick={() => setShowConfirmation(true)} icon={faTrashAlt} title={'刪除'} $danger />
                 </Can>
             </DropdownMenu>
         </>
@@ -196,3 +196,4 @@ const FileDropdownMenu = ({ file }: { file: FileObject }) => {
 };
 
 export default memo(FileDropdownMenu, isEqual);
+

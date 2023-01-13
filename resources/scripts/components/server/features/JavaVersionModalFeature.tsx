@@ -76,11 +76,11 @@ const JavaVersionModalFeature = () => {
             showSpinnerOverlay={loading}
         >
             <FlashMessageRender key={'feature:javaVersion'} css={tw`mb-4`} />
-            <h2 css={tw`text-2xl mb-4 text-neutral-100`}>此服务端程序不兼容该 Java 版本，更换 Docker 镜像吗?</h2>
+            <h2 css={tw`text-2xl mb-4 text-neutral-100`}>此服務端程式不相容該 Java 版本，更換 Docker 鏡像嗎?</h2>
             <p css={tw`mt-4`}>
-                由于未满足所需的 Java 版本，此服务器无法启动.
+                由於未滿足所需的 Java 版本，此伺服器無法啟動.
                 <Can action={'startup.docker-image'}>
-                    &nbsp;请在下方选择合适的 JDK 版本 Docker 镜像以启动服务端程序.
+                    &nbsp;請在下方選擇合適的 JDK 版本 Docker 鏡像以啟動服務端程式.
                 </Can>
             </p>
             <Can action={'startup.docker-image'}>
@@ -106,7 +106,7 @@ const JavaVersionModalFeature = () => {
                 </Button>
                 <Can action={'startup.docker-image'}>
                     <Button onClick={updateJava} css={tw`w-full sm:w-auto`}>
-                        更新 Docker 镜像
+                        更新 Docker 鏡像
                     </Button>
                 </Can>
             </div>
@@ -115,3 +115,4 @@ const JavaVersionModalFeature = () => {
 };
 
 export default JavaVersionModalFeature;
+

@@ -60,19 +60,19 @@ const PIDLimitModalFeature = () => {
                 <>
                     <div css={tw`mt-4 sm:flex items-center`}>
                         <FontAwesomeIcon css={tw`pr-4`} icon={faExclamationTriangle} color={'orange'} size={'4x'} />
-                        <h2 css={tw`text-2xl mb-4 text-neutral-100 `}>已达到内存或进程限制...</h2>
+                        <h2 css={tw`text-2xl mb-4 text-neutral-100 `}>已達到記憶體或進程限制...</h2>
                     </div>
-                    <p css={tw`mt-4`}>此服务器已达到最大进程或内存限制。</p>
+                    <p css={tw`mt-4`}>此伺服器已達到最大進程或記憶體限制。</p>
                     <p css={tw`mt-4`}>
                         在wings配置中增加 <code css={tw`font-mono bg-neutral-900`}>container_pid_limit</code> ,{' '}
-                        <code css={tw`font-mono bg-neutral-900`}>config.yml</code>, 可能有助于解决这个问题。
+                        <code css={tw`font-mono bg-neutral-900`}>config.yml</code>, 可能有助於解決這個問題。
                     </p>
                     <p css={tw`mt-4`}>
-                        <b>注意：必须重新启动 Wings 才能使配置文件更改生效</b>
+                        <b>注意：必須重新啟動 Wings 才能使設定檔更改生效</b>
                     </p>
                     <div css={tw`mt-8 sm:flex items-center justify-end`}>
                         <Button onClick={() => setVisible(false)} css={tw`w-full sm:w-auto border-transparent`}>
-                            关闭
+                            關閉
                         </Button>
                     </div>
                 </>
@@ -80,17 +80,17 @@ const PIDLimitModalFeature = () => {
                 <>
                     <div css={tw`mt-4 sm:flex items-center`}>
                         <FontAwesomeIcon css={tw`pr-4`} icon={faExclamationTriangle} color={'orange'} size={'4x'} />
-                        <h2 css={tw`text-2xl mb-4 text-neutral-100`}>可能达到资源限制...</h2>
+                        <h2 css={tw`text-2xl mb-4 text-neutral-100`}>可能達到資源限制...</h2>
                     </div>
-                    <p css={tw`mt-4`}>此服务器尝试使用的资源多于分配的资源。请联系管理员，并在下面给他们错误信息。</p>
+                    <p css={tw`mt-4`}>此伺服器嘗試使用的資源多於分配的資源。請聯繫管理員，並在下面給他們錯誤資訊。</p>
                     <p css={tw`mt-4`}>
                         <code css={tw`font-mono bg-neutral-900`}>
-                            pthread_create 失败，可能内存不足或已达到进程/资源限制
+                            pthread_create 失敗，可能記憶體不足或已達到進程/資源限制
                         </code>
                     </p>
                     <div css={tw`mt-8 sm:flex items-center justify-end`}>
                         <Button onClick={() => setVisible(false)} css={tw`w-full sm:w-auto border-transparent`}>
-                            关闭
+                            關閉
                         </Button>
                     </div>
                 </>
@@ -100,3 +100,4 @@ const PIDLimitModalFeature = () => {
 };
 
 export default PIDLimitModalFeature;
+

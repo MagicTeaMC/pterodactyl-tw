@@ -75,20 +75,20 @@ const GSLTokenModalFeature = () => {
             >
                 <FlashMessageRender key={'feature:gslToken'} css={tw`mb-4`} />
                 <Form>
-                    <h2 css={tw`text-2xl mb-4 text-neutral-100`}>无效的 GSL 令牌！</h2>
-                    <p css={tw`mt-4`}>您的 Gameserver 登录令牌（GSL 令牌）似乎无效或已过期。</p>
-                    <p css={tw`mt-4`}>您可以生成一个新的并在下面输入，也可以将该字段留空以完全删除它。</p>
+                    <h2 css={tw`text-2xl mb-4 text-neutral-100`}>無效的 GSL 權杖！</h2>
+                    <p css={tw`mt-4`}>您的 Gameserver 登錄權杖（GSL 權杖）似乎無效或已過期。</p>
+                    <p css={tw`mt-4`}>您可以生成一個新的並在下面輸入，也可以將該欄位留空以完全刪除它。</p>
                     <div css={tw`sm:flex items-center mt-4`}>
                         <Field
                             name={'gslToken'}
                             label={'GSL Token'}
-                            description={'访问 https://steamcommunity.com/dev/managegameservers 以生成令牌。'}
+                            description={'訪問 https://steamcommunity.com/dev/managegameservers 以生成權杖。'}
                             autoFocus
                         />
                     </div>
                     <div css={tw`mt-8 sm:flex items-center justify-end`}>
                         <Button type={'submit'} css={tw`mt-4 sm:mt-0 sm:ml-4 w-full sm:w-auto`}>
-                            更新 GSL 令牌
+                            更新 GSL 權杖
                         </Button>
                     </div>
                 </Form>
@@ -98,3 +98,4 @@ const GSLTokenModalFeature = () => {
 };
 
 export default GSLTokenModalFeature;
+

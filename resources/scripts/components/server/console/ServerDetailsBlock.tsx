@@ -130,7 +130,7 @@ function ServerDetailsBlock({ className }: { className?: string }) {
             </StatBlock>
             <StatBlock
                 icon={faHdd}
-                title={'存儲空間'}
+                title={'硬碟'}
                 color={getBackgroundColor(stats.disk / 1024, limits.disk * 1024)}
             >
                 <Limit limit={textLimits.disk}>{bytesToString(stats.disk)}</Limit>

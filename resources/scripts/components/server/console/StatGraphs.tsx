@@ -71,11 +71,11 @@ export default () => {
             <ChartBlock title={'CPU 使用率'}>
                 <Line {...cpu.props} />
             </ChartBlock>
-            <ChartBlock title={'内存使用率'}>
+            <ChartBlock title={'記憶體使用率'}>
                 <Line {...memory.props} />
             </ChartBlock>
             <ChartBlock
-                title={'网络'}
+                title={'網路'}
                 legend={
                     <>
                         <Tooltip arrow content={'入站'}>

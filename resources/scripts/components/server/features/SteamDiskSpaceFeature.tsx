@@ -50,31 +50,31 @@ const SteamDiskSpaceFeature = () => {
             {isAdmin ? (
                 <>
                     <div css={tw`mt-4 sm:flex items-center`}>
-                        <h2 css={tw`text-2xl mb-4 text-neutral-100 `}>可用存储空间不足...</h2>
+                        <h2 css={tw`text-2xl mb-4 text-neutral-100 `}>可用硬碟空間不足...</h2>
                     </div>
-                    <p css={tw`mt-4`}>此服务器已用完可用存储空间，无法完成安装或更新过程。</p>
+                    <p css={tw`mt-4`}>此伺服器已用完可用硬碟空間，無法完成安裝或更新過程。</p>
                     <p css={tw`mt-4`}>
-                        通过在托管此服务器的主机上输入{' '}
+                        通過在託管此伺服器的主機上輸入{' '}
                         <code css={tw`font-mono bg-neutral-900 rounded py-1 px-2`}>df -h</code>{' '}
-                        确保主机有足够的存储空间。删除文件或增加可用存储空间以解决问题。
+                        確保主機有足夠的硬碟空間。刪除檔或增加可用存儲空間以解決問題。
                     </p>
                     <div css={tw`mt-8 sm:flex items-center justify-end`}>
                         <Button onClick={() => setVisible(false)} css={tw`w-full sm:w-auto border-transparent`}>
-                            关闭
+                            關閉
                         </Button>
                     </div>
                 </>
             ) : (
                 <>
                     <div css={tw`mt-4 sm:flex items-center`}>
-                        <h2 css={tw`text-2xl mb-4 text-neutral-100`}>可用存储空间不足...</h2>
+                        <h2 css={tw`text-2xl mb-4 text-neutral-100`}>可用硬碟空間不足...</h2>
                     </div>
                     <p css={tw`mt-4`}>
-                        此服务器已用完可用存储空间，无法完成安装或更新过程。 请与管理员联系并告知他们存储空间问题。
+                        此伺服器已用完可用硬碟空間，無法完成安裝或更新過程。 請與管理員聯繫並告知他們硬碟空間問題。
                     </p>
                     <div css={tw`mt-8 sm:flex items-center justify-end`}>
                         <Button onClick={() => setVisible(false)} css={tw`w-full sm:w-auto border-transparent`}>
-                            关闭
+                            關閉
                         </Button>
                     </div>
                 </>
@@ -84,3 +84,4 @@ const SteamDiskSpaceFeature = () => {
 };
 
 export default SteamDiskSpaceFeature;
+
