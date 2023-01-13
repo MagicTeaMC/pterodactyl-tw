@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    地域 &rarr; 概览 &rarr; {{ $location->short }}
+    地域 &rarr; 概覽 &rarr; {{ $location->short }}
 @endsection
 
 @section('content-header')
@@ -18,12 +18,12 @@
     <div class="col-sm-6">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">服务器组详情</h3>
+                <h3 class="box-title">伺服器組詳情</h3>
             </div>
             <form action="{{ route('admin.locations.view', $location->id) }}" method="POST">
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="pShort" class="form-label">识别码</label>
+                        <label for="pShort" class="form-label">識別碼</label>
                         <input type="text" id="pShort" name="short" class="form-control" value="{{ $location->short }}" />
                     </div>
                     <div class="form-group">
@@ -43,15 +43,15 @@
     <div class="col-sm-6">
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title">节点</h3>
+                <h3 class="box-title">節點</h3>
             </div>
             <div class="box-body table-responsive no-padding">
                 <table class="table table-hover">
                     <tr>
                         <th>ID</th>
-                        <th>名称</th>
-                        <th>域名</th>
-                        <th>服务器</th>
+                        <th>名稱</th>
+                        <th>功能變數名稱</th>
+                        <th>伺服器</th>
                     </tr>
                     @foreach($location->nodes as $node)
                         <tr>
@@ -67,3 +67,4 @@
     </div>
 </div>
 @endsection
+

@@ -5,7 +5,7 @@
 @endsection
 
 @section('content-header')
-    <h1>地域<small>可以将节点分配到所有地域以便于分类。</small></h1>
+    <h1>地域<small>可以將節點分配到所有地域以便於分類。</small></h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('admin.index') }}">管理</a></li>
         <li class="active">地域</li>
@@ -27,10 +27,10 @@
                     <tbody>
                         <tr>
                             <th>ID</th>
-                            <th>标识码</th>
+                            <th>標識碼</th>
                             <th>描述</th>
-                            <th class="text-center">节点</th>
-                            <th class="text-center">服务器</th>
+                            <th class="text-center">節點</th>
+                            <th class="text-center">伺服器</th>
                         </tr>
                         @foreach ($locations as $location)
                             <tr>
@@ -53,29 +53,30 @@
             <form action="{{ route('admin.locations') }}" method="POST">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">创建地域</h4>
+                    <h4 class="modal-title">創建地域</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <label for="pShortModal" class="form-label">标识码</label>
+                            <label for="pShortModal" class="form-label">標識碼</label>
                             <input type="text" name="short" id="pShortModal" class="form-control" />
-                            <p class="text-muted small">用于将此地域与其他地域区分开来的简短标识符。必须介于 1 到 60 个字符之间, 例如, <code>us.nyc.lvl3</code>.</p>
+                            <p class="text-muted small">用於將此地域與其他地域區分開來的簡短識別字。必須介於 1 到 60 個字元之間, 例如, <code>us.nyc.lvl3</code>.</p>
                         </div>
                         <div class="col-md-12">
                             <label for="pLongModal" class="form-label">描述</label>
                             <textarea name="long" id="pLongModal" class="form-control" rows="4"></textarea>
-                            <p class="text-muted small">此地域的详细说明，最多不应超过 191 个字符.</p>
+                            <p class="text-muted small">此地域的詳細說明，最多不應超過 191 個字元.</p>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     {!! csrf_field() !!}
                     <button type="button" class="btn btn-default btn-sm pull-left" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-success btn-sm">创建</button>
+                    <button type="submit" class="btn btn-success btn-sm">創建</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 @endsection
+

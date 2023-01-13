@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('title')
-    新预设组
+    新預設組
 @endsection
 
 @section('content-header')
-    <h1>新预设组<small>配置一个新的预设部署到所有节点.</small></h1>
+    <h1>新預設組<small>配置一個新的預設部署到所有節點.</small></h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('admin.index') }}">管理</a></li>
-        <li><a href="{{ route('admin.nests') }}">预设组</a></li>
+        <li><a href="{{ route('admin.nests') }}">預設組</a></li>
         <li class="active">新建</li>
     </ol>
 @endsection
@@ -19,14 +19,14 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">新建预设组</h3>
+                    <h3 class="box-title">新建預設組</h3>
                 </div>
                 <div class="box-body">
                     <div class="form-group">
-                        <label class="control-label">名称</label>
+                        <label class="control-label">名稱</label>
                         <div>
                             <input type="text" name="name" class="form-control" value="{{ old('name') }}" />
-                            <p class="text-muted"><small>预设组的名称.</small></p>
+                            <p class="text-muted"><small>預設組的名稱.</small></p>
                         </div>
                     </div>
                     <div class="form-group">
@@ -45,3 +45,4 @@
     </div>
 </form>
 @endsection
+

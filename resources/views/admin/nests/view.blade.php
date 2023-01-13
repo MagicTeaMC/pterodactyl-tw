@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('title')
-    预设组 &rarr; {{ $nest->name }}
+    預設組 &rarr; {{ $nest->name }}
 @endsection
 
 @section('content-header')
     <h1>{{ $nest->name }}<small>{{ str_limit($nest->description, 50) }}</small></h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('admin.index') }}">管理</a></li>
-        <li><a href="{{ route('admin.nests') }}">预设组</a></li>
+        <li><a href="{{ route('admin.nests') }}">預設組</a></li>
         <li class="active">{{ $nest->name }}</li>
     </ol>
 @endsection
@@ -20,10 +20,10 @@
             <div class="box">
                 <div class="box-body">
                     <div class="form-group">
-                        <label class="control-label">名称 <span class="field-required"></span></label>
+                        <label class="control-label">名稱 <span class="field-required"></span></label>
                         <div>
                             <input type="text" name="name" class="form-control" value="{{ $nest->name }}" />
-                            <p class="text-muted"><small>预设组的名称.</small></p>
+                            <p class="text-muted"><small>預設組的名稱.</small></p>
                         </div>
                     </div>
                     <div class="form-group">
@@ -45,24 +45,24 @@
         <div class="box">
             <div class="box-body">
                 <div class="form-group">
-                    <label class="control-label">预设组 ID</label>
+                    <label class="control-label">預設組 ID</label>
                     <div>
                         <input type="text" readonly class="form-control" value="{{ $nest->id }}" />
-                        <p class="text-muted small">用于在内部和通过 API 识别此预设的唯一 ID.</p>
+                        <p class="text-muted small">用於在內部和通過 API 識別此預設的唯一 ID.</p>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label">作者</label>
                     <div>
                         <input type="text" readonly class="form-control" value="{{ $nest->author }}" />
-                        <p class="text-muted small">此预设配置的作者。有问题联系他的邮箱，除非这是由 <code>support@pterodactyl.io</code>提供的预设。</p>
+                        <p class="text-muted small">此預設配置的作者。有問題聯繫他的郵箱，除非這是由 <code>support@pterodactyl.io</code>提供的預設。</p>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label">UUID</label>
                     <div>
                         <input type="text" readonly class="form-control" value="{{ $nest->uuid }}" />
-                        <p class="text-muted small">为所有使用此预设的服务器分配的 UUID 用于识别目的.</p>
+                        <p class="text-muted small">為所有使用此預設的伺服器分配的 UUID 用於識別目的.</p>
                     </div>
                 </div>
             </div>
@@ -73,15 +73,15 @@
     <div class="col-xs-12">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">新预设</h3>
+                <h3 class="box-title">新預設</h3>
             </div>
             <div class="box-body table-responsive no-padding">
                 <table class="table table-hover">
                     <tr>
                         <th>ID</th>
-                        <th>名称</th>
+                        <th>名稱</th>
                         <th>描述</th>
-                        <th class="text-center">服务器</th>
+                        <th class="text-center">伺服器</th>
                         <th class="text-center"></th>
                     </tr>
                     @foreach($nest->eggs as $egg)
@@ -98,7 +98,7 @@
                 </table>
             </div>
             <div class="box-footer">
-                <a href="{{ route('admin.nests.egg.new') }}"><button class="btn btn-success btn-sm pull-right">新预设</button></a>
+                <a href="{{ route('admin.nests.egg.new') }}"><button class="btn btn-success btn-sm pull-right">新預設</button></a>
             </div>
         </div>
     </div>
@@ -109,9 +109,10 @@
     @parent
     <script>
         $('#deleteButton').on('mouseenter', function (event) {
-            $(this).find('i').html(' 删除预设组');
+            $(this).find('i').html(' 刪除預設組');
         }).on('mouseleave', function (event) {
             $(this).find('i').html('');
         });
     </script>
 @endsection
+

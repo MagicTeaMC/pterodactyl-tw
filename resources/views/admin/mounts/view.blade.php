@@ -8,14 +8,14 @@
 @extends('layouts.admin')
 
 @section('title')
-    挂载 &rarr; 概览 &rarr; {{ $mount->id }}
+    掛載 &rarr; 概覽 &rarr; {{ $mount->id }}
 @endsection
 
 @section('content-header')
     <h1>{{ $mount->name }}<small>{{ str_limit($mount->description, 75) }}</small></h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('admin.index') }}">管理</a></li>
-        <li><a href="{{ route('admin.mounts') }}">挂载</a></li>
+        <li><a href="{{ route('admin.mounts') }}">掛載</a></li>
         <li class="active">{{ $mount->name }}</li>
     </ol>
 @endsection
@@ -25,7 +25,7 @@
         <div class="col-sm-6">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">挂载点详情</h3>
+                    <h3 class="box-title">掛載點詳情</h3>
                 </div>
 
                 <form action="{{ route('admin.mounts.view', $mount->id) }}" method="POST">
@@ -36,7 +36,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="pName" class="form-label">名称</label>
+                            <label for="pName" class="form-label">名稱</label>
                             <input type="text" id="pName" name="name" class="form-control" value="{{ $mount->name }}" />
                         </div>
 
@@ -47,19 +47,19 @@
 
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <label for="pSource" class="form-label">原始路径</label>
+                                <label for="pSource" class="form-label">原始路徑</label>
                                 <input type="text" id="pSource" name="source" class="form-control" value="{{ $mount->source }}" />
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label for="pTarget" class="form-label">挂载路径</label>
+                                <label for="pTarget" class="form-label">掛載路徑</label>
                                 <input type="text" id="pTarget" name="target" class="form-control" value="{{ $mount->target }}" />
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <label class="form-label">只读</label>
+                                <label class="form-label">唯讀</label>
 
                                 <div>
                                     <div class="radio radio-success radio-inline">
@@ -75,7 +75,7 @@
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label class="form-label">用户可挂载</label>
+                                <label class="form-label">用戶可掛載</label>
 
                                 <div>
                                     <div class="radio radio-success radio-inline">
@@ -106,10 +106,10 @@
         <div class="col-sm-6">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">预设</h3>
+                    <h3 class="box-title">預設</h3>
 
                     <div class="box-tools">
-                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addEggsModal">添加预设</button>
+                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addEggsModal">添加預設</button>
                     </div>
                 </div>
 
@@ -117,7 +117,7 @@
                     <table class="table table-hover">
                         <tr>
                             <th>ID</th>
-                            <th>名称</th>
+                            <th>名稱</th>
                             <th></th>
                         </tr>
 
@@ -136,10 +136,10 @@
 
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">节点</h3>
+                    <h3 class="box-title">節點</h3>
 
                     <div class="box-tools">
-                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addNodesModal">添加节点</button>
+                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addNodesModal">添加節點</button>
                     </div>
                 </div>
 
@@ -147,8 +147,8 @@
                     <table class="table table-hover">
                         <tr>
                             <th>ID</th>
-                            <th>名称</th>
-                            <th>域名</th>
+                            <th>名稱</th>
+                            <th>功能變數名稱</th>
                             <th></th>
                         </tr>
 
@@ -177,13 +177,13 @@
                             <span aria-hidden="true" style="color: #FFFFFF">&times;</span>
                         </button>
 
-                        <h4 class="modal-title">添加预设</h4>
+                        <h4 class="modal-title">添加預設</h4>
                     </div>
 
                     <div class="modal-body">
                         <div class="row">
                             <div class="form-group col-md-12">
-                                <label for="pEggs">预设</label>
+                                <label for="pEggs">預設</label>
                                 <select id="pEggs" name="eggs[]" class="form-control" multiple>
                                     @foreach ($nests as $nest)
                                         <optgroup label="{{ $nest->name }}">
@@ -221,13 +221,13 @@
                             <span aria-hidden="true" style="color: #FFFFFF">&times;</span>
                         </button>
 
-                        <h4 class="modal-title">添加节点</h4>
+                        <h4 class="modal-title">添加節點</h4>
                     </div>
 
                     <div class="modal-body">
                         <div class="row">
                             <div class="form-group col-md-12">
-                                <label for="pNodes">节点</label>
+                                <label for="pNodes">節點</label>
                                 <select id="pNodes" name="nodes[]" class="form-control" multiple>
                                     @foreach ($locations as $location)
                                         <optgroup label="{{ $location->long }} ({{ $location->short }})">
@@ -263,11 +263,11 @@
     <script>
         $(document).ready(function() {
             $('#pEggs').select2({
-                placeholder: '选择预设..',
+                placeholder: '選擇預設..',
             });
 
             $('#pNodes').select2({
-                placeholder: '选择节点..',
+                placeholder: '選擇節點..',
             });
 
             $('button[data-action="detach-egg"]').click(function (event) {
@@ -282,11 +282,11 @@
                     headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
                 }).done(function () {
                     element.parent().parent().addClass('warning').delay(100).fadeOut();
-                    swal({ type: 'success', title: '预设已解除关联.' });
+                    swal({ type: 'success', title: '預設已解除關聯.' });
                 }).fail(function (jqXHR) {
                     console.error(jqXHR);
                     swal({
-                        title: '盖了帽了!',
+                        title: '蓋了帽了!',
                         text: jqXHR.responseJSON.error,
                         type: 'error'
                     });
@@ -305,11 +305,11 @@
                     headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
                 }).done(function () {
                     element.parent().parent().addClass('warning').delay(100).fadeOut();
-                    swal({ type: 'success', title: '节点已解除关联.' });
+                    swal({ type: 'success', title: '節點已解除關聯.' });
                 }).fail(function (jqXHR) {
                     console.error(jqXHR);
                     swal({
-                        title: '盖了帽了!',
+                        title: '蓋了帽了!',
                         text: jqXHR.responseJSON.error,
                         type: 'error'
                     });
@@ -318,3 +318,4 @@
         });
     </script>
 @endsection
+
