@@ -9,10 +9,10 @@
 
 return [
     'exceptions' => [
-        'user_has_servers' => '无法删除账户下有服务器的用户，请将其全部删除，然后再继续此操作。',
+        'user_has_servers' => '無法刪除帳戶下有伺服器的使用者，請將其全部刪除，然後再繼續此操作。',
     ],
     'notices' => [
-        'account_created' => '已成功创建帐户。',
-        'account_updated' => '帐户已成功更新。',
+        'account_created' => '已成功創建帳戶。',
+        'account_updated' => '帳戶已成功更新。',
     ],
 ];

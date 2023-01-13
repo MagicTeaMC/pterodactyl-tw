@@ -2,12 +2,9 @@
 
 namespace Pterodactyl\Notifications;
 
-use Pterodactyl\Models\User;
 use Illuminate\Bus\Queueable;
 use Pterodactyl\Events\Event;
-use Pterodactyl\Models\Server;
 use Illuminate\Container\Container;
-use Pterodactyl\Events\Server\Installed;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Pterodactyl\Contracts\Core\ReceivesEvents;
@@ -18,15 +15,23 @@ class ServerInstalled extends Notification implements ShouldQueue, ReceivesEvent
 {
     use Queueable;
 
-    public Server $server;
+    /**
+     * @var \Pterodactyl\Models\Server
+     */
+    public $server;
 
-    public User $user;
+    /**
+     * @var \Pterodactyl\Models\User
+     */
+    public $user;
 
     /**
      * Handle a direct call to this notification from the server installed event. This is configured
      * in the event service provider.
+     *
+     * @param \Pterodactyl\Events\Event|\Pterodactyl\Events\Server\Installed $event
      */
-    public function handle(Event|Installed $event): void
+    public function handle(Event $event): void
     {
         $event->server->loadMissing('user');
 
@@ -40,21 +45,25 @@ class ServerInstalled extends Notification implements ShouldQueue, ReceivesEvent
 
     /**
      * Get the notification's delivery channels.
+     *
+     * @return array
      */
-    public function via(): array
+    public function via()
     {
         return ['mail'];
     }
 
     /**
      * Get the mail representation of the notification.
+     *
+     * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toMail(): MailMessage
+    public function toMail()
     {
         return (new MailMessage())
-            ->greeting('Hello ' . $this->user->username . '.')
-            ->line('Your server has finished installing and is now ready for you to use.')
-            ->line('Server Name: ' . $this->server->name)
-            ->action('Login and Begin Using', route('index'));
+            ->greeting('您好')
+            ->line('您的伺服器已安裝完成，可以使用了')
+            ->line('伺服器名稱：' . $this->server->name)
+            ->action('登入並面板使用', route('index'));
     }
 }

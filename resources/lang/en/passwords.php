@@ -19,9 +19,10 @@ return [
     | has failed, such as for an invalid token or invalid new password.
     |
     */
-    'password' => '密码必须至少为六个字符并与确认信息一致。',
-    'reset' => '密码重置成功！',
-    'sent' => '密码重置邮件已发送给您！',
-    'token' => '密码重置令牌无效。',
-    'user' => '请检查邮箱是否正确，我们找不到该邮箱对应的用户。',
+    'password' => '密碼必須至少為六個字元並與確認資訊一致。',
+    'reset' => '密碼重置成功！',
+    'sent' => '密碼重置郵件已發送給您！',
+    'token' => '密碼重置權杖無效。',
+    'user' => '請檢查郵箱是否正確，我們找不到該郵箱對應的用戶。',
 ];
+

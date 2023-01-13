@@ -10,26 +10,27 @@
 
 return [
     'sign_in' => '登入',
-    'go_to_login' => '前往登录',
-    'failed' => '用户名或密码错误。',
+    'go_to_login' => '前往登錄',
+    'failed' => '用戶名或密碼錯誤。',
 
     'forgot_password' => [
-        'label' => '忘记密码？',
-        'label_help' => '输入您帐户的电子邮箱地址用来接收重置密码的说明。',
-        'button' => '找回账户',
+        'label' => '忘記密碼？',
+        'label_help' => '輸入您帳戶的電子郵箱位址用來接收重置密碼的說明。',
+        'button' => '找回帳戶',
     ],
 
     'reset_password' => [
-        'button' => '重置并登录',
+        'button' => '重置並登錄',
     ],
 
     'two_factor' => [
-        'label' => '动态口令',
-        'label_help' => '此帐户需要进行动态口令认证才能继续。请输入您设备生成的验证码以完成此登录。',
-        'checkpoint_failed' => '动态口令无效。',
+        'label' => '動態口令',
+        'label_help' => '此帳戶需要進行動態口令認證才能繼續。請輸入您設備生成的驗證碼以完成此登錄。',
+        'checkpoint_failed' => '動態口令無效。',
     ],
 
-    'throttle' => '登录尝试次数过多。请在 :seconds 秒后重试。',
-    'password_requirements' => '密码长度必须至少为 8 个字符，并且对于本站来说应该是独一无二的。',
-    '2fa_must_be_enabled' => '管理员要求您的帐户必须启用动态口令认证才能正常使用面板',
+    'throttle' => '登錄嘗試次數過多。請在 :seconds 秒後重試。',
+    'password_requirements' => '密碼長度必須至少為 8 個字元，並且對於本站來說應該是獨一無二的。',
+    '2fa_must_be_enabled' => '管理員要求您的帳戶必須啟用動態口令認證才能正常使用面板',
 ];
+

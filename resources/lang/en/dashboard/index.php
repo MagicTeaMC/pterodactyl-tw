@@ -9,8 +9,9 @@
  */
 
 return [
-    'search' => '搜索服务器...',
-    'no_matches' => '没有找到与提供的搜索条件相匹配的服务器。',
+    'search' => '搜索伺服器...',
+    'no_matches' => '沒有找到與提供的搜索條件相匹配的伺服器。',
     'cpu_title' => 'CPU',
-    'memory_title' => '内存',
+    'memory_title' => '記憶體',
 ];
+
