@@ -1,6 +1,36 @@
-composer.phar
-/vendor/
+/vendor
+*.DS_Store*
+!.env.ci
+!.env.example
+.env*
+.vagrant/*
+.vscode/*
+storage/framework/*
+/.idea
+/nbproject
+/.direnv
 
-# Commit your application's lock file https://getcomposer.org/doc/01-basic-usage.md#commit-your-composer-lock-file-to-version-control
-# You may choose to ignore a library lock file http://getcomposer.org/doc/02-libraries.md#lock-file
-# composer.lock
+node_modules
+*.log
+_ide_helper.php
+_ide_helper_models.php
+.phpstorm.meta.php
+.yarn
+public/assets/manifest.json
+
+# For local development with docker
+# Remove if we ever put the Dockerfile in the repo
+.dockerignore
+docker-compose.yml
+
+# for image related files
+misc
+.php-cs-fixer.cache
+coverage.xml
+resources/lang/locales.js
+.phpunit.result.cache
+
+/public/build
+/public/hot
+result
+docker-compose.yaml
