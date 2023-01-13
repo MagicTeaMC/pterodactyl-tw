@@ -38,20 +38,24 @@ jobs:
           git add config/app.php
           git commit -m "ci(release): bump version"
           git push
+
       - name: Create release archive
         run: |
           rm -rf node_modules tests CODE_OF_CONDUCT.md CONTRIBUTING.md flake.lock flake.nix phpstan.neon phpunit.xml shell.nix
           tar -czf panel.tar.gz * .editorconfig .env.example .eslintignore .eslintrc.js .gitignore .prettierrc.json
+
       - name: Extract changelog
         env:
           REF: ${{ github.ref }}
         run: |
           sed -n "/^## ${REF:10}/,/^## /{/^## /b;p}" CHANGELOG.md > ./RELEASE_CHANGELOG
+
       - name: Create checksum and add to changelog
         run: |
           SUM=`sha256sum panel.tar.gz`
           echo -e "\n#### SHA256 Checksum\n\n\`\`\`\n$SUM\n\`\`\`\n" >> ./RELEASE_CHANGELOG
           echo $SUM > checksum.txt
+
       - name: Create release
         id: create_release
         uses: softprops/action-gh-release@v1
