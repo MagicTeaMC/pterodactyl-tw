@@ -31,7 +31,7 @@ export default () => {
     }, [error]);
 
     return (
-        <PageContentBlock title={'帐户活动日志'}>
+        <PageContentBlock title={'帳戶活動日誌'}>
             <FlashMessageRender byKey={'account'} />
             {(filters.filters?.event || filters.filters?.ip) && (
                 <div className={'flex justify-end mb-2'}>
@@ -40,7 +40,7 @@ export default () => {
                         className={classNames(btnStyles.button, btnStyles.text, 'w-full sm:w-auto')}
                         onClick={() => setFilters(value => ({ ...value, filters: {} }))}
                     >
-                        重设过滤器 <XCircleIcon className={'w-4 h-4 ml-2'} />
+                        重設篩檢程式 <XCircleIcon className={'w-4 h-4 ml-2'} />
                     </Link>
                 </div>
             )}
@@ -70,3 +70,4 @@ export default () => {
         </PageContentBlock>
     );
 };
+

@@ -85,9 +85,9 @@ export default ({ server, className }: { server: Server; className?: string }) =
         alarms.disk = server.limits.disk === 0 ? false : isAlarmState(stats.diskUsageInBytes, server.limits.disk);
     }
 
-    const diskLimit = server.limits.disk !== 0 ? bytesToString(mbToBytes(server.limits.disk)) : '无限制';
-    const memoryLimit = server.limits.memory !== 0 ? bytesToString(mbToBytes(server.limits.memory)) : '无限制';
-    const cpuLimit = server.limits.cpu !== 0 ? server.limits.cpu + ' %' : '无限制';
+    const diskLimit = server.limits.disk !== 0 ? bytesToString(mbToBytes(server.limits.disk)) : '無限制';
+    const memoryLimit = server.limits.memory !== 0 ? bytesToString(mbToBytes(server.limits.memory)) : '無限制';
+    const cpuLimit = server.limits.cpu !== 0 ? server.limits.cpu + ' %' : '無限制';
 
     return (
         <StatusIndicatorBox as={Link} to={`/server/${server.id}`} className={className} $status={stats?.status}>
@@ -121,18 +121,18 @@ export default ({ server, className }: { server: Server; className?: string }) =
                     isSuspended ? (
                         <div css={tw`flex-1 text-center`}>
                             <span css={tw`bg-red-500 rounded px-2 py-1 text-red-100 text-xs`}>
-                                {server.status === 'suspended' ? '已冻结' : '连接错误'}
+                                {server.status === 'suspended' ? '已凍結' : '連接錯誤'}
                             </span>
                         </div>
                     ) : server.isTransferring || server.status ? (
                         <div css={tw`flex-1 text-center`}>
                             <span css={tw`bg-neutral-500 rounded px-2 py-1 text-neutral-100 text-xs`}>
                                 {server.isTransferring
-                                    ? '转移中'
+                                    ? '轉移中'
                                     : server.status === 'installing'
-                                    ? '安装中'
+                                    ? '安裝中'
                                     : server.status === 'restoring_backup'
-                                    ? '正在回档'
+                                    ? '正在回檔'
                                     : '不可用'}
                             </span>
                         </div>
@@ -175,3 +175,4 @@ export default ({ server, className }: { server: Server; className?: string }) =
         </StatusIndicatorBox>
     );
 };
+

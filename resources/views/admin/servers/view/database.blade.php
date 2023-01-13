@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 
 @section('title')
-    服务器 — {{ $server->name }}: 数据库
+    伺服器 — {{ $server->name }}: 資料庫
 @endsection
 
 @section('content-header')
-    <h1>{{ $server->name }}<small>管理服务器数据库.</small></h1>
+    <h1>{{ $server->name }}<small>管理伺服器資料庫.</small></h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('admin.index') }}">管理</a></li>
-        <li><a href="{{ route('admin.servers') }}">服务器</a></li>
+        <li><a href="{{ route('admin.servers') }}">伺服器</a></li>
         <li><a href="{{ route('admin.servers.view', $server->id) }}">{{ $server->name }}</a></li>
-        <li class="active">数据库</li>
+        <li class="active">資料庫</li>
     </ol>
 @endsection
 
@@ -19,20 +19,20 @@
 <div class="row">
     <div class="col-sm-7">
         <div class="alert alert-info">
-            数据库密码可以在 <a href="/server/{{ $server->uuidShort }}/databases">访问此服务器</a> 用户界面时查看.
+            資料庫密碼可以在 <a href="/server/{{ $server->uuidShort }}/databases">訪問此伺服器</a> 使用者介面時查看.
         </div>
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">活跃的数据库</h3>
+                <h3 class="box-title">活躍的資料庫</h3>
             </div>
             <div class="box-body table-responsible no-padding">
                 <table class="table table-hover">
                     <tr>
-                        <th>数据库</th>
-                        <th>用户名</th>
-                        <th>连接白名单</th>
-                        <th>域名</th>
-                        <th>最大连接数</th>
+                        <th>資料庫</th>
+                        <th>用戶名</th>
+                        <th>連接白名單</th>
+                        <th>功能變數名稱</th>
+                        <th>最大連接數</th>
                         <th></th>
                     </tr>
                     @foreach($server->databases as $database)
@@ -44,7 +44,7 @@
                             @if($database->max_connections != null)
                                 <td>{{ $database->max_connections }}</td>
                             @else
-                                <td>无限制</td>
+                                <td>無限制</td>
                             @endif
                             <td class="text-center">
                                 <button data-action="reset-password" data-id="{{ $database->id }}" class="btn btn-xs btn-primary"><i class="fa fa-refresh"></i></button>
@@ -59,41 +59,41 @@
     <div class="col-sm-5">
         <div class="box box-success">
             <div class="box-header with-border">
-                <h3 class="box-title">创建新数据库</h3>
+                <h3 class="box-title">創建新資料庫</h3>
             </div>
             <form action="{{ route('admin.servers.view.database', $server->id) }}" method="POST">
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="pDatabaseHostId" class="control-label">数据库主机</label>
+                        <label for="pDatabaseHostId" class="control-label">資料庫主機</label>
                         <select id="pDatabaseHostId" name="database_host_id" class="form-control">
                             @foreach($hosts as $host)
                                 <option value="{{ $host->id }}">{{ $host->name }}</option>
                             @endforeach
                         </select>
-                        <p class="text-muted small">选择应在其上创建此数据库的主机数据库服务器.</p>
+                        <p class="text-muted small">選擇應在其上創建此資料庫的主機資料庫伺服器.</p>
                     </div>
                     <div class="form-group">
-                        <label for="pDatabaseName" class="control-label">数据库</label>
+                        <label for="pDatabaseName" class="control-label">資料庫</label>
                         <div class="input-group">
                             <span class="input-group-addon">s{{ $server->id }}_</span>
                             <input id="pDatabaseName" type="text" name="database" class="form-control" placeholder="database" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="pRemote" class="control-label">连接白名单</label>
+                        <label for="pRemote" class="control-label">連接白名單</label>
                         <input id="pRemote" type="text" name="remote" class="form-control" value="%" />
-                        <p class="text-muted small">这应该反映允许连接的 IP 地址。使用标准 MySQL 表示法。如果不确定请填写 <code>%</code>。</p>
+                        <p class="text-muted small">這應該反映允許連接的 IP 位址。使用標準 MySQL 標記法。如果不確定請填寫 <code>%</code>。</p>
                     </div>
                     <div class="form-group">
-                        <label for="pmax_connections" class="control-label">最大连接数</label>
+                        <label for="pmax_connections" class="control-label">最大連接數</label>
                         <input id="pmax_connections" type="text" name="max_connections" class="form-control"/>
-                        <p class="text-muted small">这应该反映从该用户到数据库的最大并发连接数。留空表示无限制。</p>
+                        <p class="text-muted small">這應該反映從該使用者到資料庫的最大併發連接數。留空表示無限制。</p>
                     </div>
                 </div>
                 <div class="box-footer">
                     {!! csrf_field() !!}
-                    <p class="text-muted small no-margin">该数据库的用户名和密码将在此表单提交后随机生成。</p>
-                    <input type="submit" class="btn btn-sm btn-success pull-right" value="创建数据库" />
+                    <p class="text-muted small no-margin">該資料庫的用戶名和密碼將在此表單提交後隨機生成。</p>
+                    <input type="submit" class="btn btn-sm btn-success pull-right" value="創建資料庫" />
                 </div>
             </form>
         </div>
@@ -111,9 +111,9 @@
         swal({
             title: '',
             type: 'warning',
-            text: '您确定要删除此数据库吗？ 没有回头路，所有数据将立即被删除。',
+            text: '您確定要刪除此資料庫嗎？ 沒有回頭路，所有資料將立即被刪除。',
             showCancelButton: true,
-            confirmButtonText: '删除',
+            confirmButtonText: '刪除',
             confirmButtonColor: '#d9534f',
             closeOnConfirm: false,
             showLoaderOnConfirm: true,
@@ -130,7 +130,7 @@
                 swal({
                     type: 'error',
                     title: 'Whoops!',
-                    text: (typeof jqXHR.responseJSON.error !== 'undefined') ? jqXHR.responseJSON.error : '处理此请求时发生错误，此请求无法继续处理！'
+                    text: (typeof jqXHR.responseJSON.error !== 'undefined') ? jqXHR.responseJSON.error : '處理此請求時發生錯誤，此請求無法繼續處理！'
                 });
             });
         });
@@ -148,17 +148,17 @@
             swal({
                 type: 'success',
                 title: '',
-                text: '数据库密码已重置.',
+                text: '資料庫密碼已重置.',
             });
         }).fail(function(jqXHR, textStatus, errorThrown) {
             console.error(jqXHR);
-            var error = '处理此请求时发生错误，此请求无法继续处理！';
+            var error = '處理此請求時發生錯誤，此請求無法繼續處理！';
             if (typeof jqXHR.responseJSON !== 'undefined' && typeof jqXHR.responseJSON.error !== 'undefined') {
                 error = jqXHR.responseJSON.error;
             }
             swal({
                 type: 'error',
-                title: '呜呼!',
+                title: '嗚呼!',
                 text: error
             });
         }).always(function () {
@@ -167,3 +167,4 @@
     });
     </script>
 @endsection
+

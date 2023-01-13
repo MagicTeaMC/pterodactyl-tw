@@ -39,7 +39,7 @@ function ForgotPasswordContainer() {
                 console.error(error);
 
                 setSubmitting(false);
-                addFlash({ type: 'error', title: '错误', message: httpErrorToHuman(error) });
+                addFlash({ type: 'error', title: '錯誤', message: httpErrorToHuman(error) });
             });
 
             return;
@@ -52,7 +52,7 @@ function ForgotPasswordContainer() {
             })
             .catch(error => {
                 console.error(error);
-                addFlash({ type: 'error', title: '错误', message: httpErrorToHuman(error) });
+                addFlash({ type: 'error', title: '錯誤', message: httpErrorToHuman(error) });
             })
             .then(() => {
                 setToken('');
@@ -70,22 +70,22 @@ function ForgotPasswordContainer() {
             initialValues={{ email: '' }}
             validationSchema={object().shape({
                 email: string()
-                    .email('必须提供有效的电子邮箱地址才能继续。')
-                    .required('必须提供有效的电子邮箱地址才能继续。'),
+                    .email('必須提供有效的電子郵箱位址才能繼續。')
+                    .required('必須提供有效的電子郵箱位址才能繼續。'),
             })}
         >
             {({ isSubmitting, setSubmitting, submitForm }) => (
-                <LoginFormContainer title={'请求重置密码'} css={tw`w-full flex`}>
+                <LoginFormContainer title={'請求重置密碼'} css={tw`w-full flex`}>
                     <Field
                         light
-                        label={'邮箱地址'}
-                        description={'输入您的帐户电子邮箱地址以接收有关重置密码的说明。'}
+                        label={'郵箱地址'}
+                        description={'輸入您的帳戶電子郵箱位址以接收有關重置密碼的說明。'}
                         name={'email'}
                         type={'email'}
                     />
                     <div css={tw`mt-6`}>
                         <Button type={'submit'} size={'xlarge'} disabled={isSubmitting} isLoading={isSubmitting}>
-                            发送邮件
+                            發送郵件
                         </Button>
                     </div>
                     {recaptchaEnabled && (
@@ -108,7 +108,7 @@ function ForgotPasswordContainer() {
                             to={'/auth/login'}
                             css={tw`text-xs text-neutral-500 tracking-wide uppercase no-underline hover:text-neutral-700`}
                         >
-                            返回登录
+                            返回登入
                         </Link>
                     </div>
                 </LoginFormContainer>
@@ -118,3 +118,4 @@ function ForgotPasswordContainer() {
 }
 
 export default ForgotPasswordContainer;
+

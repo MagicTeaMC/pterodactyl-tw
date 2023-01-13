@@ -42,7 +42,7 @@ const DisableTOTPDialog = () => {
         <form id={'disable-totp-form'} className={'mt-6'} onSubmit={submit}>
             <FlashMessageRender byKey={'account:two-step'} className={'-mt-2 mb-6'} />
             <label className={'block pb-1'} htmlFor={'totp-password'}>
-                密码
+                密碼
             </label>
             <Input.Text
                 id={'totp-password'}
@@ -53,7 +53,7 @@ const DisableTOTPDialog = () => {
             />
             <Dialog.Footer>
                 <Button.Text onClick={close}>Cancel</Button.Text>
-                <Tooltip delay={100} disabled={password.length > 0} content={'您必须输入您的帐户密码才能继续。'}>
+                <Tooltip delay={100} disabled={password.length > 0} content={'您必須輸入您的帳戶密碼才能繼續。'}>
                     <Button.Danger type={'submit'} form={'disable-totp-form'} disabled={submitting || !password.length}>
                         禁用
                     </Button.Danger>
@@ -64,6 +64,7 @@ const DisableTOTPDialog = () => {
 };
 
 export default asDialog({
-    title: '禁用动态口令认证',
-    description: '禁用动态口令认证将会使您的帐户安全性降低。',
+    title: '禁用動態口令認證',
+    description: '禁用動態口令認證將會使您的帳戶安全性降低。',
 })(DisableTOTPDialog);
+

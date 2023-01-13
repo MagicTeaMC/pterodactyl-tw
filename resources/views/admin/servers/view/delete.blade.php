@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 
 @section('title')
-    服务器 — {{ $server->name }}: 删除
+    伺服器 — {{ $server->name }}: 刪除
 @endsection
 
 @section('content-header')
-    <h1>{{ $server->name }}<small>将此服务器从面板上删除.</small></h1>
+    <h1>{{ $server->name }}<small>將此伺服器從面板上刪除.</small></h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('admin.index') }}">管理</a></li>
-        <li><a href="{{ route('admin.servers') }}">服务器</a></li>
+        <li><a href="{{ route('admin.servers') }}">伺服器</a></li>
         <li><a href="{{ route('admin.servers.view', $server->id) }}">{{ $server->name }}</a></li>
-        <li class="active">删除</li>
+        <li class="active">刪除</li>
     </ol>
 @endsection
 
@@ -20,16 +20,16 @@
     <div class="col-md-6">
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title">安全删除服务器</h3>
+                <h3 class="box-title">安全刪除伺服器</h3>
             </div>
             <div class="box-body">
-                <p>此操作将尝试从面板和守护程序中删除服务器。如果其中任何流程一个报告错误，则该操作将被取消.</p>
-                <p class="text-danger small">删除服务器是不可逆的操作. <strong>所有服务器数据</strong> (包括文件和用户) 都会被删除.</p>
+                <p>此操作將嘗試從面板和守護程式中刪除伺服器。如果其中任何流程一個報告錯誤，則該操作將被取消.</p>
+                <p class="text-danger small">刪除伺服器是不可逆的操作. <strong>所有伺服器資料</strong> (包括檔和使用者) 都會被刪除.</p>
             </div>
             <div class="box-footer">
                 <form id="deleteform" action="{{ route('admin.servers.view.delete', $server->id) }}" method="POST">
                     {!! csrf_field() !!}
-                    <button id="deletebtn" class="btn btn-danger">安全删除此服务器</button>
+                    <button id="deletebtn" class="btn btn-danger">安全刪除此伺服器</button>
                 </form>
             </div>
         </div>
@@ -37,17 +37,17 @@
     <div class="col-md-6">
         <div class="box box-danger">
             <div class="box-header with-border">
-                <h3 class="box-title">强制删除服务器</h3>
+                <h3 class="box-title">強制刪除伺服器</h3>
             </div>
             <div class="box-body">
-                <p>此操作将尝试从面板和守护程序中删除服务器。如果守护进程没有响应，或报告错误，删除操作将继续.</p>
-                <p class="text-danger small">删除服务器是不可逆的操作. <strong>所有服务器数据</strong> (包括文件和用户) 都会被删除. 如果出现错误报告，此方法可能会在您的守护程序服务器上留下垃圾文件.</p>
+                <p>此操作將嘗試從面板和守護程式中刪除伺服器。如果守護進程沒有回應，或報告錯誤，刪除操作將繼續.</p>
+                <p class="text-danger small">刪除伺服器是不可逆的操作. <strong>所有伺服器資料</strong> (包括檔和使用者) 都會被刪除. 如果出現錯誤報告，此方法可能會在您的守護程式伺服器上留下垃圾檔.</p>
             </div>
             <div class="box-footer">
                 <form id="forcedeleteform" action="{{ route('admin.servers.view.delete', $server->id) }}" method="POST">
                     {!! csrf_field() !!}
                     <input type="hidden" name="force_delete" value="1" />
-                    <button id="forcedeletebtn"" class="btn btn-danger">强制删除此服务器</button>
+                    <button id="forcedeletebtn"" class="btn btn-danger">強制刪除此伺服器</button>
                 </form>
             </div>
         </div>
@@ -63,9 +63,9 @@
         swal({
             title: '',
             type: 'warning',
-            text: '您确定要删除此服务器吗？ 没有回头路，所有数据将立即被删除。',
+            text: '您確定要刪除此伺服器嗎？ 沒有回頭路，所有資料將立即被刪除。',
             showCancelButton: true,
-            confirmButtonText: '删除',
+            confirmButtonText: '刪除',
             confirmButtonColor: '#d9534f',
             closeOnConfirm: false
         }, function () {
@@ -78,9 +78,9 @@
         swal({
             title: '',
             type: 'warning',
-            text: '您确定要删除此服务器吗？ 没有回头路，所有数据将立即被删除。',
+            text: '您確定要刪除此伺服器嗎？ 沒有回頭路，所有資料將立即被刪除。',
             showCancelButton: true,
-            confirmButtonText: '删除',
+            confirmButtonText: '刪除',
             confirmButtonColor: '#d9534f',
             closeOnConfirm: false
         }, function () {
@@ -89,3 +89,4 @@
     });
     </script>
 @endsection
+

@@ -71,11 +71,11 @@ const ConfigureTwoFactorForm = ({ onTokens }: Props) => {
             </div>
             <CopyOnClick text={token?.secret}>
                 <p className={'font-mono text-sm text-gray-100 text-center mt-2'}>
-                    {token?.secret.match(/.{1,4}/g)!.join(' ') || '正在加载...'}
+                    {token?.secret.match(/.{1,4}/g)!.join(' ') || '正在載入...'}
                 </p>
             </CopyOnClick>
             <p id={'totp-code-description'} className={'mt-6'}>
-                使用您选择的动态口令认证应用程序扫描上面的二维码。然后将生成的 6 位验证码输入到下面的文本框中。
+                使用您選擇的動態口令認證應用程式掃描上面的二維碼。然後將生成的 6 位驗證碼輸入到下面的文字方塊中。
             </p>
             <Input.Text
                 aria-labelledby={'totp-code-description'}
@@ -90,7 +90,7 @@ const ConfigureTwoFactorForm = ({ onTokens }: Props) => {
                 pattern={'\\d{6}'}
             />
             <label htmlFor={'totp-password'} className={'block mt-3'}>
-                账户密码
+                帳戶密碼
             </label>
             <Input.Text
                 variant={Input.Text.Variants.Loose}
@@ -103,7 +103,7 @@ const ConfigureTwoFactorForm = ({ onTokens }: Props) => {
                 <Button.Text onClick={close}>取消</Button.Text>
                 <Tooltip
                     disabled={password.length > 0 && value.length === 6}
-                    content={!token ? '正在等待二维码加载...' : '您必须输入 6 位验证码和密码才能继续。'}
+                    content={!token ? '正在等待二維碼載入...' : '您必須輸入 6 位元驗證碼和密碼才能繼續。'}
                     delay={100}
                 >
                     <Button
@@ -111,7 +111,7 @@ const ConfigureTwoFactorForm = ({ onTokens }: Props) => {
                         type={'submit'}
                         form={'enable-totp-form'}
                     >
-                        启用
+                        啟用
                     </Button>
                 </Tooltip>
             </Dialog.Footer>
@@ -120,6 +120,7 @@ const ConfigureTwoFactorForm = ({ onTokens }: Props) => {
 };
 
 export default asDialog({
-    title: '启用动态口令认证',
-    description: '帮助保护您的账户免遭未经授权的访问。每次登录时都会提示您输入验证码。',
+    title: '啟用動態口令認證',
+    description: '幫助保護您的帳戶免遭未經授權的訪問。每次登錄時都會提示您輸入驗證碼。',
 })(ConfigureTwoFactorForm);
+

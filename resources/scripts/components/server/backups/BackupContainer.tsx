@@ -33,7 +33,7 @@ const BackupContainer = () => {
     }
 
     return (
-        <ServerContentBlock title={'服务器备份'}>
+        <ServerContentBlock title={'伺服器備份'}>
             <FlashMessageRender byKey={'backups'} css={tw`mb-4`} />
             <Pagination data={backups} onPageSelect={setPage}>
                 {({ items }) =>
@@ -43,8 +43,8 @@ const BackupContainer = () => {
                         !backupLimit ? null : (
                             <p css={tw`text-center text-sm text-neutral-300`}>
                                 {page > 1
-                                    ? '看起来这页没有您的备份，请尝试返回上一个页面。'
-                                    : '目前似乎没有为此服务器存储的备份。'}
+                                    ? '看起來這頁沒有您的備份，請嘗試返回上一個頁面。'
+                                    : '目前似乎沒有為此伺服器存儲的備份。'}
                             </p>
                         )
                     ) : (
@@ -56,14 +56,14 @@ const BackupContainer = () => {
             </Pagination>
             {backupLimit === 0 && (
                 <p css={tw`text-center text-sm text-neutral-300`}>
-                    无法为此服务器创建备份，因为此服务器备份限制设置为0.
+                    無法為此伺服器創建備份，因為此伺服器備份限制設置為0.
                 </p>
             )}
             <Can action={'backup.create'}>
                 <div css={tw`mt-6 sm:flex items-center justify-end`}>
                     {backupLimit > 0 && backups.backupCount > 0 && (
                         <p css={tw`text-sm text-neutral-300 mb-4 sm:mr-6 sm:mb-0`}>
-                            {backups.backupCount} / {backupLimit} 个备份已为此服务器创建。
+                            {backups.backupCount} / {backupLimit} 個備份已為此伺服器創建。
                         </p>
                     )}
                     {backupLimit > 0 && backupLimit > backups.backupCount && (
@@ -83,3 +83,4 @@ export default () => {
         </ServerBackupContext.Provider>
     );
 };
+

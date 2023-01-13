@@ -27,10 +27,10 @@ function ServerConsoleContainer() {
             {(isNodeUnderMaintenance || isInstalling || isTransferring) && (
                 <Alert type={'warning'} className={'mb-4'}>
                     {isNodeUnderMaintenance
-                        ? '此服务器的节点目前正在维护中，所有操作均不可用。'
+                        ? '此伺服器的節點目前正在維護中，所有操作均不可用。'
                         : isInstalling
-                        ? '此服务器当前正在运行其安装过程，大多数操作都是不可用的。'
-                        : '此服务器当前正在转移到另一个节点，所有操作都不可用。'}
+                        ? '此伺服器當前正在運行其安裝過程，大多數操作都是不可用的。'
+                        : '此伺服器當前正在轉移到另一個節點，所有操作都不可用。'}
                 </Alert>
             )}
             <div className={'grid grid-cols-4 gap-4 mb-4'}>
@@ -63,3 +63,4 @@ function ServerConsoleContainer() {
 }
 
 export default memo(ServerConsoleContainer, isEqual);
+

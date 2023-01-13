@@ -16,7 +16,7 @@ interface Values {
 
 const schema = Yup.object().shape({
     email: Yup.string().email().required(),
-    password: Yup.string().required('您必须提供您当前的帐户密码。'),
+    password: Yup.string().required('您必須提供您當前的帳戶密碼。'),
 });
 
 export default () => {
@@ -33,14 +33,14 @@ export default () => {
                 addFlash({
                     type: 'success',
                     key: 'account:email',
-                    message: '您的首选电子邮箱地址已更新。',
+                    message: '您的首選電子郵箱位址已更新。',
                 }),
             )
             .catch(error =>
                 addFlash({
                     type: 'error',
                     key: 'account:email',
-                    title: '错误',
+                    title: '錯誤',
                     message: httpErrorToHuman(error),
                 }),
             )
@@ -56,12 +56,12 @@ export default () => {
                 <Fragment>
                     <SpinnerOverlay size={'large'} visible={isSubmitting} />
                     <Form css={tw`m-0`}>
-                        <Field id={'current_email'} type={'email'} name={'email'} label={'邮箱'} />
+                        <Field id={'current_email'} type={'email'} name={'email'} label={'郵箱'} />
                         <div css={tw`mt-6`}>
-                            <Field id={'confirm_password'} type={'password'} name={'password'} label={'确认密码'} />
+                            <Field id={'confirm_password'} type={'password'} name={'password'} label={'確認密碼'} />
                         </div>
                         <div css={tw`mt-6`}>
-                            <Button disabled={isSubmitting || !isValid}>更新邮箱地址</Button>
+                            <Button disabled={isSubmitting || !isValid}>更新郵箱位址</Button>
                         </div>
                     </Form>
                 </Fragment>
@@ -69,3 +69,5 @@ export default () => {
         </Formik>
     );
 };
+
+

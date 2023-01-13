@@ -43,11 +43,11 @@ export default ({ className }: PowerButtonProps) => {
                 open={open}
                 hideCloseIcon
                 onClose={() => setOpen(false)}
-                title={'强制停止进程'}
-                confirm={'继续'}
+                title={'強制停止進程'}
+                confirm={'繼續'}
                 onConfirmed={onButtonClick.bind(this, 'kill-confirmed')}
             >
-                强行停止服务器会导致数据损坏。
+                強行停止伺服器會導致資料損壞。
             </Dialog.Confirm>
             <Can action={'control.start'}>
                 <Button
@@ -55,12 +55,12 @@ export default ({ className }: PowerButtonProps) => {
                     disabled={status !== 'offline'}
                     onClick={onButtonClick.bind(this, 'start')}
                 >
-                    开机
+                    開機
                 </Button>
             </Can>
             <Can action={'control.restart'}>
                 <Button.Text className={'flex-1'} disabled={!status} onClick={onButtonClick.bind(this, 'restart')}>
-                    重启
+                    重啟
                 </Button.Text>
             </Can>
             <Can action={'control.stop'}>
@@ -69,9 +69,10 @@ export default ({ className }: PowerButtonProps) => {
                     disabled={status === 'offline'}
                     onClick={onButtonClick.bind(this, killable ? 'kill' : 'stop')}
                 >
-                    {killable ? '强制停止' : '停止'}
+                    {killable ? '強制停止' : '停止'}
                 </Button.Danger>
             </Can>
         </div>
     );
 };
+

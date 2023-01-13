@@ -28,16 +28,16 @@ function LoginCheckpointContainer() {
     const [isMissingDevice, setIsMissingDevice] = useState(false);
 
     return (
-        <LoginFormContainer title={'设备检查'} css={tw`w-full flex`}>
+        <LoginFormContainer title={'設備檢查'} css={tw`w-full flex`}>
             <div css={tw`mt-6`}>
                 <Field
                     light
                     name={isMissingDevice ? 'recoveryCode' : 'code'}
-                    title={isMissingDevice ? '恢复代码' : '登录代码'}
+                    title={isMissingDevice ? '恢復代碼' : '登錄代碼'}
                     description={
                         isMissingDevice
-                            ? '输入在此帐户上设置动态口令认证时生成的恢复代码之一以继续。'
-                            : '输入由您的设备随机生成的动态口令。'
+                            ? '輸入在此帳戶上設置動態口令認證時生成的恢復代碼之一以繼續。'
+                            : '輸入由您的設備隨機生成的動態口令。'
                     }
                     type={'text'}
                     autoComplete={'one-time-code'}
@@ -46,7 +46,7 @@ function LoginCheckpointContainer() {
             </div>
             <div css={tw`mt-6`}>
                 <Button size={'xlarge'} type={'submit'} disabled={isSubmitting} isLoading={isSubmitting}>
-                    继续
+                    繼續
                 </Button>
             </div>
             <div css={tw`mt-6 text-center`}>
@@ -58,7 +58,7 @@ function LoginCheckpointContainer() {
                     }}
                     css={tw`cursor-pointer text-xs text-neutral-500 tracking-wide uppercase no-underline hover:text-neutral-700`}
                 >
-                    {!isMissingDevice ? '我的设备丢失了' : '我的设备还在'}
+                    {!isMissingDevice ? '我的設備丟失了' : '我的設備還在'}
                 </span>
             </div>
             <div css={tw`mt-6 text-center`}>
@@ -66,7 +66,7 @@ function LoginCheckpointContainer() {
                     to={'/auth/login'}
                     css={tw`text-xs text-neutral-500 tracking-wide uppercase no-underline hover:text-neutral-700`}
                 >
-                    返回登录
+                    返回登錄
                 </Link>
             </div>
         </LoginFormContainer>
@@ -112,3 +112,4 @@ export default ({ ...props }: OwnProps) => {
 
     return <EnhancedForm clearAndAddHttpError={clearAndAddHttpError} location={location} {...props} />;
 };
+

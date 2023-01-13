@@ -32,16 +32,17 @@ export default () => {
             <DisableTOTPDialog open={visible === 'disable'} onClose={() => setVisible(null)} />
             <p css={tw`text-sm`}>
                 {isEnabled
-                    ? '您的帐户当前启用了动态口令认证。'
-                    : '您目前没有在您的帐户上启用动态口令认证，单击下面的按钮即可开始配置。'}
+                    ? '您的帳戶當前啟用了動態口令認證。'
+                    : '您目前沒有在您的帳戶上啟用動態口令認證，按一下下面的按鈕即可開始配置。'}
             </p>
             <div css={tw`mt-6`}>
                 {isEnabled ? (
-                    <Button.Danger onClick={() => setVisible('disable')}>禁用动态口令认证</Button.Danger>
+                    <Button.Danger onClick={() => setVisible('disable')}>禁用動態口令認證</Button.Danger>
                 ) : (
-                    <Button onClick={() => setVisible('enable')}>启用动态口令认证</Button>
+                    <Button onClick={() => setVisible('enable')}>啟用動態口令認證</Button>
                 )}
             </div>
         </div>
     );
 };
+

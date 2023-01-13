@@ -28,17 +28,17 @@ const ModalContent = ({ ...props }: RequiredModalProps) => {
         <Modal {...props} showSpinnerOverlay={isSubmitting}>
             <Form>
                 <FlashMessageRender byKey={'backups:create'} css={tw`mb-4`} />
-                <h2 css={tw`text-2xl mb-6`}>创建服务器备份</h2>
-                <Field name={'name'} label={'备份名称'} description={'如果提供，则应用于此备份的名称。'} />
+                <h2 css={tw`text-2xl mb-6`}>創建伺服器備份</h2>
+                <Field name={'name'} label={'備份名稱'} description={'如果提供，則應用於此備份的名稱。'} />
                 <div css={tw`mt-6`}>
                     <FormikFieldWrapper
                         name={'ignored'}
-                        label={'忽略的文件和目录'}
+                        label={'忽略的檔和目錄'}
                         description={`
-                            输入生成此备份时要忽略的文件或文件夹。留空使用
-                            服务器目录根目录中 .pteroignore 文件的内容（如果存在）。
-                            除了通过以下方式否定规则外，还支持文件和文件夹的通配符匹配
-                            用感叹号作为路径前缀。
+                            輸入生成此備份時要忽略的檔或資料夾。留空使用
+                            伺服器目錄根目錄中 .pteroignore 檔的內容（如果存在）。
+                            除了通過以下方式否定規則外，還支援檔和資料夾的萬用字元匹配
+                            用感嘆號作為路徑首碼。
                         `}
                     >
                         <FormikField as={Textarea} name={'ignored'} rows={6} />
@@ -46,12 +46,12 @@ const ModalContent = ({ ...props }: RequiredModalProps) => {
                 </div>
                 <Can action={'backup.delete'}>
                     <div css={tw`mt-6 bg-neutral-700 border border-neutral-800 shadow-inner p-4 rounded`}>
-                        <FormikSwitch name={'isLocked'} label={'锁定'} description={'防止此备份被删除，直到解锁。'} />
+                        <FormikSwitch name={'isLocked'} label={'鎖定'} description={'防止此備份被刪除，直到解鎖。'} />
                     </div>
                 </Can>
                 <div css={tw`flex justify-end mt-6`}>
                     <Button type={'submit'} disabled={isSubmitting}>
-                        开始备份
+                        開始備份
                     </Button>
                 </div>
             </Form>
@@ -101,8 +101,9 @@ export default () => {
                 </Formik>
             )}
             <Button css={tw`w-full sm:w-auto`} onClick={() => setVisible(true)}>
-                创建备份
+                創建備份
             </Button>
         </>
     );
 };
+

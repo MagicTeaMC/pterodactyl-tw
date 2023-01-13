@@ -99,11 +99,11 @@ function ServerDetailsBlock({ className }: { className?: string }) {
             </StatBlock>
             <StatBlock
                 icon={faClock}
-                title={'正常运行时间'}
+                title={'正常執行時間'}
                 color={getBackgroundColor(status === 'running' ? 0 : status !== 'offline' ? 9 : 10, 10)}
             >
                 {status === null ? (
-                    '离线'
+                    '離線'
                 ) : stats.uptime > 0 ? (
                     <UptimeDuration uptime={stats.uptime / 1000} />
                 ) : (
@@ -112,34 +112,34 @@ function ServerDetailsBlock({ className }: { className?: string }) {
             </StatBlock>
             <StatBlock icon={faMicrochip} title={'CPU'} color={getBackgroundColor(stats.cpu, limits.cpu)}>
                 {status === 'offline' ? (
-                    <span className={'text-gray-400'}>离线</span>
+                    <span className={'text-gray-400'}>離線</span>
                 ) : (
                     <Limit limit={textLimits.cpu}>{stats.cpu.toFixed(2)}%</Limit>
                 )}
             </StatBlock>
             <StatBlock
                 icon={faMemory}
-                title={'内存'}
+                title={'記憶體'}
                 color={getBackgroundColor(stats.memory / 1024, limits.memory * 1024)}
             >
                 {status === 'offline' ? (
-                    <span className={'text-gray-400'}>离线</span>
+                    <span className={'text-gray-400'}>離線</span>
                 ) : (
                     <Limit limit={textLimits.memory}>{bytesToString(stats.memory)}</Limit>
                 )}
             </StatBlock>
             <StatBlock
                 icon={faHdd}
-                title={'存储空间'}
+                title={'存儲空間'}
                 color={getBackgroundColor(stats.disk / 1024, limits.disk * 1024)}
             >
                 <Limit limit={textLimits.disk}>{bytesToString(stats.disk)}</Limit>
             </StatBlock>
-            <StatBlock icon={faCloudDownloadAlt} title={'网络(入站)'}>
-                {status === 'offline' ? <span className={'text-gray-400'}>离线</span> : bytesToString(stats.rx)}
+            <StatBlock icon={faCloudDownloadAlt} title={'網路(入站)'}>
+                {status === 'offline' ? <span className={'text-gray-400'}>離線</span> : bytesToString(stats.rx)}
             </StatBlock>
-            <StatBlock icon={faCloudUploadAlt} title={'网络(出站)'}>
-                {status === 'offline' ? <span className={'text-gray-400'}>离线</span> : bytesToString(stats.tx)}
+            <StatBlock icon={faCloudUploadAlt} title={'網路(出站)'}>
+                {status === 'offline' ? <span className={'text-gray-400'}>離線</span> : bytesToString(stats.tx)}
             </StatBlock>
         </div>
     );

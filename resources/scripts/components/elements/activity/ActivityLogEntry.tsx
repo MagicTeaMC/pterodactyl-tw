@@ -65,7 +65,7 @@ export default ({ activity, children }: Props) => {
                         </Link>
                         <div className={classNames(style.icons, 'group-hover:text-gray-300')}>
                             {activity.isApi && (
-                                <Tooltip placement={'top'} content={'使用 API 密钥'}>
+                                <Tooltip placement={'top'} content={'使用 API 金鑰'}>
                                     <TerminalIcon />
                                 </Tooltip>
                             )}
@@ -97,3 +97,4 @@ export default ({ activity, children }: Props) => {
         </div>
     );
 };
+

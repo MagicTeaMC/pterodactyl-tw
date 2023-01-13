@@ -40,7 +40,7 @@ function ResetPasswordContainer() {
                 console.error(error);
 
                 setSubmitting(false);
-                addFlash({ type: 'error', title: '错误', message: httpErrorToHuman(error) });
+                addFlash({ type: 'error', title: '錯誤', message: httpErrorToHuman(error) });
             });
     };
 
@@ -52,33 +52,33 @@ function ResetPasswordContainer() {
                 passwordConfirmation: '',
             }}
             validationSchema={object().shape({
-                password: string().required('需要新密码。').min(8, '您的新密码长度应至少为 8 个字符。'),
+                password: string().required('需要新密碼。').min(8, '您的新密碼長度應至少為 8 個字元。'),
                 passwordConfirmation: string()
-                    .required('您的新密码不匹配。')
-                    .oneOf([ref('password'), null], '您的新密码不匹配。'),
+                    .required('您的新密碼不匹配。')
+                    .oneOf([ref('password'), null], '您的新密碼不匹配。'),
             })}
         >
             {({ isSubmitting }) => (
-                <LoginFormContainer title={'重置密码'} css={tw`w-full flex`}>
+                <LoginFormContainer title={'重置密碼'} css={tw`w-full flex`}>
                     <div>
-                        <label>邮箱</label>
+                        <label>郵箱</label>
                         <Input value={email} isLight disabled />
                     </div>
                     <div css={tw`mt-6`}>
                         <Field
                             light
-                            label={'新密码'}
+                            label={'新密碼'}
                             name={'password'}
                             type={'password'}
-                            description={'密码长度必须至少为 8 个字符。'}
+                            description={'密碼長度必須至少為 8 個字元。'}
                         />
                     </div>
                     <div css={tw`mt-6`}>
-                        <Field light label={'确认新密码'} name={'passwordConfirmation'} type={'password'} />
+                        <Field light label={'確認新密碼'} name={'passwordConfirmation'} type={'password'} />
                     </div>
                     <div css={tw`mt-6`}>
                         <Button size={'xlarge'} type={'submit'} disabled={isSubmitting} isLoading={isSubmitting}>
-                            重置密码
+                            重置密碼
                         </Button>
                     </div>
                     <div css={tw`mt-6 text-center`}>
@@ -86,7 +86,7 @@ function ResetPasswordContainer() {
                             to={'/auth/login'}
                             css={tw`text-xs text-neutral-500 tracking-wide no-underline uppercase hover:text-neutral-600`}
                         >
-                            返回登录
+                            返回登錄
                         </Link>
                     </div>
                 </LoginFormContainer>
@@ -96,3 +96,4 @@ function ResetPasswordContainer() {
 }
 
 export default ResetPasswordContainer;
+

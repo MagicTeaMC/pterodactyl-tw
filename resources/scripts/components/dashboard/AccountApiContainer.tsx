@@ -42,25 +42,25 @@ export default () => {
     };
 
     return (
-        <PageContentBlock title={'账户 API'}>
+        <PageContentBlock title={'帳戶 API'}>
             <FlashMessageRender byKey={'account'} />
             <div css={tw`md:flex flex-nowrap my-10`}>
-                <ContentBox title={'创建 API 密钥'} css={tw`flex-none w-full md:w-1/2`}>
+                <ContentBox title={'創建 API 金鑰'} css={tw`flex-none w-full md:w-1/2`}>
                     <CreateApiKeyForm onKeyCreated={key => setKeys(s => [...s!, key])} />
                 </ContentBox>
-                <ContentBox title={'API 密钥'} css={tw`flex-1 overflow-hidden mt-8 md:mt-0 md:ml-8`}>
+                <ContentBox title={'API 金鑰'} css={tw`flex-1 overflow-hidden mt-8 md:mt-0 md:ml-8`}>
                     <SpinnerOverlay visible={loading} />
                     <Dialog.Confirm
-                        title={'确认删除秘钥'}
-                        confirm={'确认'}
+                        title={'確認刪除秘鑰'}
+                        confirm={'確認'}
                         open={!!deleteIdentifier}
                         onClose={() => setDeleteIdentifier('')}
                         onConfirmed={() => doDeletion(deleteIdentifier)}
                     >
-                        所有使用 <Code>{deleteIdentifier}</Code> 密钥的请求将立即失效！
+                        所有使用 <Code>{deleteIdentifier}</Code> 金鑰的請求將立即失效！
                     </Dialog.Confirm>
                     {keys.length === 0 ? (
-                        <p css={tw`text-center text-sm`}>{loading ? '载入中.....' : '此账户无 API 密钥'}</p>
+                        <p css={tw`text-center text-sm`}>{loading ? '載入中.....' : '此帳戶無 API 金鑰'}</p>
                     ) : (
                         keys.map((key, index) => (
                             <GreyRowBox
@@ -71,8 +71,8 @@ export default () => {
                                 <div css={tw`ml-4 flex-1 overflow-hidden`}>
                                     <p css={tw`text-sm break-words`}>{key.description}</p>
                                     <p css={tw`text-2xs text-neutral-300 uppercase`}>
-                                        上次使用于:&nbsp;
-                                        {key.lastUsedAt ? format(key.lastUsedAt, 'MMM do, yyyy HH:mm') : '从未'}
+                                        上次使用於:&nbsp;
+                                        {key.lastUsedAt ? format(key.lastUsedAt, 'MMM do, yyyy HH:mm') : '從未'}
                                     </p>
                                 </div>
                                 <p css={tw`text-sm ml-4 hidden md:block`}>
@@ -92,3 +92,4 @@ export default () => {
         </PageContentBlock>
     );
 };
+

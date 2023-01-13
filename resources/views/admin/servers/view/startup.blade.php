@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 
 @section('title')
-    服务器 — {{ $server->name }}: 启动
+    伺服器 — {{ $server->name }}: 啟動
 @endsection
 
 @section('content-header')
-    <h1>{{ $server->name }}<small>管理启动命令与其变量.</small></h1>
+    <h1>{{ $server->name }}<small>管理啟動命令與其變數.</small></h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('admin.index') }}">管理</a></li>
-        <li><a href="{{ route('admin.servers') }}">服务器</a></li>
+        <li><a href="{{ route('admin.servers') }}">伺服器</a></li>
         <li><a href="{{ route('admin.servers.view', $server->id) }}">{{ $server->name }}</a></li>
-        <li class="active">启动</li>
+        <li class="active">啟動</li>
     </ol>
 @endsection
 
@@ -21,20 +21,20 @@
         <div class="col-xs-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">启动命令编辑</h3>
+                    <h3 class="box-title">啟動命令編輯</h3>
                 </div>
                 <div class="box-body">
-                    <label for="pStartup" class="form-label">启动命令</label>
+                    <label for="pStartup" class="form-label">啟動命令</label>
                     <input id="pStartup" name="startup" class="form-control" type="text" value="{{ old('startup', $server->startup) }}" />
-                    <p class="small text-muted">于此编辑服务器的启动命令. 默认可用的变量有: <code>@{{SERVER_MEMORY}}</code>, <code>@{{SERVER_IP}}</code>, 和 <code>@{{SERVER_PORT}}</code>.</p>
+                    <p class="small text-muted">於此編輯伺服器的啟動命令. 預設可用的變數有: <code>@{{SERVER_MEMORY}}</code>, <code>@{{SERVER_IP}}</code>, 和 <code>@{{SERVER_PORT}}</code>.</p>
                 </div>
                 <div class="box-body">
-                    <label for="pDefaultStartupCommand" class="form-label">默认启动命令</label>
+                    <label for="pDefaultStartupCommand" class="form-label">默認啟動命令</label>
                     <input id="pDefaultStartupCommand" class="form-control" type="text" readonly />
                 </div>
                 <div class="box-footer">
                     {!! csrf_field() !!}
-                    <button type="submit" class="btn btn-primary btn-sm pull-right">保存编辑</button>
+                    <button type="submit" class="btn btn-primary btn-sm pull-right">保存編輯</button>
                 </div>
             </div>
         </div>
@@ -43,20 +43,20 @@
         <div class="col-md-6">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">预设设置</h3>
+                    <h3 class="box-title">預設設置</h3>
                 </div>
                 <div class="box-body row">
                     <div class="col-xs-12">
                         <p class="small text-danger">
-                            更改以下任何值将导致服务器处理重新安装命令。服务器将停止运行，然后重启。
-                            如果您不希望服务程序运行，请确保选中底部的框。
+                            更改以下任何值將導致伺服器處理重新安裝命令。伺服器將停止運行，然後重啟。
+                            如果您不希望服務程式運行，請確保選中底部的框。
                         </p>
                         <p class="small text-danger">
-                            <strong>在许多情况下，这是一种破坏性操作。此服务器将立即停止，以便此操作继续进行.</strong>
+                            <strong>在許多情況下，這是一種破壞性操作。此伺服器將立即停止，以便此操作繼續進行.</strong>
                         </p>
                     </div>
                     <div class="form-group col-xs-12">
-                        <label for="pNestId">预设组</label>
+                        <label for="pNestId">預設組</label>
                         <select name="nest_id" id="pNestId" class="form-control">
                             @foreach($nests as $nest)
                                 <option value="{{ $nest->id }}"
@@ -66,32 +66,32 @@
                                 >{{ $nest->name }}</option>
                             @endforeach
                         </select>
-                        <p class="small text-muted no-margin">选择服务器使用的预设组.</p>
+                        <p class="small text-muted no-margin">選擇伺服器使用的預設組.</p>
                     </div>
                     <div class="form-group col-xs-12">
-                        <label for="pEggId">预设</label>
+                        <label for="pEggId">預設</label>
                         <select name="egg_id" id="pEggId" class="form-control"></select>
-                        <p class="small text-muted no-margin">选择将为该服务器提供处理数据的预设.</p>
+                        <p class="small text-muted no-margin">選擇將為該伺服器提供處理資料的預設.</p>
                     </div>
                     <div class="form-group col-xs-12">
                         <div class="checkbox checkbox-primary no-margin-bottom">
                             <input id="pSkipScripting" name="skip_scripts" type="checkbox" value="1" @if($server->skip_scripts) checked @endif />
-                            <label for="pSkipScripting" class="strong">跳过预设安装脚本</label>
+                            <label for="pSkipScripting" class="strong">跳過預設安裝腳本</label>
                         </div>
-                        <p class="small text-muted no-margin">如果选定的预设附加了安装脚本，则该程序将在安装期间运行。如果您想跳过此步骤，请选中此框.</p>
+                        <p class="small text-muted no-margin">如果選定的預設附加了安裝腳本，則該程式將在安裝期間運行。如果您想跳過此步驟，請選中此框.</p>
                     </div>
                 </div>
             </div>
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Docker 镜像设置</h3>
+                    <h3 class="box-title">Docker 鏡像設置</h3>
                 </div>
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="pDockerImage">镜像</label>
+                        <label for="pDockerImage">鏡像</label>
                         <select id="pDockerImage" name="docker_image" class="form-control"></select>
-                        <input id="pDockerImageCustom" name="custom_docker_image" value="{{ old('custom_docker_image') }}" class="form-control" placeholder="或输入自定义镜像..." style="margin-top:1rem"/>
-                        <p class="small text-muted no-margin">这是将用于运行此服务器的 Docker 映像。从下拉列表中选择镜像或在上面的文本字段中输入自定义镜像.</p>
+                        <input id="pDockerImageCustom" name="custom_docker_image" value="{{ old('custom_docker_image') }}" class="form-control" placeholder="或輸入自訂鏡像..." style="margin-top:1rem"/>
+                        <p class="small text-muted no-margin">這是將用於運行此伺服器的 Docker 映射。從下拉清單中選擇鏡像或在上面的文本欄位元中輸入自訂鏡像.</p>
                     </div>
                 </div>
             </div>
@@ -108,7 +108,7 @@
     {!! Theme::js('vendor/lodash/lodash.js') !!}
     <script>
     $(document).ready(function () {
-        $('#pEggId').select2({placeholder: '选择预设'}).on('change', function () {
+        $('#pEggId').select2({placeholder: '選擇預設'}).on('change', function () {
             var selectedEgg = _.isNull($(this).val()) ? $(this).find('option').first().val() : $(this).val();
             var parentChain = _.get(Pterodactyl.nests, $("#pNestId").val());
             var objectChain = _.get(parentChain, 'eggs.' + selectedEgg);
@@ -156,8 +156,8 @@
                                 <p class="no-margin small text-muted">' + item.description + '</p> \
                             </div> \
                             <div class="box-footer"> \
-                                <p class="no-margin text-muted small"><strong>启动命令变量:</strong> <code>' + item.env_variable + '</code></p> \
-                                <p class="no-margin text-muted small"><strong>字符限制:</strong> <code>' + item.rules + '</code></p> \
+                                <p class="no-margin text-muted small"><strong>啟動命令變數:</strong> <code>' + item.env_variable + '</code></p> \
+                                <p class="no-margin text-muted small"><strong>字元限制:</strong> <code>' + item.rules + '</code></p> \
                             </div> \
                         </div> \
                     </div>';
@@ -165,7 +165,7 @@
             });
         });
 
-        $('#pNestId').select2({placeholder: '选择预设组'}).on('change', function () {
+        $('#pNestId').select2({placeholder: '選擇預設組'}).on('change', function () {
             $('#pEggId').html('').select2({
                 data: $.map(_.get(Pterodactyl.nests, $(this).val() + '.eggs', []), function (item) {
                     return {
@@ -184,3 +184,5 @@
     });
     </script>
 @endsection
+
+

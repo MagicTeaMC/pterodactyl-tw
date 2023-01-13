@@ -61,20 +61,20 @@ export default ({ onKeyCreated }: { onKeyCreated: (key: ApiKey) => void }) => {
                         <FormikFieldWrapper
                             label={'描述'}
                             name={'description'}
-                            description={'此 API 密钥的描述。'}
+                            description={'此 API 金鑰的描述。'}
                             css={tw`mb-6`}
                         >
                             <Field name={'description'} as={Input} />
                         </FormikFieldWrapper>
                         <FormikFieldWrapper
-                            label={'IP 白名单'}
+                            label={'IP 白名單'}
                             name={'allowedIps'}
-                            description={'留空以允许任何 IP 地址使用此 API 密钥，否则在每一行中提供每个 IP 地址。'}
+                            description={'留空以允許任何 IP 位址使用此 API 金鑰，否則在每一行中提供每個 IP 位址。'}
                         >
                             <Field name={'allowedIps'} as={CustomTextarea} />
                         </FormikFieldWrapper>
                         <div css={tw`flex justify-end mt-6`}>
-                            <Button>创建</Button>
+                            <Button>創建</Button>
                         </div>
                     </Form>
                 )}
@@ -82,3 +82,4 @@ export default ({ onKeyCreated }: { onKeyCreated: (key: ApiKey) => void }) => {
         </>
     );
 };
+

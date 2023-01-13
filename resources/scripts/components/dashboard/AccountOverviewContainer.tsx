@@ -29,26 +29,27 @@ export default () => {
     const { state } = useLocation();
 
     return (
-        <PageContentBlock title="账户概况">
+        <PageContentBlock title="帳戶概況">
             {state?.twoFactorRedirect && (
-                <MessageBox title="需要启用动态口令认证" type="error">
-                    您的帐户必须启用动态口令认证才能继续使用。
+                <MessageBox title="需要啟用動態口令認證" type="error">
+                    您的帳戶必須啟用動態口令認證才能繼續使用。
                 </MessageBox>
             )}
 
             <Container css={[tw`lg:grid lg:grid-cols-3 mb-10`, state?.twoFactorRedirect ? tw`mt-4` : tw`mt-10`]}>
-                <ContentBox title="更新密码" showFlashes="account:password">
+                <ContentBox title="更新密碼" showFlashes="account:password">
                     <UpdatePasswordForm />
                 </ContentBox>
 
-                <ContentBox css={tw`mt-8 sm:mt-0 sm:ml-8`} title="更新电子邮箱地址" showFlashes="account:email">
+                <ContentBox css={tw`mt-8 sm:mt-0 sm:ml-8`} title="更新電子郵箱位址" showFlashes="account:email">
                     <UpdateEmailAddressForm />
                 </ContentBox>
 
-                <ContentBox css={tw`md:ml-8 mt-8 md:mt-0`} title="配置动态口令认证">
+                <ContentBox css={tw`md:ml-8 mt-8 md:mt-0`} title="配置動態口令認證">
                     <ConfigureTwoFactorForm />
                 </ContentBox>
             </Container>
         </PageContentBlock>
     );
 };
+

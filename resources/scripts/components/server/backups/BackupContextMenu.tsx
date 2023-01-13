@@ -124,20 +124,20 @@ export default ({ backup }: Props) => {
             <Dialog.Confirm
                 open={modal === 'unlock'}
                 onClose={() => setModal('')}
-                title={`解锁 "${backup.name}"`}
+                title={`解鎖 "${backup.name}"`}
                 onConfirmed={onLockToggle}
             >
-                您确定要解锁此备份吗？ 它将不再受到意外删除保护。
+                您確定要解鎖此備份嗎？ 它將不再受到意外刪除保護。
             </Dialog.Confirm>
             <Dialog.Confirm
                 open={modal === 'restore'}
                 onClose={() => setModal('')}
-                confirm={'回档'}
-                title={`恢复 "${backup.name}"`}
+                confirm={'回檔'}
+                title={`恢復 "${backup.name}"`}
                 onConfirmed={() => doRestorationAction()}
             >
                 <p>
-                    该服务器将停止以恢复备份。备份开始后，您将无法控制服务器电源状态、访问文件管理器或创建其他备份直到它完成。
+                    該伺服器將停止以恢復備份。備份開始後，您將無法控制伺服器電源狀態、訪問檔案管理員或創建其他備份直到它完成。
                 </p>
                 <p css={tw`mt-4 -mb-2 bg-gray-700 p-3 rounded`}>
                     <label htmlFor={'restore_truncate'} css={tw`text-base flex items-center cursor-pointer`}>
@@ -149,18 +149,18 @@ export default ({ backup }: Props) => {
                             checked={truncate}
                             onChange={() => setTruncate(s => !s)}
                         />
-                        在恢复此备份之前删除所有文件和文件夹。
+                        在恢復此備份之前刪除所有檔和資料夾。
                     </label>
                 </p>
             </Dialog.Confirm>
             <Dialog.Confirm
-                title={`删除 "${backup.name}"`}
-                confirm={'继续'}
+                title={`刪除 "${backup.name}"`}
+                confirm={'繼續'}
                 open={modal === 'delete'}
                 onClose={() => setModal('')}
                 onConfirmed={doDeletion}
             >
-                您确定要删除此备份吗？ 这是一个永久性操作。
+                您確定要刪除此備份嗎？ 這是一個永久性操作。
             </Dialog.Confirm>
             <SpinnerOverlay visible={loading} fixed />
             {backup.isSuccessful ? (
@@ -178,13 +178,13 @@ export default ({ backup }: Props) => {
                         <Can action={'backup.download'}>
                             <DropdownButtonRow onClick={doDownload}>
                                 <FontAwesomeIcon fixedWidth icon={faCloudDownloadAlt} css={tw`text-xs`} />
-                                <span css={tw`ml-2`}>下载</span>
+                                <span css={tw`ml-2`}>下載</span>
                             </DropdownButtonRow>
                         </Can>
                         <Can action={'backup.restore'}>
                             <DropdownButtonRow onClick={() => setModal('restore')}>
                                 <FontAwesomeIcon fixedWidth icon={faBoxOpen} css={tw`text-xs`} />
-                                <span css={tw`ml-2`}>恢复</span>
+                                <span css={tw`ml-2`}>恢復</span>
                             </DropdownButtonRow>
                         </Can>
                         <Can action={'backup.delete'}>
@@ -195,12 +195,12 @@ export default ({ backup }: Props) => {
                                         icon={backup.isLocked ? faUnlock : faLock}
                                         css={tw`text-xs mr-2`}
                                     />
-                                    {backup.isLocked ? '解锁' : '锁定'}
+                                    {backup.isLocked ? '解鎖' : '鎖定'}
                                 </DropdownButtonRow>
                                 {!backup.isLocked && (
                                     <DropdownButtonRow danger onClick={() => setModal('delete')}>
                                         <FontAwesomeIcon fixedWidth icon={faTrashAlt} css={tw`text-xs`} />
-                                        <span css={tw`ml-2`}>删除</span>
+                                        <span css={tw`ml-2`}>刪除</span>
                                     </DropdownButtonRow>
                                 )}
                             </>
@@ -218,3 +218,4 @@ export default ({ backup }: Props) => {
         </>
     );
 };
+

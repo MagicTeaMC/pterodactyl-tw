@@ -19,8 +19,8 @@ export default ({ tokens, open, onClose }: RecoveryTokenDialogProps) => {
         <Dialog
             open={open}
             onClose={onClose}
-            title={'启用动态口令认证'}
-            description={'将下面的代码存储在安全的地方。如果您无法使用手机，则可以使用这些备用代码登录。'}
+            title={'啟用動態口令認證'}
+            description={'將下面的代碼存儲在安全的地方。如果您無法使用手機，則可以使用這些備用代碼登錄。'}
             hideCloseIcon
             preventExternalClose
         >
@@ -38,7 +38,7 @@ export default ({ tokens, open, onClose }: RecoveryTokenDialogProps) => {
                 </pre>
             </CopyOnClick>
             <Alert type={'danger'} className={'mt-3'}>
-                这些代码将不再会显示。
+                這些代碼將不再會顯示。
             </Alert>
             <Dialog.Footer>
                 <Button.Text onClick={onClose}>我知道了</Button.Text>
@@ -46,3 +46,4 @@ export default ({ tokens, open, onClose }: RecoveryTokenDialogProps) => {
         </Dialog>
     );
 };
+

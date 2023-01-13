@@ -17,9 +17,9 @@ interface Values {
 }
 
 const schema = Yup.object().shape({
-    current: Yup.string().min(1).required('您必须提供当前密码。'),
+    current: Yup.string().min(1).required('您必須提供當前密碼。'),
     password: Yup.string().min(8).required(),
-    confirmPassword: Yup.string().test('password', '密码确认与您输入的密码不匹配。', function (value) {
+    confirmPassword: Yup.string().test('password', '密碼確認與您輸入的密碼不匹配。', function (value) {
         return value === this.parent.password;
     }),
 });
@@ -43,7 +43,7 @@ export default () => {
                 addFlash({
                     key: 'account:password',
                     type: 'error',
-                    title: '错误',
+                    title: '錯誤',
                     message: httpErrorToHuman(error),
                 }),
             )
@@ -61,14 +61,14 @@ export default () => {
                     <Fragment>
                         <SpinnerOverlay size={'large'} visible={isSubmitting} />
                         <Form css={tw`m-0`}>
-                            <Field id={'current_password'} type={'password'} name={'current'} label={'当前密码'} />
+                            <Field id={'current_password'} type={'password'} name={'current'} label={'當前密碼'} />
                             <div css={tw`mt-6`}>
                                 <Field
                                     id={'new_password'}
                                     type={'password'}
                                     name={'password'}
-                                    label={'新密码'}
-                                    description={'您的新密码长度应至少为 8 个字符。'}
+                                    label={'新密碼'}
+                                    description={'您的新密碼長度應至少為 8 個字元。'}
                                 />
                             </div>
                             <div css={tw`mt-6`}>
@@ -76,11 +76,11 @@ export default () => {
                                     id={'confirm_new_password'}
                                     type={'password'}
                                     name={'confirmPassword'}
-                                    label={'确认新密码'}
+                                    label={'確認新密碼'}
                                 />
                             </div>
                             <div css={tw`mt-6`}>
-                                <Button disabled={isSubmitting || !isValid}>更新密码</Button>
+                                <Button disabled={isSubmitting || !isValid}>更新密碼</Button>
                             </div>
                         </Form>
                     </Fragment>
@@ -89,3 +89,4 @@ export default () => {
         </Fragment>
     );
 };
+

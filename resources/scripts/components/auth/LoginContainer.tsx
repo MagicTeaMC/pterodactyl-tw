@@ -75,19 +75,19 @@ function LoginContainer() {
             onSubmit={onSubmit}
             initialValues={{ username: '', password: '' }}
             validationSchema={object().shape({
-                username: string().required('必须提供用户名或电子邮箱。'),
-                password: string().required('请输入您的帐户密码。'),
+                username: string().required('必須提供用戶名或電子郵箱。'),
+                password: string().required('請輸入您的帳戶密碼。'),
             })}
         >
             {({ isSubmitting, setSubmitting, submitForm }) => (
-                <LoginFormContainer title={'登录到 ' + name} css={tw`w-full flex`}>
-                    <Field light type={'text'} label={'用户名或邮箱地址'} name={'username'} disabled={isSubmitting} />
+                <LoginFormContainer title={'登錄到 ' + name} css={tw`w-full flex`}>
+                    <Field light type={'text'} label={'用戶名或郵箱地址'} name={'username'} disabled={isSubmitting} />
                     <div css={tw`mt-6`}>
-                        <Field light type={'password'} label={'密码'} name={'password'} disabled={isSubmitting} />
+                        <Field light type={'password'} label={'密碼'} name={'password'} disabled={isSubmitting} />
                     </div>
                     <div css={tw`mt-6`}>
                         <Button type={'submit'} size={'xlarge'} isLoading={isSubmitting} disabled={isSubmitting}>
-                            登录
+                            登錄
                         </Button>
                     </div>
                     {recaptchaEnabled && (
@@ -110,7 +110,7 @@ function LoginContainer() {
                             to={'/auth/password'}
                             css={tw`text-xs text-neutral-500 tracking-wide no-underline uppercase hover:text-neutral-600`}
                         >
-                            忘记密码?
+                            忘記密碼?
                         </Link>
                     </div>
                 </LoginFormContainer>
@@ -120,3 +120,4 @@ function LoginContainer() {
 }
 
 export default LoginContainer;
+

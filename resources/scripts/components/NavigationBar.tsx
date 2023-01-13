@@ -60,21 +60,21 @@ export default () => {
                 <RightNavigation className="flex h-full items-center justify-center">
                     <SearchContainer />
 
-                    <Tooltip placement="bottom" content="仪表盘">
+                    <Tooltip placement="bottom" content="儀錶盤">
                         <NavLink to="/" end>
                             <FontAwesomeIcon icon={faLayerGroup} />
                         </NavLink>
                     </Tooltip>
 
                     {rootAdmin && (
-                        <Tooltip placement="bottom" content="管理员后台">
+                        <Tooltip placement="bottom" content="管理員後臺">
                             <a href="/admin" rel="noreferrer">
                                 <FontAwesomeIcon icon={faCogs} />
                             </a>
                         </Tooltip>
                     )}
 
-                    <Tooltip placement="bottom" content="账号设置">
+                    <Tooltip placement="bottom" content="帳號設置">
                         <NavLink to="/account">
                             <span className="flex items-center w-5 h-5">
                                 <Avatar.User />
@@ -92,3 +92,4 @@ export default () => {
         </div>
     );
 };
+

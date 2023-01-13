@@ -38,7 +38,7 @@ function PageContentBlock({ title, showFlashKey, className, children }: PageCont
                         Pterodactyl&reg;
                     </a>
                     &nbsp;&copy; 2015 - {new Date().getFullYear()}
-                    &nbsp;| Sinicizated by&nbsp;
+                    &nbsp;| 繁體中文翻譯來自&nbsp;
                     <a
                         rel={'noopener nofollow noreferrer'}
                         href={'https://github.com/MagicTeaMC'}

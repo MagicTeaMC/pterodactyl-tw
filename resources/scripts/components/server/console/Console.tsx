@@ -86,7 +86,7 @@ export default () => {
         switch (status) {
             // Sent by either the source or target node if a failure occurs.
             case 'failure':
-                terminal.writeln(TERMINAL_PRELUDE + '迁移失败.\u001b[0m');
+                terminal.writeln(TERMINAL_PRELUDE + '遷移失敗.\u001b[0m');
                 return;
         }
     };
@@ -97,7 +97,7 @@ export default () => {
         );
 
     const handlePowerChangeEvent = (state: string) =>
-        terminal.writeln(TERMINAL_PRELUDE + '服务器运行状态更新为: ' + state + '...\u001b[0m');
+        terminal.writeln(TERMINAL_PRELUDE + '伺服器運行狀態更新為: ' + state + '...\u001b[0m');
 
     const handleCommandKeyDown = (e: ReactKeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'ArrowUp') {
@@ -223,8 +223,8 @@ export default () => {
                     <input
                         className={classNames('peer', styles.command_input)}
                         type={'text'}
-                        placeholder={'在此输入指令...'}
-                        aria-label={'控制台指令输入.'}
+                        placeholder={'在此輸入指令...'}
+                        aria-label={'控制台指令輸入.'}
                         disabled={!instance || !connected}
                         onKeyDown={handleCommandKeyDown}
                         autoCorrect={'off'}
@@ -243,3 +243,4 @@ export default () => {
         </div>
     );
 };
+
