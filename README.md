@@ -10,4 +10,4 @@ Pterodactyl panel 的繁體中文翻譯版本，修改自[原版](https://github
 ## 版權
 Pterodactyl® Copyright © 2015 - 2022 Dane Everitt and contributors.
 Code released under the MIT License.
-此翻譯版本也同樣遵照 Pterodactyl 開源憑證及MIT開源憑證
+此翻譯版本也同樣遵照 Pterodactyl 開源憑證及 MIT 開源憑證
