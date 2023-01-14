@@ -39,11 +39,11 @@ const DeleteAllocationButton = ({ allocation }: Props) => {
             <Dialog.Confirm
                 open={confirm}
                 onClose={() => setConfirm(false)}
-                title={'删除此分配?'}
-                confirm={'删除'}
+                title={'刪除此端口?'}
+                confirm={'刪除'}
                 onConfirmed={deleteAllocation}
             >
-                此分配将立即从您的服务器中删除。你确定你要继续吗？
+                此端口將立即從您的伺服器中刪除。 你確定你要繼續嗎？
             </Dialog.Confirm>
             <Button.Danger
                 variant={Button.Variants.Secondary}

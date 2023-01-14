@@ -59,17 +59,17 @@ const FileUploadList = () => {
             ))}
             <Dialog.Footer>
                 <Button.Danger variant={Button.Variants.Secondary} onClick={() => clearFileUploads()}>
-                    取消上传
+                    取消上傳
                 </Button.Danger>
-                <Button.Text onClick={close}>关闭</Button.Text>
+                <Button.Text onClick={close}>關閉</Button.Text>
             </Dialog.Footer>
         </div>
     );
 };
 
 const FileUploadListDialog = asDialog({
-    title: '文件上传',
-    description: '正在将以下文件上传到您的服务器。',
+    title: '文件上傳',
+    description: '正在將以下文件上傳到您的伺服器。',
 })(FileUploadList);
 
 export default () => {
@@ -90,7 +90,7 @@ export default () => {
     return (
         <>
             {count > 0 && (
-                <Tooltip content={`${count} 个文件正在上传，点击查看`}>
+                <Tooltip content={`${count} 個文件正在上傳，點擊查看`}>
                     <button
                         className={'flex items-center justify-center w-10 h-10'}
                         onClick={() => (open.value = true)}

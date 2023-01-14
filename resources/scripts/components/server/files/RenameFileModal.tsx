@@ -65,17 +65,17 @@ const RenameFileModal = ({ files, useMoveTerminology, ...props }: OwnProps) => {
                                     type={'string'}
                                     id={'file_name'}
                                     name={'name'}
-                                    label={'文件名'}
+                                    label={'檔案名'}
                                     description={
                                         useMoveTerminology
-                                            ? '输入此文件或文件夹的新名称和目录，相对于当前目录.'
+                                            ? '輸入此檔或資料夾的新名稱和目錄，相對於目前的目錄.'
                                             : undefined
                                     }
                                     autoFocus
                                 />
                             </div>
                             <div css={tw`w-full sm:w-auto mt-4 sm:mt-0`}>
-                                <Button css={tw`w-full`}>{useMoveTerminology ? '移动' : '重命名'}</Button>
+                                <Button css={tw`w-full`}>{useMoveTerminology ? '移動' : '重命名'}</Button>
                             </div>
                         </div>
                         {useMoveTerminology && (
@@ -92,3 +92,4 @@ const RenameFileModal = ({ files, useMoveTerminology, ...props }: OwnProps) => {
 };
 
 export default RenameFileModal;
+

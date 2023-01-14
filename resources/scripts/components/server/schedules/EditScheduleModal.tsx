@@ -90,25 +90,25 @@ const EditScheduleModal = ({ schedule }: Props) => {
         >
             {({ isSubmitting }) => (
                 <Form>
-                    <h3 css={tw`text-2xl mb-6`}>{schedule ? '编辑计划' : '创建新计划'}</h3>
+                    <h3 css={tw`text-2xl mb-6`}>{schedule ? '編輯計畫' : '創建新計畫'}</h3>
                     <FlashMessageRender byKey={'schedule:edit'} css={tw`mb-6`} />
-                    <Field name={'name'} label={'计划名'} description={'此计划的名字'} />
+                    <Field name={'name'} label={'計畫名'} description={'此計畫的名字'} />
                     <div css={tw`grid grid-cols-2 sm:grid-cols-5 gap-4 mt-6`}>
-                        <Field name={'minute'} label={'分钟'} />
-                        <Field name={'hour'} label={'小时'} />
+                        <Field name={'minute'} label={'分鐘'} />
+                        <Field name={'hour'} label={'小時'} />
                         <Field name={'dayOfMonth'} label={'每月的某一天'} />
                         <Field name={'month'} label={'月'} />
-                        <Field name={'dayOfWeek'} label={'每周的某一天'} />
+                        <Field name={'dayOfWeek'} label={'每週的某一天'} />
                     </div>
                     <p css={tw`text-neutral-400 text-xs mt-2`}>
-                        计划系统支持在定义任务何时开始运行时使用 Cronjob
-                        语法。使用上面的字段来指定这些计划任务应该何时开始运行。
+                        計畫系統支援在定義任務何時開始運行時使用 Cronjob
+                        語法。使用上面的欄位來指定這些計畫任務應該何時開始運行。
                     </p>
                     <div css={tw`mt-6 bg-neutral-700 border border-neutral-800 shadow-inner p-4 rounded`}>
                         <Switch
                             name={'show_cheatsheet'}
-                            description={'显示 cronjob 的一些例子'}
-                            label={'显示例子'}
+                            description={'顯示 cronjob 的一些例子'}
+                            label={'顯示例子'}
                             defaultChecked={showCheatsheet}
                             onChange={() => setShowCheetsheet(s => !s)}
                         />
@@ -121,20 +121,20 @@ const EditScheduleModal = ({ schedule }: Props) => {
                     <div css={tw`mt-6 bg-neutral-700 border border-neutral-800 shadow-inner p-4 rounded`}>
                         <FormikSwitch
                             name={'onlyWhenOnline'}
-                            description={'仅在服务器处于运行状态时执行此计划。'}
-                            label={'仅当服务器在线运行时'}
+                            description={'僅在伺服器處於運行狀態時執行此計畫。'}
+                            label={'僅當伺服器線上運行時'}
                         />
                     </div>
                     <div css={tw`mt-6 bg-neutral-700 border border-neutral-800 shadow-inner p-4 rounded`}>
                         <FormikSwitch
                             name={'enabled'}
-                            description={'如果启用，此计划将自动执行。'}
-                            label={'计划已启用'}
+                            description={'如果啟用，此計畫將自動執行。'}
+                            label={'計畫已啟用'}
                         />
                     </div>
                     <div css={tw`mt-6 text-right`}>
                         <Button className={'w-full sm:w-auto'} type={'submit'} disabled={isSubmitting}>
-                            {schedule ? '保存更改' : '创建计划'}
+                            {schedule ? '保存更改' : '創建計畫'}
                         </Button>
                     </div>
                 </Form>
@@ -144,3 +144,4 @@ const EditScheduleModal = ({ schedule }: Props) => {
 };
 
 export default asModal<Props>()(EditScheduleModal);
+

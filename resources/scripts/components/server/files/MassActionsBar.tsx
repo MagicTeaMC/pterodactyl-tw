@@ -33,7 +33,7 @@ const MassActionsBar = () => {
     const onClickCompress = () => {
         setLoading(true);
         clearFlashes('files');
-        setLoadingMessage('正在压缩文件...');
+        setLoadingMessage('正在壓縮文件...');
 
         compressFiles(uuid, directory, selectedFiles)
             .then(() => mutate())
@@ -46,7 +46,7 @@ const MassActionsBar = () => {
         setLoading(true);
         setShowConfirm(false);
         clearFlashes('files');
-        setLoadingMessage('正在删除文件...');
+        setLoadingMessage('正在刪除文件...');
 
         deleteFiles(uuid, directory, selectedFiles)
             .then(async () => {
@@ -67,16 +67,16 @@ const MassActionsBar = () => {
                     {loadingMessage}
                 </SpinnerOverlay>
                 <Dialog.Confirm
-                    title={'删除这些文件?'}
+                    title={'確定要刪除這些文件?'}
                     open={showConfirm}
-                    confirm={'删除'}
+                    confirm={'刪除'}
                     onClose={() => setShowConfirm(false)}
                     onConfirmed={onClickConfirmDeletion}
                 >
                     <p className="mb-2">
-                        你确定删除这些共计&nbsp;
-                        <span className="font-semibold text-gray-50">{selectedFiles.length} 个文件/目录</span>吗?
-                        这是不可逆转的操作，你将没有回头路！
+                        你確定要刪除以下&nbsp;
+                        <span className="font-semibold text-gray-50">{selectedFiles.length} 個文件/目目錄</span>吗?
+                        這是不可逆轉的操作
                     </p>
                     {selectedFiles.slice(0, 15).map(file => (
                         <li key={file}>{file}</li>
@@ -96,10 +96,10 @@ const MassActionsBar = () => {
                     <div className="fixed bottom-0 mb-6 flex justify-center w-full z-50">
                         <FadeTransition duration="duration-75" show={selectedFiles.length > 0} appear unmount>
                             <div className="flex items-center space-x-4 pointer-events-auto rounded p-4 bg-black/50">
-                                <Button onClick={() => setShowMove(true)}>移动</Button>
-                                <Button onClick={onClickCompress}>压缩</Button>
+                                <Button onClick={() => setShowMove(true)}>移動</Button>
+                                <Button onClick={onClickCompress}>壓縮</Button>
                                 <Button.Danger variant={Button.Variants.Secondary} onClick={() => setShowConfirm(true)}>
-                                    删除
+                                    刪除
                                 </Button.Danger>
                             </div>
                         </FadeTransition>

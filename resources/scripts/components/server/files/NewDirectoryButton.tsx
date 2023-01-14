@@ -21,7 +21,7 @@ interface Values {
 }
 
 const schema = object().shape({
-    directoryName: string().required('必须提供有效的目录名称。'),
+    directoryName: string().required('必須提供有效的目錄名稱。'),
 });
 
 const generateDirectoryData = (name: string): FileObject => ({
@@ -40,7 +40,7 @@ const generateDirectoryData = (name: string): FileObject => ({
 });
 
 const NewDirectoryDialog = asDialog({
-    title: '创建目录',
+    title: '創建目錄',
 })(() => {
     const uuid = ServerContext.useStoreState(state => state.server.data!.uuid);
     const directory = ServerContext.useStoreState(state => state.files.directory);
@@ -71,9 +71,9 @@ const NewDirectoryDialog = asDialog({
                 <>
                     <FlashMessageRender key={'files:directory-modal'} />
                     <Form css={tw`m-0`}>
-                        <Field autoFocus id={'directoryName'} name={'directoryName'} label={'名称'} />
+                        <Field autoFocus id={'directoryName'} name={'directoryName'} label={'名稱'} />
                         <p css={tw`mt-2 text-sm md:text-base break-all`}>
-                            <span css={tw`text-neutral-200`}>该目录将被创建为&nbsp;</span>
+                            <span css={tw`text-neutral-200`}>該目錄將被創建為&nbsp;</span>
                             <Code>
                                 /home/container/
                                 <span css={tw`text-cyan-200`}>
@@ -87,7 +87,7 @@ const NewDirectoryDialog = asDialog({
                             取消
                         </Button.Text>
                         <Button className={'w-full sm:w-auto'} onClick={submitForm}>
-                            创建
+                            創建
                         </Button>
                     </Dialog.Footer>
                 </>
@@ -103,8 +103,9 @@ export default ({ className }: WithClassname) => {
         <>
             <NewDirectoryDialog open={open} onClose={setOpen.bind(this, false)} />
             <Button.Text onClick={setOpen.bind(this, true)} className={className}>
-                创建目录
+                創建目錄
             </Button.Text>
         </>
     );
 };
+

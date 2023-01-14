@@ -100,10 +100,10 @@ export default () => {
             {hash.replace(/^#/, '').endsWith('.pteroignore') && (
                 <div css={tw`mb-4 p-4 border-l-4 bg-neutral-900 rounded border-cyan-400`}>
                     <p css={tw`text-neutral-300 text-sm`}>
-                        你正在编辑一个 <code css={tw`font-mono bg-black rounded py-px px-1`}>.pteroignore</code> 文件.
-                        此处列出的任何文件或目录都将从备份中排除。通配符支持 使用星号 (
+                        你正在編輯一個 <code css={tw`font-mono bg-black rounded py-px px-1`}>.pteroignore</code> 文件.
+                        此處列出的任何檔或目錄都將從備份中排除。萬用字元支援 使用星號 (
                         <code css={tw`font-mono bg-black rounded py-px px-1`}>*</code>).
-                        你可以通过在前面加上感叹号来否定先前的规则 (
+                        你可以通過在前面加上感嘆號來否定先前的規則 (
                         <code css={tw`font-mono bg-black rounded py-px px-1`}>!</code>).
                     </p>
                 </div>
@@ -152,13 +152,13 @@ export default () => {
                 {action === 'edit' ? (
                     <Can action={'file.update'}>
                         <Button css={tw`flex-1 sm:flex-none`} onClick={() => save()}>
-                            保存内容
+                            保存內容
                         </Button>
                     </Can>
                 ) : (
                     <Can action={'file.create'}>
                         <Button css={tw`flex-1 sm:flex-none`} onClick={() => setModalVisible(true)}>
-                            创建文件
+                            創建文件
                         </Button>
                     </Can>
                 )}
@@ -166,3 +166,4 @@ export default () => {
         </PageContentBlock>
     );
 };
+

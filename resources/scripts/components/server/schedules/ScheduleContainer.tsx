@@ -61,7 +61,7 @@ function ScheduleContainer() {
                         <div css={tw`mt-8 flex justify-end`}>
                             <EditScheduleModal visible={visible} onModalDismissed={() => setVisible(false)} />
                             <Button type={'button'} onClick={() => setVisible(true)}>
-                                创建计划
+                                創建新計畫
                             </Button>
                         </div>
                     </Can>

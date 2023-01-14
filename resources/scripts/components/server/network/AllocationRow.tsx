@@ -97,7 +97,7 @@ const AllocationRow = ({ allocation }: Props) => {
             <div className={'flex justify-end space-x-4 mt-4 w-full md:mt-0 md:w-48'}>
                 {allocation.isDefault ? (
                     <Button size={Button.Sizes.Small} className={'!text-gray-50 !bg-blue-600'} disabled>
-                        首选
+                        主要
                     </Button>
                 ) : (
                     <>
@@ -106,7 +106,7 @@ const AllocationRow = ({ allocation }: Props) => {
                         </Can>
                         <Can action={'allocation.update'}>
                             <Button.Text size={Button.Sizes.Small} onClick={setPrimaryAllocation}>
-                                设为首选
+                                設為主要
                             </Button.Text>
                         </Can>
                     </>

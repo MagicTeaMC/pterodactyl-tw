@@ -44,11 +44,11 @@ export default ({ onFileNamed, onDismissed, ...props }: Props) => {
                             id={'fileName'}
                             name={'fileName'}
                             label={'文件名'}
-                            description={'请输入此文件的文件名.'}
+                            description={'請輸入此文件的文件名.'}
                             autoFocus
                         />
                         <div css={tw`mt-6 text-right`}>
-                            <Button>创建文件</Button>
+                            <Button>創建文件</Button>
                         </div>
                     </Form>
                 </Modal>

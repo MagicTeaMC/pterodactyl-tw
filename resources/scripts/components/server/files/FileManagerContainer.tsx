@@ -92,14 +92,14 @@ export default () => {
             ) : (
                 <>
                     {!files.length ? (
-                        <p css={tw`text-sm text-neutral-400 text-center`}>此目录为空.</p>
+                        <p css={tw`text-sm text-neutral-400 text-center`}>這個目錄是空的.</p>
                     ) : (
                         <FadeTransition duration="duration-150" appear show>
                             <div>
                                 {files.length > 250 && (
                                     <div css={tw`rounded bg-yellow-400 mb-px p-3`}>
                                         <p css={tw`text-yellow-900 text-sm text-center`}>
-                                            此目录太大，无法在浏览器中显示， 将输出限制为前 250 个文件。
+                                            此目錄太大，無法在瀏覽器中顯示， 將輸出限制為前250 個文件。
                                         </p>
                                     </div>
                                 )}

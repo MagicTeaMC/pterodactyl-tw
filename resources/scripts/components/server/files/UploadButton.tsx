@@ -66,7 +66,7 @@ export default ({ className }: WithClassname) => {
         clearAndAddHttpError();
         const list = Array.from(files);
         if (list.some(file => !file.size || (!file.type && file.size === 4096))) {
-            return addError('目前不支持文件夹上传。', '错误');
+            return addError('目前不支持上傳資料夾。', '錯誤');
         }
 
         const uploads = list.map(file => {
@@ -128,7 +128,7 @@ export default ({ className }: WithClassname) => {
                             >
                                 <CloudUploadIcon className={'w-10 h-10 flex-shrink-0'} />
                                 <p className={'font-header flex-1 text-lg text-neutral-100 text-center'}>
-                                    拖放文件以上传。
+                                    拖放文件以上傳。
                                 </p>
                             </div>
                         </div>
@@ -150,7 +150,7 @@ export default ({ className }: WithClassname) => {
                 multiple
             />
             <Button className={className} onClick={() => fileUploadInput.current && fileUploadInput.current.click()}>
-                上传
+                上傳
             </Button>
         </>
     );
