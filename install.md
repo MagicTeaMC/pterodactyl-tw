@@ -9,7 +9,7 @@ php artisan down
 ```
 ### 下載面板
 ```
-curl -L https://github.com/pterodactyl-china/panel/releases/latest/download/panel.tar.gz | tar -xzv
+curl -L https://github.com/MagicTeaMC/pterodactyl-tw/releases/latest/download/panel.zip | tar -xzv
 ```
 ### 修改目錄權限
 ```
