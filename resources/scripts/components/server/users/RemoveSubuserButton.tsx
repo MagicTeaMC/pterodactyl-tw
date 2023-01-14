@@ -36,18 +36,18 @@ export default ({ subuser }: { subuser: Subuser }) => {
     return (
         <>
             <ConfirmationModal
-                title={'删除此子用户?'}
-                buttonText={'确定'}
+                title={'刪除此子用戶?'}
+                buttonText={'確定'}
                 visible={showConfirmation}
                 showSpinnerOverlay={loading}
                 onConfirmed={() => doDeletion()}
                 onModalDismissed={() => setShowConfirmation(false)}
             >
-                您确定要删除此子用户吗？ 他们将立即失去对该服务器的所有访问权限。
+                您確定要刪除此子用戶嗎？ 他們將立即失去對該伺服器的所有存取權限。
             </ConfirmationModal>
             <button
                 type={'button'}
-                aria-label={'删除子用户'}
+                aria-label={'刪除子用戶'}
                 css={tw`block text-sm p-2 text-neutral-500 hover:text-red-600 transition-colors duration-150`}
                 onClick={() => setShowConfirmation(true)}
             >
@@ -56,3 +56,5 @@ export default ({ subuser }: { subuser: Subuser }) => {
         </>
     );
 };
+
+

@@ -44,19 +44,19 @@ function WebsocketHandler() {
         socket.on('status', status => setServerStatus(status));
 
         socket.on('daemon error', message => {
-            console.warn('从守护程序套接字(socket)得到错误信息:', message);
+            console.warn('從守護程式通訊端(socket)得到錯誤資訊:', message);
         });
 
         socket.on('token expiring', () => updateToken(uuid, socket));
         socket.on('token expired', () => updateToken(uuid, socket));
         socket.on('jwt error', (error: string) => {
             setConnectionState(false);
-            console.warn('JWT 与 WINGS 验证出现问题:', error);
+            console.warn('JWT 與 WINGS 驗證出現問題:', error);
 
             if (reconnectErrors.find(v => error.toLowerCase().indexOf(v) >= 0)) {
                 updateToken(uuid, socket);
             } else {
-                setError('验证为 WEBSOCKET 提供的凭证时出错。请刷新页面。');
+                setError('驗證為 WEBSOCKET 提供的憑證時出錯。請刷新頁面。');
             }
         });
 
@@ -112,7 +112,7 @@ function WebsocketHandler() {
                     {error === 'connecting' ? (
                         <>
                             <Spinner size={'small'} />
-                            <p css={tw`ml-2 text-sm text-red-100`}>我们在连接到你的服务器时出现错误，请等待...</p>
+                            <p css={tw`ml-2 text-sm text-red-100`}>我們在連接到你的伺服器時出現錯誤，請等待...</p>
                         </>
                     ) : (
                         <p css={tw`ml-2 text-sm text-white`}>{error}</p>
@@ -124,3 +124,4 @@ function WebsocketHandler() {
 }
 
 export default WebsocketHandler;
+

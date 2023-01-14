@@ -13,7 +13,7 @@ export default ({ schedule }: { schedule: Schedule }) => (
         <div css={tw`flex-1 md:ml-4`}>
             <p>{schedule.name}</p>
             <p css={tw`text-xs text-neutral-400`}>
-                上次运行于: {schedule.lastRunAt ? format(schedule.lastRunAt, "MMM do 'at' h:mma") : 'never'}
+                上次運行於: {schedule.lastRunAt ? format(schedule.lastRunAt, "MMM do 'at' h:mma") : 'never'}
             </p>
         </div>
         <div>
@@ -23,7 +23,7 @@ export default ({ schedule }: { schedule: Schedule }) => (
                     schedule.isActive ? tw`bg-green-600` : tw`bg-neutral-400`,
                 ]}
             >
-                {schedule.isActive ? '正在运行' : '未在运行'}
+                {schedule.isActive ? '正在運行' : '未在運行'}
             </p>
         </div>
         <ScheduleCronRow cron={schedule.cron} css={tw`mx-auto sm:mx-8 w-full sm:w-auto mt-4 sm:mt-0`} />
@@ -34,8 +34,9 @@ export default ({ schedule }: { schedule: Schedule }) => (
                     schedule.isActive && !schedule.isProcessing ? tw`bg-green-600` : tw`bg-neutral-400`,
                 ]}
             >
-                {schedule.isProcessing ? '正在处理' : schedule.isActive ? '正在运行' : '未在运行'}
+                {schedule.isProcessing ? '正在處理' : schedule.isActive ? '正在運行' : '未在運行'}
             </p>
         </div>
     </>
 );
+

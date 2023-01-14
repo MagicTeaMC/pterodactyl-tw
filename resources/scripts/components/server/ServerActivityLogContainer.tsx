@@ -32,7 +32,7 @@ export default () => {
     }, [error]);
 
     return (
-        <ServerContentBlock title={'活动日志'}>
+        <ServerContentBlock title={'活動日誌'}>
             <FlashMessageRender byKey={'server:activity'} />
             {(filters.filters?.event || filters.filters?.ip) && (
                 <div className={'flex justify-end mb-2'}>
@@ -41,14 +41,14 @@ export default () => {
                         className={classNames(btnStyles.button, btnStyles.text, 'w-full sm:w-auto')}
                         onClick={() => setFilters(value => ({ ...value, filters: {} }))}
                     >
-                        清除筛选 <XCircleIcon className={'w-4 h-4 ml-2'} />
+                        清除篩選 <XCircleIcon className={'w-4 h-4 ml-2'} />
                     </Link>
                 </div>
             )}
             {!data && isValidating ? (
                 <Spinner centered />
             ) : !data?.items.length ? (
-                <p className={'text-sm text-center text-gray-400'}>此服务器没有可用的活动日志。</p>
+                <p className={'text-sm text-center text-gray-400'}>此伺服器沒有可用的活動日誌。</p>
             ) : (
                 <div className={'bg-gray-700'}>
                     {data?.items.map(activity => (

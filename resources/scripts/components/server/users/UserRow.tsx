@@ -36,20 +36,20 @@ export default ({ subuser }: Props) => {
                     />
                     &nbsp;
                 </p>
-                <p css={tw`text-2xs text-neutral-500 uppercase hidden md:block`}>动态口令认证已启用</p>
+                <p css={tw`text-2xs text-neutral-500 uppercase hidden md:block`}>動態口令認證已啟用</p>
             </div>
             <div css={tw`ml-4 hidden md:block`}>
                 <p css={tw`font-medium text-center`}>
                     {subuser.permissions.filter(permission => permission !== 'websocket.connect').length}
                 </p>
-                <p css={tw`text-2xs text-neutral-500 uppercase`}>权限</p>
+                <p css={tw`text-2xs text-neutral-500 uppercase`}>權限</p>
             </div>
             {subuser.uuid !== uuid && (
                 <>
                     <Can action={'user.update'}>
                         <button
                             type={'button'}
-                            aria-label={'编辑子用户'}
+                            aria-label={'編輯子用戶'}
                             css={tw`block text-sm p-1 md:p-2 text-neutral-500 hover:text-neutral-100 transition-colors duration-150 mx-4`}
                             onClick={() => setVisible(true)}
                         >

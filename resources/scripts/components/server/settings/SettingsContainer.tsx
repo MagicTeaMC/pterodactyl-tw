@@ -22,20 +22,20 @@ export default () => {
     const sftp = ServerContext.useStoreState(state => state.server.data!.sftpDetails, isEqual);
 
     return (
-        <ServerContentBlock title={'设置'}>
+        <ServerContentBlock title={'設置'}>
             <FlashMessageRender byKey={'settings'} css={tw`mb-4`} />
             <div css={tw`md:flex`}>
                 <div css={tw`w-full md:flex-1 md:mr-10`}>
                     <Can action={'file.sftp'}>
-                        <TitledGreyBox title={'SFTP 连接信息'} css={tw`mb-6 md:mb-10`}>
+                        <TitledGreyBox title={'SFTP 連接資訊'} css={tw`mb-6 md:mb-10`}>
                             <div>
-                                <Label>服务器地址</Label>
+                                <Label>伺服器地址</Label>
                                 <CopyOnClick text={`sftp://${ip(sftp.ip)}:${sftp.port}`}>
                                     <Input type={'text'} value={`sftp://${ip(sftp.ip)}:${sftp.port}`} readOnly />
                                 </CopyOnClick>
                             </div>
                             <div css={tw`mt-6`}>
-                                <Label>用户名</Label>
+                                <Label>用戶名</Label>
                                 <CopyOnClick text={`${username}.${id}`}>
                                     <Input type={'text'} value={`${username}.${id}`} readOnly />
                                 </CopyOnClick>
@@ -44,26 +44,26 @@ export default () => {
                                 <div css={tw`flex-1`}>
                                     <div css={tw`border-l-4 border-cyan-500 p-3`}>
                                         <p css={tw`text-xs text-neutral-200`}>
-                                            您的 SFTP 密码与您目前使用的账户密码相同。
+                                            您的 SFTP 密碼與您目前使用的帳戶密碼相同。
                                         </p>
                                     </div>
                                 </div>
                                 <div css={tw`ml-4`}>
                                     <a href={`sftp://${username}.${id}@${ip(sftp.ip)}:${sftp.port}`}>
-                                        <Button.Text variant={Button.Variants.Secondary}>启动 SFTP</Button.Text>
+                                        <Button.Text variant={Button.Variants.Secondary}>啟動 SFTP</Button.Text>
                                     </a>
                                 </div>
                             </div>
                         </TitledGreyBox>
                     </Can>
-                    <TitledGreyBox title={'Debug 调试信息'} css={tw`mb-6 md:mb-10`}>
+                    <TitledGreyBox title={'Debug 調試信息'} css={tw`mb-6 md:mb-10`}>
                         <div css={tw`flex items-center justify-between text-sm`}>
-                            <p>节点</p>
+                            <p>節點</p>
                             <code css={tw`font-mono bg-neutral-900 rounded py-1 px-2`}>{node}</code>
                         </div>
                         <CopyOnClick text={uuid}>
                             <div css={tw`flex items-center justify-between mt-2 text-sm`}>
-                                <p>服务器 ID</p>
+                                <p>伺服器 ID</p>
                                 <code css={tw`font-mono bg-neutral-900 rounded py-1 px-2`}>{uuid}</code>
                             </div>
                         </CopyOnClick>
@@ -83,3 +83,4 @@ export default () => {
         </ServerContentBlock>
     );
 };
+

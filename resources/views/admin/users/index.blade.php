@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('title')
-    用户列表
+    用戶列表
 @endsection
 
 @section('content-header')
-    <h1>用户<small>此系统上所有注册用户.</small></h1>
+    <h1>使用者<small>此系統上所有註冊使用者.</small></h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('admin.index') }}">管理</a></li>
-        <li class="active">用户</li>
+        <li class="active">用戶</li>
     </ol>
 @endsection
 
@@ -17,7 +17,7 @@
     <div class="col-xs-12">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">用户列表</h3>
+                <h3 class="box-title">用戶列表</h3>
                 <div class="box-tools search01">
                     <form action="{{ route('admin.users') }}" method="GET">
                         <div class="input-group input-group-sm">
@@ -35,12 +35,12 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>电子邮箱地址</th>
+                            <th>電子郵箱位址</th>
                             <th>姓名</th>
-                            <th>用户名</th>
-                            <th class="text-center">动态口令认证</th>
-                            <th class="text-center"><span data-toggle="tooltip" data-placement="top" title="此用户作为所有者的服务器。">拥有的服务器</span></th>
-                            <th class="text-center"><span data-toggle="tooltip" data-placement="top" title="此用户作为子用户可以访问的服务器。">可访问</span></th>
+                            <th>用戶名</th>
+                            <th class="text-center">動態口令認證</th>
+                            <th class="text-center"><span data-toggle="tooltip" data-placement="top" title="此用戶作為所有者的伺服器。">擁有的伺服器</span></th>
+                            <th class="text-center"><span data-toggle="tooltip" data-placement="top" title="此用戶作為子用戶可以訪問的伺服器。">可訪問</span></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -77,3 +77,4 @@
     </div>
 </div>
 @endsection
+

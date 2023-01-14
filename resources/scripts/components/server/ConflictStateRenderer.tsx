@@ -13,27 +13,28 @@ export default () => {
 
     return status === 'installing' || status === 'install_failed' ? (
         <ScreenBlock
-            title={'正在运行安装程序'}
+            title={'正在運行安裝程式'}
             image={ServerInstallSvg}
-            message={'此服务器应该很快就准备好了，请几分钟后再试。'}
+            message={'此伺服器應該很快就準備好了，請幾分鐘後再試。'}
         />
     ) : status === 'suspended' ? (
         <ScreenBlock
-            title={'服务器已冻结'}
+            title={'伺服器已凍結'}
             image={ServerErrorSvg}
-            message={'此服务器已被冻结，您目前无法访问此服务器。'}
+            message={'此伺服器已被凍結，您目前無法訪問此伺服器。'}
         />
     ) : isNodeUnderMaintenance ? (
-        <ScreenBlock title={'节点维护中'} image={ServerErrorSvg} message={'此服务器的节点目前正在维护中。'} />
+        <ScreenBlock title={'節點維護中'} image={ServerErrorSvg} message={'此伺服器的節點目前正在維護中。'} />
     ) : (
         <ScreenBlock
-            title={isTransferring ? '转移中' : '回档中'}
+            title={isTransferring ? '轉移中' : '回檔中'}
             image={ServerRestoreSvg}
             message={
                 isTransferring
-                    ? '您的服务器正在转移到新节点，请稍后再回来查看。'
-                    : '您的服务器当前正在从备份中恢复，请过几分钟再来查看。'
+                    ? '您的伺服器正在轉移到新節點，請稍後再回來查看。'
+                    : '您的伺服器當前正在從備份中恢復，請過幾分鐘再來查看。'
             }
         />
     );
 };
+

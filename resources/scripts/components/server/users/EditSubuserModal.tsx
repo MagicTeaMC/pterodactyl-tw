@@ -96,35 +96,35 @@ const EditSubuserModal = ({ subuser }: Props) => {
             }
             validationSchema={object().shape({
                 email: string()
-                    .max(191, '电子邮箱地址不得超过 191 个字符。')
-                    .email('必须提供有效的电子邮箱地址。')
-                    .required('必须提供有效的电子邮箱地址。'),
+                    .max(191, '電子郵箱位址不得超過 191 個字元。')
+                    .email('必須提供有效的電子郵箱位址。')
+                    .required('必須提供有效的電子郵箱位址。'),
                 permissions: array().of(string()),
             })}
         >
             <Form>
                 <div css={tw`flex justify-between`}>
                     <h2 css={tw`text-2xl`} ref={ref}>
-                        {subuser ? `${canEditUser ? '修改' : '查看'} ${subuser.email} 的权限` : '创建新子用户'}
+                        {subuser ? `${canEditUser ? '修改' : '查看'} ${subuser.email} 的許可權` : '創建新子用戶'}
                     </h2>
                     <div>
                         <Button type={'submit'} css={tw`w-full sm:w-auto`}>
-                            {subuser ? '保存' : '邀请用户'}
+                            {subuser ? '保存' : '邀請用戶'}
                         </Button>
                     </div>
                 </div>
                 <FlashMessageRender byKey={'user:edit'} css={tw`mt-4`} />
                 {!isRootAdmin && loggedInPermissions[0] !== '*' && (
                     <div css={tw`mt-4 pl-4 py-2 border-l-4 border-cyan-400`}>
-                        <p css={tw`text-sm text-neutral-300`}>创建或修改其他用户时，只能选择您帐户当前分配的权限。</p>
+                        <p css={tw`text-sm text-neutral-300`}>創建或修改其他用戶時，只能選擇您帳戶當前分配的許可權。</p>
                     </div>
                 )}
                 {!subuser && (
                     <div css={tw`mt-6`}>
                         <Field
                             name={'email'}
-                            label={'用户邮箱地址'}
-                            description={'输入您希望邀请为该服务器子用户的用户的电子邮箱地址。'}
+                            label={'用戶郵箱地址'}
+                            description={'輸入您希望邀請為該伺服器子使用者的使用者的電子郵箱位址。'}
                         />
                     </div>
                 )}
@@ -153,7 +153,7 @@ const EditSubuserModal = ({ subuser }: Props) => {
                 <Can action={subuser ? 'user.update' : 'user.create'}>
                     <div css={tw`pb-6 flex justify-end`}>
                         <Button type={'submit'} css={tw`w-full sm:w-auto`}>
-                            {subuser ? '保存' : '邀请用户'}
+                            {subuser ? '保存' : '邀請用戶'}
                         </Button>
                     </div>
                 </Can>
@@ -165,3 +165,4 @@ const EditSubuserModal = ({ subuser }: Props) => {
 export default asModal<Props>({
     top: false,
 })(EditSubuserModal);
+
