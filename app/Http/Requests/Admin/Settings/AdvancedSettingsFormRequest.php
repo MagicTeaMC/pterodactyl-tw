@@ -12,6 +12,9 @@ class AdvancedSettingsFormRequest extends AdminFormRequest
     public function rules(): array
     {
         return [
+            'icp:enabled' => 'required|in:true,false',
+            'icp:record' => 'nullable|string|max:100',
+            'icp:security_record' => 'nullable|string|max:100',
             'recaptcha:enabled' => 'required|in:true,false',
             'recaptcha:secret_key' => 'required|string|max:191',
             'recaptcha:website_key' => 'required|string|max:191',
@@ -37,6 +40,9 @@ class AdvancedSettingsFormRequest extends AdminFormRequest
     public function attributes(): array
     {
         return [
+            'icp:enabled' => 'ICP record Enabled',
+            'icp:record' => '苏ICP备1000000号',
+            'icp:security_record' => '苏公网安备10000000000000号',
             'recaptcha:enabled' => 'reCAPTCHA Enabled',
             'recaptcha:secret_key' => 'reCAPTCHA Secret Key',
             'recaptcha:website_key' => 'reCAPTCHA Website Key',

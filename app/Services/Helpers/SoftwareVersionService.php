@@ -54,7 +54,7 @@ class SoftwareVersionService
      */
     public function getDonations(): string
     {
-        return Arr::get(self::$result, 'donations') ?? 'https://github.com/sponsors/matthewpi';
+        return Arr::get(self::$result, 'donations') ?? 'https://afdian.net/a/vlssu';
     }
 
     /**

@@ -13,11 +13,11 @@ use Pterodactyl\Exceptions\Http\Connection\DaemonConnectionException;
 class BulkPowerActionCommand extends Command
 {
     protected $signature = 'p:server:bulk-power
-                            {action : The action to perform (start, stop, restart, kill)}
-                            {--servers= : A comma separated list of servers.}
-                            {--nodes= : A comma separated list of nodes.}';
+                            {action : 要执行的操作 (start, stop, restart, kill)}
+                            {--servers= : 一个以英文逗号分隔的服务器列表。}
+                            {--nodes= : 一个以英文逗号分隔的节点列表。}';
 
-    protected $description = 'Perform bulk power management on large groupings of servers or nodes at once.';
+    protected $description = '一次性对大量服务器或节点执行批量电源管理。';
 
     /**
      * BulkPowerActionCommand constructor.

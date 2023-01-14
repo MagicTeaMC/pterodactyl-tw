@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -8,7 +9,7 @@ class AddUsers extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
@@ -16,7 +17,7 @@ class AddUsers extends Migration
             $table->string('email')->unique();
             $table->text('password');
             $table->string('remember_token')->nullable();
-            $table->char('language', 5)->default('en');
+            $table->char('language', 5)->default('zh');
             $table->tinyInteger('root_admin')->unsigned()->default(0);
             $table->tinyInteger('use_totp')->unsigned();
             $table->char('totp_secret', 16)->nullable();
@@ -27,7 +28,7 @@ class AddUsers extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('users');
     }

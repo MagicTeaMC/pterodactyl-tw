@@ -19,27 +19,27 @@
 // SOFTWARE.
 $(document).ready(function() {
     $('#pNestId').select2({
-        placeholder: 'Select a Nest',
+        placeholder: '选择预设组',
     }).change();
 
     $('#pEggId').select2({
-        placeholder: 'Select a Nest Egg',
+        placeholder: '选择预设',
     });
 
     $('#pPackId').select2({
-        placeholder: 'Select a Service Pack',
+        placeholder: '选择服务包',
     });
 
     $('#pNodeId').select2({
-        placeholder: 'Select a Node',
+        placeholder: '选择节点',
     }).change();
 
     $('#pAllocation').select2({
-        placeholder: 'Select a Default Allocation',
+        placeholder: '选择默认网络分配',
     });
 
     $('#pAllocationAdditional').select2({
-        placeholder: 'Select Additional Allocations',
+        placeholder: '选择额外的网络分配',
     });
 });
 
@@ -59,7 +59,7 @@ $('#pNodeId').on('change', function () {
         if (v.id == currentNode) {
             $('#pAllocation').html('').select2({
                 data: v.allocations,
-                placeholder: 'Select a Default Allocation',
+                placeholder: '选择默认网络分配',
             });
 
             updateAdditionalAllocations();
@@ -93,7 +93,7 @@ $('#pEggId').on('change', function (event) {
     }
 
     if (!_.get(objectChain, 'startup', false)) {
-        $('#pStartup').val(_.get(parentChain, 'startup', 'ERROR: Startup Not Defined!'));
+        $('#pStartup').val(_.get(parentChain, 'startup', '错误：没有定义启动！'));
     } else {
         $('#pStartup').val(_.get(objectChain, 'startup'));
     }
@@ -114,14 +114,14 @@ $('#pEggId').on('change', function (event) {
     $.each(_.get(objectChain, 'variables', []), function (i, item) {
         variableIds[item.env_variable] = 'var_ref_' + item.id;
 
-        let isRequired = (item.required === 1) ? '<span class="label label-danger">Required</span> ' : '';
+        let isRequired = (item.required === 1) ? '<span class="label label-danger">必需</span> ' : '';
         let dataAppend = ' \
             <div class="form-group col-sm-6"> \
                 <label for="var_ref_' + item.id + '" class="control-label">' + isRequired + item.name + '</label> \
                 <input type="text" id="var_ref_' + item.id + '" autocomplete="off" name="environment[' + item.env_variable + ']" class="form-control" value="' + item.default_value + '" /> \
                 <p class="text-muted small">' + item.description + '<br /> \
-                <strong>Access in Startup:</strong> <code>{{' + item.env_variable + '}}</code><br /> \
-                <strong>Validation Rules:</strong> <code>' + item.rules + '</code></small></p> \
+                <strong>启动时访问:</strong> <code>{{' + item.env_variable + '}}</code><br /> \
+                <strong>验证规则:</strong> <code>' + item.rules + '</code></small></p> \
             </div> \
         ';
         $('#appendVariablesTo').append(dataAppend);
@@ -154,7 +154,7 @@ function updateAdditionalAllocations() {
 
             $('#pAllocationAdditional').html('').select2({
                 data: allocations,
-                placeholder: 'Select Additional Allocations',
+                placeholder: '选择额外的网络分配',
             });
         }
     });
@@ -194,7 +194,7 @@ function initUserIdSelect(data) {
             if (data.loading) return escapeHtml(data.text);
 
             return '<div class="user-block"> \
-                <img class="img-circle img-bordered-xs" src="https://www.gravatar.com/avatar/' + escapeHtml(data.md5) + '?s=120" alt="User Image"> \
+                <img class="img-circle img-bordered-xs" src="https://cravatar.cn/avatar/' + escapeHtml(data.md5) + '?s=120" alt="User Image"> \
                 <span class="username"> \
                     <a href="#">' + escapeHtml(data.name_first) + ' ' + escapeHtml(data.name_last) +'</a> \
                 </span> \
@@ -204,7 +204,7 @@ function initUserIdSelect(data) {
         templateSelection: function (data) {
             return '<div> \
                 <span> \
-                    <img class="img-rounded img-bordered-xs" src="https://www.gravatar.com/avatar/' + escapeHtml(data.md5) + '?s=120" style="height:28px;margin-top:-4px;" alt="User Image"> \
+                    <img class="img-rounded img-bordered-xs" src="https://cravatar.cn/avatar/' + escapeHtml(data.md5) + '?s=120" style="height:28px;margin-top:-4px;" alt="User Image"> \
                 </span> \
                 <span style="padding-left:5px;"> \
                     ' + escapeHtml(data.name_first) + ' ' + escapeHtml(data.name_last) + ' (<strong>' + escapeHtml(data.email) + '</strong>) \

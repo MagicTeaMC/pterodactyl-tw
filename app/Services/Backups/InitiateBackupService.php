@@ -98,21 +98,21 @@ class InitiateBackupService
             // Get the oldest backup the server has that is not "locked" (indicating a backup that should
             // never be automatically purged). If we find a backup we will delete it and then continue with
             // this process. If no backup is found that can be used an exception is thrown.
-            /** @var \Pterodactyl\Models\Backup $oldest */
             $oldest = $successful->where('is_locked', false)->orderBy('created_at')->first();
             if (!$oldest) {
                 throw new TooManyBackupsException($server->backup_limit);
             }
 
+            /* @var Backup $oldest */
             $this->deleteBackupService->handle($oldest);
         }
 
         return $this->connection->transaction(function () use ($server, $name) {
-            /** @var \Pterodactyl\Models\Backup $backup */
+            /** @var Backup $backup */
             $backup = $this->repository->create([
                 'server_id' => $server->id,
                 'uuid' => Uuid::uuid4()->toString(),
-                'name' => trim($name) ?: sprintf('Backup at %s', CarbonImmutable::now()->toDateTimeString()),
+                'name' => trim($name) ?: sprintf('备份于 %s', CarbonImmutable::now()->toDateTimeString()),
                 'ignored_files' => array_values($this->ignoredFiles ?? []),
                 'disk' => $this->backupManager->getDefaultAdapter(),
                 'is_locked' => $this->isLocked,

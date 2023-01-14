@@ -37,7 +37,7 @@ class MountController extends Controller
      */
     public function index(): View
     {
-        return $this->view->make('admin.mounts.index', [
+        return view('admin.mounts.index', [
             'mounts' => $this->repository->getAllWithDetails(),
         ]);
     }
@@ -52,7 +52,7 @@ class MountController extends Controller
         $nests = Nest::query()->with('eggs')->get();
         $locations = Location::query()->with('nodes')->get();
 
-        return $this->view->make('admin.mounts.view', [
+        return view('admin.mounts.view', [
             'mount' => $this->repository->getWithRelations($id),
             'nests' => $nests,
             'locations' => $locations,
@@ -72,7 +72,7 @@ class MountController extends Controller
         $model->saveOrFail();
         $mount = $model->fresh();
 
-        $this->alert->success('Mount was created successfully.')->flash();
+        $this->alert->success('已成功创建挂载。')->flash();
 
         return redirect()->route('admin.mounts.view', $mount->id);
     }
@@ -90,7 +90,7 @@ class MountController extends Controller
 
         $mount->forceFill($request->validated())->save();
 
-        $this->alert->success('Mount was updated successfully.')->flash();
+        $this->alert->success('已成功更新挂载。')->flash();
 
         return redirect()->route('admin.mounts.view', $mount->id);
     }
@@ -121,7 +121,7 @@ class MountController extends Controller
             $mount->eggs()->attach($eggs);
         }
 
-        $this->alert->success('Mount was updated successfully.')->flash();
+        $this->alert->success('已成功更新挂载。')->flash();
 
         return redirect()->route('admin.mounts.view', $mount->id);
     }
@@ -138,7 +138,7 @@ class MountController extends Controller
             $mount->nodes()->attach($nodes);
         }
 
-        $this->alert->success('Mount was updated successfully.')->flash();
+        $this->alert->success('已成功更新挂载。')->flash();
 
         return redirect()->route('admin.mounts.view', $mount->id);
     }

@@ -1,0 +1,14 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 安装帮助
+    url: https://discord.gg/pterodactyl
+    about: 请访问翼龙的 Discord 来获取安装帮助。
+  - name: 基础问题
+    url: https://discord.gg/pterodactyl
+    about: 有关翼龙的基础问题，请访问翼龙的 Discord。
+  - name: 翼龙中国社区
+    url: https://bbs.pterodactyl.top
+    about: 有关常见问题和问题反馈
+  - name: 中文翻译问题
+    url: https://kook.top/0Grsf5
+    about: 有关中文翻译等一些问题，请访问翼龙中国的 KOOK 来获取帮助。

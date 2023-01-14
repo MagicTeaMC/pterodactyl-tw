@@ -9,7 +9,7 @@ use Pterodactyl\Services\Users\UserDeletionService;
 
 class DeleteUserCommand extends Command
 {
-    protected $description = 'Deletes a user from the Panel if no servers are attached to their account.';
+    protected $description = '如果没有服务器附加到他们的帐户，从面板中该删除用户。';
 
     protected $signature = 'p:user:delete {--user=}';
 
@@ -24,7 +24,7 @@ class DeleteUserCommand extends Command
     public function handle(): int
     {
         $search = $this->option('user') ?? $this->ask(trans('command/messages.user.search_users'));
-        Assert::notEmpty($search, 'Search term should be an email address, got: %s.');
+        Assert::notEmpty($search, '搜索词应为电子邮件地址，得到：%s。');
 
         $results = User::query()
             ->where('id', 'LIKE', "$search%")

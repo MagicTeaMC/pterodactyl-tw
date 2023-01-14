@@ -36,7 +36,7 @@ class ServerTransferController extends Controller
         $server = $this->repository->getByUuid($uuid);
         $transfer = $server->transfer;
         if (is_null($transfer)) {
-            throw new ConflictHttpException('Server is not being transferred.');
+            throw new ConflictHttpException('服务器未被转移。');
         }
 
         return $this->processFailedTransfer($transfer);
@@ -52,7 +52,7 @@ class ServerTransferController extends Controller
         $server = $this->repository->getByUuid($uuid);
         $transfer = $server->transfer;
         if (is_null($transfer)) {
-            throw new ConflictHttpException('Server is not being transferred.');
+            throw new ConflictHttpException('服务器未被转移。');
         }
 
         /** @var \Pterodactyl\Models\Server $server */

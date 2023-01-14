@@ -2,18 +2,16 @@ version: '3.8'
 x-common:
   database:
     &db-environment
-    # Do not remove the "&db-password" from the end of the line below, it is important
-    # for Panel functionality.
+    # 不要将下面行尾 "&db-password" 删除，这对面板功能很重要。
     MYSQL_PASSWORD: &db-password "CHANGE_ME"
     MYSQL_ROOT_PASSWORD: "CHANGE_ME_TOO"
   panel:
     &panel-environment
     APP_URL: "http://example.com"
-    # A list of valid timezones can be found here: http://php.net/manual/en/timezones.php
-    APP_TIMEZONE: "UTC"
+    # 可以在这里找到有效时区列表：http://php.net/manual/zh/timezones.php
+    APP_TIMEZONE: "Asia/Shanghai"
     APP_SERVICE_AUTHOR: "noreply@example.com"
-    # Uncomment the line below and set to a non-empty value if you want to use Let's Encrypt
-    # to generate an SSL certificate for the Panel.
+    # 如果您想使用 Let's Encrypt 为面板生成 SSL 证书，请取消下面的注释行并写入配置
     # LE_EMAIL: ""
   mail:
     &mail-environment
@@ -27,10 +25,9 @@ x-common:
 
 #
 # ------------------------------------------------------------------------------------------
-# DANGER ZONE BELOW
+# 下面的危险区域
 #
-# The remainder of this file likely does not need to be changed. Please only make modifications
-# below if you understand what you are doing.
+# 该文件的其余部分可能不需要更改。 请仅在您了解自己在做什么的情况下进行以下修改。
 #
 services:
   database:
@@ -47,7 +44,7 @@ services:
     image: redis:alpine
     restart: always
   panel:
-    image: ghcr.io/pterodactyl/panel:latest
+    image: ghcr.io/pterodactyl-china/panel:latest
     restart: always
     ports:
       - "80:80"

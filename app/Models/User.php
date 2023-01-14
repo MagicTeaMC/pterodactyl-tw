@@ -11,6 +11,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
 use Pterodactyl\Models\Traits\HasAccessTokens;
 use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Pterodactyl\Traits\Helpers\AvailableLanguages;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\Access\Authorizable;
@@ -76,7 +77,9 @@ use Pterodactyl\Notifications\SendPasswordReset as ResetPasswordNotification;
  * @method static Builder|User whereUsername($value)
  * @method static Builder|User whereUuid($value)
  *
- * @mixin \Eloquent
+ * @mixin \Barryvdh\LaravelIdeHelper\Eloquent
+ * @mixin \Illuminate\Database\Query\Builder
+ * @mixin \Illuminate\Database\Eloquent\Builder
  */
 class User extends Model implements
     AuthenticatableContract,
@@ -127,6 +130,10 @@ class User extends Model implements
         'root_admin',
     ];
 
+    protected $appends = [
+        'md5',
+    ];
+
     /**
      * Cast values to correct type.
      */
@@ -149,7 +156,7 @@ class User extends Model implements
     protected $attributes = [
         'external_id' => null,
         'root_admin' => false,
-        'language' => 'en',
+        'language' => 'zh',
         'use_totp' => false,
         'totp_secret' => null,
     ];
@@ -255,6 +262,13 @@ class User extends Model implements
     public function activity(): MorphToMany
     {
         return $this->morphToMany(ActivityLog::class, 'subject', 'activity_log_subjects');
+    }
+
+    public function md5(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => md5(strtolower($this->email)),
+        );
     }
 
     /**

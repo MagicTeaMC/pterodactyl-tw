@@ -6,11 +6,11 @@ use Illuminate\Support\Arr;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Contracts\Validation\DataAwareRule;
 
-class Fqdn implements Rule, DataAwareRule
+final class Fqdn implements Rule, DataAwareRule
 {
-    protected array $data = [];
-    protected string $message = '';
-    protected ?string $schemeField = null;
+    private array $data = [];
+    private string $message = '';
+    private ?string $schemeField = null;
 
     /**
      * @param array $data
@@ -38,7 +38,7 @@ class Fqdn implements Rule, DataAwareRule
             // custom SSL cert, IPs will not be able to use HTTPS.  This should prevent most
             // home users from making this mistake and wondering why their node is not working.
             if ($this->schemeField && Arr::get($this->data, $this->schemeField) === 'https') {
-                $this->message = 'The :attribute must not be an IP address when HTTPS is enabled.';
+                $this->message = '启用 HTTPS 时 :attribute 不能是 IP 地址。';
 
                 return false;
             }
@@ -58,7 +58,7 @@ class Fqdn implements Rule, DataAwareRule
             return true;
         }
 
-        $this->message = 'The :attribute could not be resolved to a valid IP address.';
+        $this->message = ':attribute 无法解析为有效的 IP 地址。';
 
         return false;
     }

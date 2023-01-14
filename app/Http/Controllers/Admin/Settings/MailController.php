@@ -2,13 +2,11 @@
 
 namespace Pterodactyl\Http\Controllers\Admin\Settings;
 
-use Exception;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Contracts\Console\Kernel;
 use Pterodactyl\Notifications\MailTested;
-use Illuminate\View\Factory as ViewFactory;
 use Illuminate\Support\Facades\Notification;
 use Pterodactyl\Exceptions\DisplayException;
 use Pterodactyl\Http\Controllers\Controller;
@@ -27,8 +25,7 @@ class MailController extends Controller
         private ConfigRepository $config,
         private Encrypter $encrypter,
         private Kernel $kernel,
-        private SettingsRepositoryInterface $settings,
-        private ViewFactory $view
+        private SettingsRepositoryInterface $settings
     ) {
     }
 
@@ -38,7 +35,7 @@ class MailController extends Controller
      */
     public function index(): View
     {
-        return $this->view->make('admin.settings.mail', [
+        return view('admin.settings.mail', [
             'disabled' => $this->config->get('mail.default') !== 'smtp',
         ]);
     }
@@ -53,7 +50,7 @@ class MailController extends Controller
     public function update(MailSettingsFormRequest $request): Response
     {
         if ($this->config->get('mail.default') !== 'smtp') {
-            throw new DisplayException('This feature is only available if SMTP is the selected email driver for the Panel.');
+            throw new DisplayException('功能仅在 SMTP 是面板选定的电子邮件驱动程序时才可用。');
         }
 
         $values = $request->normalize();
@@ -82,7 +79,7 @@ class MailController extends Controller
         try {
             Notification::route('mail', $request->user()->email)
                 ->notify(new MailTested($request->user()));
-        } catch (Exception $exception) {
+        } catch (\Exception $exception) {
             return response($exception->getMessage(), 500);
         }
 

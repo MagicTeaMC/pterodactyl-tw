@@ -6,7 +6,6 @@ use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
 use Illuminate\Contracts\Console\Kernel;
-use Illuminate\View\Factory as ViewFactory;
 use Pterodactyl\Http\Controllers\Controller;
 use Pterodactyl\Traits\Helpers\AvailableLanguages;
 use Pterodactyl\Services\Helpers\SoftwareVersionService;
@@ -24,8 +23,7 @@ class IndexController extends Controller
         private AlertsMessageBag $alert,
         private Kernel $kernel,
         private SettingsRepositoryInterface $settings,
-        private SoftwareVersionService $versionService,
-        private ViewFactory $view
+        private SoftwareVersionService $versionService
     ) {
     }
 
@@ -34,7 +32,7 @@ class IndexController extends Controller
      */
     public function index(): View
     {
-        return $this->view->make('admin.settings.index', [
+        return view('admin.settings.index', [
             'version' => $this->versionService,
             'languages' => $this->getAvailableLanguages(true),
         ]);
@@ -53,7 +51,7 @@ class IndexController extends Controller
         }
 
         $this->kernel->call('queue:restart');
-        $this->alert->success('Panel settings have been updated successfully and the queue worker was restarted to apply these changes.')->flash();
+        $this->alert->success('面板设置已成功更新，工作队列已重新启动以应用这些更改。')->flash();
 
         return redirect()->route('admin.settings');
     }

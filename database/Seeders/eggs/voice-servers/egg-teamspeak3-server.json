@@ -7,10 +7,10 @@
     "exported_at": "2021-06-15T17:24:18-04:00",
     "name": "Teamspeak3 Server",
     "author": "support@pterodactyl.io",
-    "description": "VoIP software designed with security in mind, featuring crystal clear voice quality, endless customization options, and scalabilty up to thousands of simultaneous users.",
+    "description": "VoIP 软件在设计时考虑了安全性，具有清晰的语音质量、无限的自定义选项以及可扩展到数千名用户同时使用的功能。",
     "features": null,
     "images": [
-        "ghcr.io\/pterodactyl\/yolks:debian"
+        "registry.cn-shanghai.aliyuncs.com\/pterodactyl-china\/yolks:debian"
     ],
     "file_denylist": [],
     "startup": ".\/ts3server default_voice_port={{SERVER_PORT}} query_port={{QUERY_PORT}} filetransfer_ip=0.0.0.0 filetransfer_port={{FILE_TRANSFER}} query_http_port={{QUERY_HTTP}} query_ssh_port={{QUERY_SSH}} query_protocols={{QUERY_PROTOCOLS_VAR}} license_accepted=1",
@@ -23,14 +23,14 @@
     "scripts": {
         "installation": {
             "script": "#!\/bin\/ash\r\n# TS3 Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\n\r\nif [ -z ${TS_VERSION} ] || [ ${TS_VERSION} == latest ]; then\r\n    TS_VERSION=$(curl -sSL https:\/\/teamspeak.com\/versions\/server.json | jq -r '.linux.x86_64.version')\r\nfi\r\n\r\ncd \/mnt\/server\r\n\r\necho -e \"getting files from http:\/\/files.teamspeak-services.com\/releases\/server\/${TS_VERSION}\/teamspeak3-server_linux_amd64-${TS_VERSION}.tar.bz2\" \r\ncurl -L http:\/\/files.teamspeak-services.com\/releases\/server\/${TS_VERSION}\/teamspeak3-server_linux_amd64-${TS_VERSION}.tar.bz2 | tar -xvj --strip-components=1\r\ncp .\/redist\/libmariadb.so.2 .\/",
-            "container": "ghcr.io\/pterodactyl\/installers:alpine",
+            "container": "registry.cn-shanghai.aliyuncs.com\/pterodactyl-china\/installers:alpine",
             "entrypoint": "ash"
         }
     },
     "variables": [
         {
-            "name": "Server Version",
-            "description": "The version of Teamspeak 3 to use when running the server.",
+            "name": "服务器版本",
+            "description": "运行服务器时使用的 Teamspeak 3 版本。",
             "env_variable": "TS_VERSION",
             "default_value": "latest",
             "user_viewable": true,
@@ -39,8 +39,8 @@
             "field_type": "text"
         },
         {
-            "name": "File Transfer Port",
-            "description": "The Teamspeak file transfer port",
+            "name": "文件传输端口",
+            "description": "Teamspeak 文件传输端口",
             "env_variable": "FILE_TRANSFER",
             "default_value": "30033",
             "user_viewable": true,
@@ -49,8 +49,8 @@
             "field_type": "text"
         },
         {
-            "name": "Query Port",
-            "description": "The Teamspeak Query Port",
+            "name": "查询端口",
+            "description": "Teamspeak 查询端口",
             "env_variable": "QUERY_PORT",
             "default_value": "10011",
             "user_viewable": true,
@@ -59,8 +59,8 @@
             "field_type": "text"
         },
         {
-            "name": "Query Protocols",
-            "description": "Comma separated list of protocols that can be used to connect to the ServerQuery | \r\nPossible values are raw, ssh and http | \r\nE.g.: raw,ssh,http",
+            "name": "查询协议",
+            "description": "逗号分隔的协议列表，可用于连接到服务器查询| \r\n可能的值为 raw、ssh 和 http | \r\n例如：raw,ssh,http",
             "env_variable": "QUERY_PROTOCOLS_VAR",
             "default_value": "raw,http,ssh",
             "user_viewable": true,
@@ -69,8 +69,8 @@
             "field_type": "text"
         },
         {
-            "name": "Query SSH Port",
-            "description": "TCP Port opened for ServerQuery connections using SSH",
+            "name": "查询 SSH 端口",
+            "description": "使用 SSH 为服务器查询连接打开的 TCP 端口",
             "env_variable": "QUERY_SSH",
             "default_value": "10022",
             "user_viewable": true,
@@ -79,8 +79,8 @@
             "field_type": "text"
         },
         {
-            "name": "Query HTTP Port",
-            "description": "TCP Port opened for ServerQuery connections using http",
+            "name": "查询 HTTP 端口",
+            "description": "使用 http 为服务器查询连接打开的 TCP 端口",
             "env_variable": "QUERY_HTTP",
             "default_value": "10080",
             "user_viewable": true,

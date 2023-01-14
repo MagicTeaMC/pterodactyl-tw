@@ -19,6 +19,9 @@ class SettingsServiceProvider extends ServiceProvider
     protected array $keys = [
         'app:name',
         'app:locale',
+        'icp:enabled',
+        'icp:record',
+        'icp:security_record',
         'recaptcha:enabled',
         'recaptcha:secret_key',
         'recaptcha:website_key',
@@ -70,7 +73,7 @@ class SettingsServiceProvider extends ServiceProvider
                 return [$setting->key => $setting->value];
             })->toArray();
         } catch (QueryException $exception) {
-            $log->notice('A query exception was encountered while trying to load settings from the database: ' . $exception->getMessage());
+            $log->notice('尝试从数据库加载设置时遇到查询异常: ' . $exception->getMessage());
 
             return;
         }
@@ -80,7 +83,7 @@ class SettingsServiceProvider extends ServiceProvider
             if (in_array($key, self::$encrypted)) {
                 try {
                     $value = $encrypter->decrypt($value);
-                } catch (DecryptException $exception) {
+                } catch (DecryptException) {
                 }
             }
 

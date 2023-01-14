@@ -6,7 +6,6 @@ use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Prologue\Alerts\AlertsMessageBag;
 use Illuminate\Contracts\Console\Kernel;
-use Illuminate\View\Factory as ViewFactory;
 use Pterodactyl\Http\Controllers\Controller;
 use Illuminate\Contracts\Config\Repository as ConfigRepository;
 use Pterodactyl\Contracts\Repository\SettingsRepositoryInterface;
@@ -21,8 +20,7 @@ class AdvancedController extends Controller
         private AlertsMessageBag $alert,
         private ConfigRepository $config,
         private Kernel $kernel,
-        private SettingsRepositoryInterface $settings,
-        private ViewFactory $view
+        private SettingsRepositoryInterface $settings
     ) {
     }
 
@@ -39,7 +37,7 @@ class AdvancedController extends Controller
             $showRecaptchaWarning = true;
         }
 
-        return $this->view->make('admin.settings.advanced', [
+        return view('admin.settings.advanced', [
             'showRecaptchaWarning' => $showRecaptchaWarning,
         ]);
     }
@@ -55,7 +53,7 @@ class AdvancedController extends Controller
         }
 
         $this->kernel->call('queue:restart');
-        $this->alert->success('Advanced settings have been updated successfully and the queue worker was restarted to apply these changes.')->flash();
+        $this->alert->success('高级设置已成功更新，工作队列已重新启动以应用这些更改。')->flash();
 
         return redirect()->route('admin.settings.advanced');
     }

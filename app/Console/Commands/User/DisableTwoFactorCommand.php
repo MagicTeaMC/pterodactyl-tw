@@ -7,9 +7,9 @@ use Pterodactyl\Contracts\Repository\UserRepositoryInterface;
 
 class DisableTwoFactorCommand extends Command
 {
-    protected $description = 'Disable two-factor authentication for a specific user in the Panel.';
+    protected $description = '在面板中为特定用户禁用动态口令认证。';
 
-    protected $signature = 'p:user:disable2fa {--email= : The email of the user to disable 2-Factor for.}';
+    protected $signature = 'p:user:disable2fa {--email= : 要为其禁用动态口令认证的用户邮箱。}';
 
     /**
      * DisableTwoFactorCommand constructor.
