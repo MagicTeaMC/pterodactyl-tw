@@ -1,0 +1,34 @@
+{
+  "name": "use-fit-text",
+  "version": "2.4.0",
+  "description": "React hook used to fit text in a div",
+  "author": "saltycrane",
+  "license": "MIT",
+  "source": "index.ts",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/saltycrane/use-fit-text.git"
+  },
+  "keywords": [
+    "react",
+    "fit",
+    "text"
+  ],
+  "scripts": {
+    "build": "microbundle"
+  },
+  "prettier": {
+    "trailingComma": "all"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  },
+  "dependencies": {
+    "resize-observer-polyfill": "^1.5.1"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.49",
+    "microbundle": "^0.12.3"
+  }
+}

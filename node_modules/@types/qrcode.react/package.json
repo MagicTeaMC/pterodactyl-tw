@@ -1,0 +1,36 @@
+{
+    "name": "@types/qrcode.react",
+    "version": "1.0.1",
+    "description": "TypeScript definitions for qrcode.react",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Mleko",
+            "url": "https://github.com/mleko",
+            "githubUsername": "mleko"
+        },
+        {
+            "name": "Yonas",
+            "url": "https://github.com/yonasadiel",
+            "githubUsername": "yonasadiel"
+        },
+        {
+            "name": "Bjoluc",
+            "url": "https://github.com/bjoluc",
+            "githubUsername": "bjoluc"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/qrcode.react"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/react": "*"
+    },
+    "typesPublisherContentHash": "f07eef19e6fc8170ddb4cb32eb71175e07afa6ad1752313706078176211b2665",
+    "typeScriptVersion": "3.0"
+}

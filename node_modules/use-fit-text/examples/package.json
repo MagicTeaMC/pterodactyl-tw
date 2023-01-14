@@ -1,0 +1,23 @@
+{
+  "name": "use-fit-text-example",
+  "scripts": {
+    "build": "NODE_ENV=production rm -rf node_modules/.cache && rm -rf .next/ && rm -rf out/ && next build && next export && touch out/.nojekyll",
+    "deploy": "./bin/gh-pages",
+    "dev": "next",
+    "start": "next start",
+    "tsc": "tsc --version && tsc"
+  },
+  "prettier": {
+    "trailingComma": "all"
+  },
+  "dependencies": {
+    "@types/node": "^14.10.1",
+    "@types/react": "^16.9.49",
+    "@types/react-dom": "^16.9.8",
+    "next": "^9.5.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "typescript": "^4.0.2",
+    "use-fit-text": "2.4.0-alpha.2"
+  }
+}

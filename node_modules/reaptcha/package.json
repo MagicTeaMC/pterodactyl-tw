@@ -1,0 +1,26 @@
+{
+  "name": "reaptcha",
+  "version": "1.7.2",
+  "description": "Google reCAPTCHA for React",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sarneeh/reaptcha"
+  },
+  "license": "MIT",
+  "author": "Jakub Sarnowski <sarneeh@gmail.com>",
+  "files": [
+    "dist",
+    "index.d.ts"
+  ],
+  "main": "dist/index.js",
+  "typings": "./index.d.ts",
+  "scripts": {
+    "build": "webpack --config webpack.config.js"
+  },
+  "peerDependencies": {
+    "react": "^16.6.3"
+  },
+  "devDependencies": {
+    "webpack": "^4.17.1"
+  }
+}
