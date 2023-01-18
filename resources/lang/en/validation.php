@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Pterodactyl CHINA - Panel
+ * Pterodactyl - Panel
  * Copyright (c) 2018 - 2022 ValiantShishu <vlssu@vlssu.com>.
  *
  * This software is licensed under the terms of the MIT license.
