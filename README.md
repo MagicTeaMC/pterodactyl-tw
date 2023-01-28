@@ -1,7 +1,7 @@
 # pterodactyl-tw  
 ❗在初期測試階段中，建議不要在正式環境中使用❗
 ## 關於
-Pterodactyl panel 的繁體中文翻譯版本，修改自 [原版](https://github.com/pterodactyl/panel) `v1.11.2` 及部分文件修改自 [中國版](https://github.com/pterodactyl-china/panel) `v1.11.2.0`。  
+Pterodactyl panel 的繁體中文翻譯版本，修改自 [原版](https://github.com/pterodactyl/panel) `v1.11.3` 。  
 目前此翻譯版本存在許多不確定性，建議不要在實際環境中使用。  
 我們也歡迎您使用 pull request 來協助我們翻譯、改進！
 ## 安裝及使用教學
