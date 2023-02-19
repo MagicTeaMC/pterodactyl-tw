@@ -1,3 +1,4 @@
+(readme file written in chinese)
 # pterodactyl-tw  
 ❗在初期測試階段中，建議不要在正式環境中使用❗
 ## 關於
