@@ -38,7 +38,7 @@ export default () => {
                 console.error(error);
 
                 setSubmitting(false);
-                addFlash({ type: 'error', title: 'Error', message: httpErrorToHuman(error) });
+                addFlash({ type: 'error', title: '錯誤', message: httpErrorToHuman(error) });
             });
 
             return;
@@ -47,11 +47,11 @@ export default () => {
         requestPasswordResetEmail(email, token)
             .then((response) => {
                 resetForm();
-                addFlash({ type: 'success', title: 'Success', message: response });
+                addFlash({ type: 'success', title: '成功', message: response });
             })
             .catch((error) => {
                 console.error(error);
-                addFlash({ type: 'error', title: 'Error', message: httpErrorToHuman(error) });
+                addFlash({ type: 'error', title: '錯誤', message: httpErrorToHuman(error) });
             })
             .then(() => {
                 setToken('');
@@ -72,7 +72,7 @@ export default () => {
             })}
         >
             {({ isSubmitting, setSubmitting, submitForm }) => (
-                <LoginFormContainer title={'Request Password Reset'} css={tw`w-full flex`}>
+                <LoginFormContainer title={'重設密碼'} css={tw`w-full flex`}>
                     <Field
                         light
                         label={'Email'}
@@ -84,7 +84,7 @@ export default () => {
                     />
                     <div css={tw`mt-6`}>
                         <Button type={'submit'} size={'xlarge'} disabled={isSubmitting} isLoading={isSubmitting}>
-                            Send Email
+                            發送郵件
                         </Button>
                     </div>
                     {recaptchaEnabled && (
@@ -107,7 +107,7 @@ export default () => {
                             to={'/auth/login'}
                             css={tw`text-xs text-neutral-500 tracking-wide uppercase no-underline hover:text-neutral-700`}
                         >
-                            Return to Login
+                            回到登入
                         </Link>
                     </div>
                 </LoginFormContainer>

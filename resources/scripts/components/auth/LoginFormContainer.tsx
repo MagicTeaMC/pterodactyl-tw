@@ -50,6 +50,15 @@ export default forwardRef<HTMLFormElement, Props>(({ title, ...props }, ref) => 
             >
                 Pterodactyl Software
             </a>
+            繁體中文版 by
+            <a
+                rel={'noopener nofollow noreferrer'}
+                href={'https://github.com/MagicTeaMC'}
+                target={'_blank'}
+                css={tw`no-underline text-neutral-500 hover:text-neutral-300`}
+            >
+                Maoyue
+            </a>
         </p>
     </Container>
 ));
