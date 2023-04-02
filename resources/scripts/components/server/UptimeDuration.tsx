@@ -10,14 +10,14 @@ export default ({ uptime }: { uptime: number }) => {
     if (days > 0) {
         return (
             <>
-                {days}d {hours}h {minutes}m
+                {days}日 {hours}小時 {minutes}分鐘
             </>
         );
     }
 
     return (
         <>
-            {hours}h {minutes}m {seconds}s
+            {hours}小時 {minutes}分鐘 {seconds}秒
         </>
     );
 };

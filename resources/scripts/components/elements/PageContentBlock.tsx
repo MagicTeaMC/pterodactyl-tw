@@ -35,6 +35,15 @@ const PageContentBlock: React.FC<PageContentBlockProps> = ({ title, showFlashKey
                             Pterodactyl&reg;
                         </a>
                         &nbsp;&copy; 2015 - {new Date().getFullYear()}
+                        繁體中文翻譯來自
+                        <a
+                            rel={'noopener nofollow noreferrer'}
+                            href={'https://github.com/MagicTeaMC'}
+                            target={'_blank'}
+                            css={tw`no-underline text-neutral-500 hover:text-neutral-300`}
+                        >
+                            Maoyue
+                        </a>
                     </p>
                 </ContentContainer>
             </>
