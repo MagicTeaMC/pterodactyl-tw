@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ServerContext } from '@/state/server';
 import TitledGreyBox from '@/components/elements/TitledGreyBox';
 import reinstallServer from '@/api/server/reinstallServer';
@@ -10,7 +10,7 @@ import { Button } from '@/components/elements/button/index';
 import { Dialog } from '@/components/elements/dialog';
 
 export default () => {
-    const uuid = ServerContext.useStoreState(state => state.server.data!.uuid);
+    const uuid = ServerContext.useStoreState((state) => state.server.data!.uuid);
     const [modalVisible, setModalVisible] = useState(false);
     const { addFlash, clearFlashes } = useStoreActions((actions: Actions<ApplicationStore>) => actions.flashes);
 
@@ -21,10 +21,10 @@ export default () => {
                 addFlash({
                     key: 'settings',
                     type: 'success',
-                    message: '您的伺服器已開始重新安裝過程。',
+                    message: 'Your server has begun the reinstallation process.',
                 });
             })
-            .catch(error => {
+            .catch((error) => {
                 console.error(error);
 
                 addFlash({ key: 'settings', type: 'error', message: httpErrorToHuman(error) });
@@ -37,26 +37,30 @@ export default () => {
     }, []);
 
     return (
-        <TitledGreyBox title={'重新安裝伺服器'} css={tw`relative`}>
+        <TitledGreyBox title={'Reinstall Server'} css={tw`relative`}>
             <Dialog.Confirm
                 open={modalVisible}
-                title={'確認伺服器重新安裝'}
-                confirm={'確認,重裝伺服器'}
+                title={'Confirm server reinstallation'}
+                confirm={'Yes, reinstall server'}
                 onClose={() => setModalVisible(false)}
                 onConfirmed={reinstall}
             >
-                在此過程中，您的伺服器將停止運行，並且某些檔可能會被刪除或修改，您確定要繼續嗎？
+                Your server will be stopped and some files may be deleted or modified during this process, are you sure
+                you wish to continue?
             </Dialog.Confirm>
             <p css={tw`text-sm`}>
-                重新安裝您的伺服器將停止它，然後重新運行最初設置它的安裝腳本.&nbsp;
-                <strong css={tw`font-medium`}>在此過程中可能會刪除或修改某些檔，請在繼續之前備份您的資料。</strong>
+                Reinstalling your server will stop it, and then re-run the installation script that initially set it
+                up.&nbsp;
+                <strong css={tw`font-medium`}>
+                    Some files may be deleted or modified during this process, please back up your data before
+                    continuing.
+                </strong>
             </p>
             <div css={tw`mt-6 text-right`}>
                 <Button.Danger variant={Button.Variants.Secondary} onClick={() => setModalVisible(true)}>
-                    重新安裝伺服器
+                    Reinstall Server
                 </Button.Danger>
             </div>
         </TitledGreyBox>
     );
 };
-

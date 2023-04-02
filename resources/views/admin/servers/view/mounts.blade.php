@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 
 @section('title')
-    伺服器 — {{ $server->name }}: 掛載
+    Server — {{ $server->name }}: Mounts
 @endsection
 
 @section('content-header')
-    <h1>{{ $server->name }}<small>管理伺服器的掛載.</small></h1>
+    <h1>{{ $server->name }}<small>Manage server mounts.</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">管理</a></li>
-        <li><a href="{{ route('admin.servers') }}">伺服器</a></li>
+        <li><a href="{{ route('admin.index') }}">Admin</a></li>
+        <li><a href="{{ route('admin.servers') }}">Servers</a></li>
         <li><a href="{{ route('admin.servers.view', $server->id) }}">{{ $server->name }}</a></li>
-        <li class="active">掛載</li>
+        <li class="active">Mounts</li>
     </ol>
 @endsection
 
@@ -21,17 +21,17 @@
         <div class="col-sm-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">可用的掛載點</h3>
+                    <h3 class="box-title">Available Mounts</h3>
                 </div>
 
                 <div class="box-body table-responsible no-padding">
                     <table class="table table-hover">
                         <tr>
                             <th>ID</th>
-                            <th>名稱</th>
-                            <th>原始路徑</th>
-                            <th>掛載路徑</th>
-                            <th>狀態</th>
+                            <th>Name</th>
+                            <th>Source</th>
+                            <th>Target</th>
+                            <th>Status</th>
                             <th></th>
                         </tr>
 
@@ -44,7 +44,7 @@
 
                                 @if (! in_array($mount->id, $server->mounts->pluck('id')->toArray()))
                                     <td class="col-sm-2 middle">
-                                        <span class="label label-primary">已卸載</span>
+                                        <span class="label label-primary">Unmounted</span>
                                     </td>
 
                                     <td class="col-sm-1 middle">
@@ -56,7 +56,7 @@
                                     </td>
                                 @else
                                     <td class="col-sm-2 middle">
-                                        <span class="label label-success">已掛載</span>
+                                        <span class="label label-success">Mounted</span>
                                     </td>
 
                                     <td class="col-sm-1 middle">
@@ -76,4 +76,3 @@
         </div>
     </div>
 @endsection
-

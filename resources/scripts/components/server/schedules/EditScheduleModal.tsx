@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Schedule } from '@/api/server/schedules/getServerSchedules';
 import Field from '@/components/elements/Field';
 import { Form, Formik, FormikHelpers } from 'formik';
@@ -34,8 +34,8 @@ const EditScheduleModal = ({ schedule }: Props) => {
     const { addError, clearFlashes } = useFlash();
     const { dismiss } = useContext(ModalContext);
 
-    const uuid = ServerContext.useStoreState(state => state.server.data!.uuid);
-    const appendSchedule = ServerContext.useStoreActions(actions => actions.schedules.appendSchedule);
+    const uuid = ServerContext.useStoreState((state) => state.server.data!.uuid);
+    const appendSchedule = ServerContext.useStoreActions((actions) => actions.schedules.appendSchedule);
     const [showCheatsheet, setShowCheetsheet] = useState(false);
 
     useEffect(() => {
@@ -59,12 +59,12 @@ const EditScheduleModal = ({ schedule }: Props) => {
             onlyWhenOnline: values.onlyWhenOnline,
             isActive: values.enabled,
         })
-            .then(schedule => {
+            .then((schedule) => {
                 setSubmitting(false);
                 appendSchedule(schedule);
                 dismiss();
             })
-            .catch(error => {
+            .catch((error) => {
                 console.error(error);
 
                 setSubmitting(false);
@@ -90,27 +90,31 @@ const EditScheduleModal = ({ schedule }: Props) => {
         >
             {({ isSubmitting }) => (
                 <Form>
-                    <h3 css={tw`text-2xl mb-6`}>{schedule ? '編輯計畫' : '創建新計畫'}</h3>
+                    <h3 css={tw`text-2xl mb-6`}>{schedule ? 'Edit schedule' : 'Create new schedule'}</h3>
                     <FlashMessageRender byKey={'schedule:edit'} css={tw`mb-6`} />
-                    <Field name={'name'} label={'計畫名'} description={'此計畫的名字'} />
+                    <Field
+                        name={'name'}
+                        label={'Schedule name'}
+                        description={'A human readable identifier for this schedule.'}
+                    />
                     <div css={tw`grid grid-cols-2 sm:grid-cols-5 gap-4 mt-6`}>
-                        <Field name={'minute'} label={'分鐘'} />
-                        <Field name={'hour'} label={'小時'} />
-                        <Field name={'dayOfMonth'} label={'每月的某一天'} />
-                        <Field name={'month'} label={'月'} />
-                        <Field name={'dayOfWeek'} label={'每週的某一天'} />
+                        <Field name={'minute'} label={'Minute'} />
+                        <Field name={'hour'} label={'Hour'} />
+                        <Field name={'dayOfMonth'} label={'Day of month'} />
+                        <Field name={'month'} label={'Month'} />
+                        <Field name={'dayOfWeek'} label={'Day of week'} />
                     </div>
                     <p css={tw`text-neutral-400 text-xs mt-2`}>
-                        計畫系統支援在定義任務何時開始運行時使用 Cronjob
-                        語法。使用上面的欄位來指定這些計畫任務應該何時開始運行。
+                        The schedule system supports the use of Cronjob syntax when defining when tasks should begin
+                        running. Use the fields above to specify when these tasks should begin running.
                     </p>
                     <div css={tw`mt-6 bg-neutral-700 border border-neutral-800 shadow-inner p-4 rounded`}>
                         <Switch
                             name={'show_cheatsheet'}
-                            description={'顯示 cronjob 的一些例子'}
-                            label={'顯示例子'}
+                            description={'Show the cron cheatsheet for some examples.'}
+                            label={'Show Cheatsheet'}
                             defaultChecked={showCheatsheet}
-                            onChange={() => setShowCheetsheet(s => !s)}
+                            onChange={() => setShowCheetsheet((s) => !s)}
                         />
                         {showCheatsheet && (
                             <div css={tw`block md:flex w-full`}>
@@ -121,20 +125,20 @@ const EditScheduleModal = ({ schedule }: Props) => {
                     <div css={tw`mt-6 bg-neutral-700 border border-neutral-800 shadow-inner p-4 rounded`}>
                         <FormikSwitch
                             name={'onlyWhenOnline'}
-                            description={'僅在伺服器處於運行狀態時執行此計畫。'}
-                            label={'僅當伺服器線上運行時'}
+                            description={'Only execute this schedule when the server is in a running state.'}
+                            label={'Only When Server Is Online'}
                         />
                     </div>
                     <div css={tw`mt-6 bg-neutral-700 border border-neutral-800 shadow-inner p-4 rounded`}>
                         <FormikSwitch
                             name={'enabled'}
-                            description={'如果啟用，此計畫將自動執行。'}
-                            label={'計畫已啟用'}
+                            description={'This schedule will be executed automatically if enabled.'}
+                            label={'Schedule Enabled'}
                         />
                     </div>
                     <div css={tw`mt-6 text-right`}>
                         <Button className={'w-full sm:w-auto'} type={'submit'} disabled={isSubmitting}>
-                            {schedule ? '保存更改' : '創建計畫'}
+                            {schedule ? 'Save changes' : 'Create schedule'}
                         </Button>
                     </div>
                 </Form>
@@ -144,4 +148,3 @@ const EditScheduleModal = ({ schedule }: Props) => {
 };
 
 export default asModal<Props>()(EditScheduleModal);
-

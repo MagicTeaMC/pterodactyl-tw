@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 
 @section('title')
-    伺服器 — {{ $server->name }}: 資料庫
+    Server — {{ $server->name }}: Databases
 @endsection
 
 @section('content-header')
-    <h1>{{ $server->name }}<small>管理伺服器資料庫.</small></h1>
+    <h1>{{ $server->name }}<small>Manage server databases.</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">管理</a></li>
-        <li><a href="{{ route('admin.servers') }}">伺服器</a></li>
+        <li><a href="{{ route('admin.index') }}">Admin</a></li>
+        <li><a href="{{ route('admin.servers') }}">Servers</a></li>
         <li><a href="{{ route('admin.servers.view', $server->id) }}">{{ $server->name }}</a></li>
-        <li class="active">資料庫</li>
+        <li class="active">Databases</li>
     </ol>
 @endsection
 
@@ -19,20 +19,20 @@
 <div class="row">
     <div class="col-sm-7">
         <div class="alert alert-info">
-            資料庫密碼可以在 <a href="/server/{{ $server->uuidShort }}/databases">訪問此伺服器</a> 使用者介面時查看.
+            Database passwords can be viewed when <a href="/server/{{ $server->uuidShort }}/databases">visiting this server</a> on the front-end.
         </div>
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">活躍的資料庫</h3>
+                <h3 class="box-title">Active Databases</h3>
             </div>
             <div class="box-body table-responsible no-padding">
                 <table class="table table-hover">
                     <tr>
-                        <th>資料庫</th>
-                        <th>用戶名</th>
-                        <th>連接白名單</th>
-                        <th>功能變數名稱</th>
-                        <th>最大連接數</th>
+                        <th>Database</th>
+                        <th>Username</th>
+                        <th>Connections From</th>
+                        <th>Host</th>
+                        <th>Max Connections</th>
                         <th></th>
                     </tr>
                     @foreach($server->databases as $database)
@@ -44,7 +44,7 @@
                             @if($database->max_connections != null)
                                 <td>{{ $database->max_connections }}</td>
                             @else
-                                <td>無限制</td>
+                                <td>Unlimited</td>
                             @endif
                             <td class="text-center">
                                 <button data-action="reset-password" data-id="{{ $database->id }}" class="btn btn-xs btn-primary"><i class="fa fa-refresh"></i></button>
@@ -59,41 +59,41 @@
     <div class="col-sm-5">
         <div class="box box-success">
             <div class="box-header with-border">
-                <h3 class="box-title">創建新資料庫</h3>
+                <h3 class="box-title">Create New Database</h3>
             </div>
             <form action="{{ route('admin.servers.view.database', $server->id) }}" method="POST">
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="pDatabaseHostId" class="control-label">資料庫主機</label>
+                        <label for="pDatabaseHostId" class="control-label">Database Host</label>
                         <select id="pDatabaseHostId" name="database_host_id" class="form-control">
                             @foreach($hosts as $host)
                                 <option value="{{ $host->id }}">{{ $host->name }}</option>
                             @endforeach
                         </select>
-                        <p class="text-muted small">選擇應在其上創建此資料庫的主機資料庫伺服器.</p>
+                        <p class="text-muted small">Select the host database server that this database should be created on.</p>
                     </div>
                     <div class="form-group">
-                        <label for="pDatabaseName" class="control-label">資料庫</label>
+                        <label for="pDatabaseName" class="control-label">Database</label>
                         <div class="input-group">
                             <span class="input-group-addon">s{{ $server->id }}_</span>
                             <input id="pDatabaseName" type="text" name="database" class="form-control" placeholder="database" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="pRemote" class="control-label">連接白名單</label>
+                        <label for="pRemote" class="control-label">Connections</label>
                         <input id="pRemote" type="text" name="remote" class="form-control" value="%" />
-                        <p class="text-muted small">這應該反映允許連接的 IP 位址。使用標準 MySQL 標記法。如果不確定請填寫 <code>%</code>。</p>
+                        <p class="text-muted small">This should reflect the IP address that connections are allowed from. Uses standard MySQL notation. If unsure leave as <code>%</code>.</p>
                     </div>
                     <div class="form-group">
-                        <label for="pmax_connections" class="control-label">最大連接數</label>
+                        <label for="pmax_connections" class="control-label">Concurrent Connections</label>
                         <input id="pmax_connections" type="text" name="max_connections" class="form-control"/>
-                        <p class="text-muted small">這應該反映從該使用者到資料庫的最大併發連接數。留空表示無限制。</p>
+                        <p class="text-muted small">This should reflect the max number of concurrent connections from this user to the database. Leave empty for unlimited.</p>
                     </div>
                 </div>
                 <div class="box-footer">
                     {!! csrf_field() !!}
-                    <p class="text-muted small no-margin">該資料庫的用戶名和密碼將在此表單提交後隨機生成。</p>
-                    <input type="submit" class="btn btn-sm btn-success pull-right" value="創建資料庫" />
+                    <p class="text-muted small no-margin">A username and password for this database will be randomly generated after form submission.</p>
+                    <input type="submit" class="btn btn-sm btn-success pull-right" value="Create Database" />
                 </div>
             </form>
         </div>
@@ -111,9 +111,9 @@
         swal({
             title: '',
             type: 'warning',
-            text: '您確定要刪除此資料庫嗎？ 沒有回頭路，所有資料將立即被刪除。',
+            text: 'Are you sure that you want to delete this database? There is no going back, all data will immediately be removed.',
             showCancelButton: true,
-            confirmButtonText: '刪除',
+            confirmButtonText: 'Delete',
             confirmButtonColor: '#d9534f',
             closeOnConfirm: false,
             showLoaderOnConfirm: true,
@@ -130,7 +130,7 @@
                 swal({
                     type: 'error',
                     title: 'Whoops!',
-                    text: (typeof jqXHR.responseJSON.error !== 'undefined') ? jqXHR.responseJSON.error : '處理此請求時發生錯誤，此請求無法繼續處理！'
+                    text: (typeof jqXHR.responseJSON.error !== 'undefined') ? jqXHR.responseJSON.error : 'An error occurred while processing this request.'
                 });
             });
         });
@@ -148,17 +148,17 @@
             swal({
                 type: 'success',
                 title: '',
-                text: '資料庫密碼已重置.',
+                text: 'The password for this database has been reset.',
             });
         }).fail(function(jqXHR, textStatus, errorThrown) {
             console.error(jqXHR);
-            var error = '處理此請求時發生錯誤，此請求無法繼續處理！';
+            var error = 'An error occurred while trying to process this request.';
             if (typeof jqXHR.responseJSON !== 'undefined' && typeof jqXHR.responseJSON.error !== 'undefined') {
                 error = jqXHR.responseJSON.error;
             }
             swal({
                 type: 'error',
-                title: '嗚呼!',
+                title: 'Whoops!',
                 text: error
             });
         }).always(function () {
@@ -167,4 +167,3 @@
     });
     </script>
 @endsection
-

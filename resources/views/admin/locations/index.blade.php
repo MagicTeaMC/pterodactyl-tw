@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('title')
-    地域
+    Locations
 @endsection
 
 @section('content-header')
-    <h1>地域<small>可以將節點分配到所有地域以便於分類。</small></h1>
+    <h1>Locations<small>All locations that nodes can be assigned to for easier categorization.</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">管理</a></li>
-        <li class="active">地域</li>
+        <li><a href="{{ route('admin.index') }}">Admin</a></li>
+        <li class="active">Locations</li>
     </ol>
 @endsection
 
@@ -17,9 +17,9 @@
     <div class="col-xs-12">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">地域列表</h3>
+                <h3 class="box-title">Location List</h3>
                 <div class="box-tools">
-                    <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#newLocationModal">新建</button>
+                    <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#newLocationModal">Create New</button>
                 </div>
             </div>
             <div class="box-body table-responsive no-padding">
@@ -27,10 +27,10 @@
                     <tbody>
                         <tr>
                             <th>ID</th>
-                            <th>標識碼</th>
-                            <th>描述</th>
-                            <th class="text-center">節點</th>
-                            <th class="text-center">伺服器</th>
+                            <th>Short Code</th>
+                            <th>Description</th>
+                            <th class="text-center">Nodes</th>
+                            <th class="text-center">Servers</th>
                         </tr>
                         @foreach ($locations as $location)
                             <tr>
@@ -53,30 +53,29 @@
             <form action="{{ route('admin.locations') }}" method="POST">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">創建地域</h4>
+                    <h4 class="modal-title">Create Location</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <label for="pShortModal" class="form-label">標識碼</label>
+                            <label for="pShortModal" class="form-label">Short Code</label>
                             <input type="text" name="short" id="pShortModal" class="form-control" />
-                            <p class="text-muted small">用於將此地域與其他地域區分開來的簡短識別字。必須介於 1 到 60 個字元之間, 例如, <code>us.nyc.lvl3</code>.</p>
+                            <p class="text-muted small">A short identifier used to distinguish this location from others. Must be between 1 and 60 characters, for example, <code>us.nyc.lvl3</code>.</p>
                         </div>
                         <div class="col-md-12">
-                            <label for="pLongModal" class="form-label">描述</label>
+                            <label for="pLongModal" class="form-label">Description</label>
                             <textarea name="long" id="pLongModal" class="form-control" rows="4"></textarea>
-                            <p class="text-muted small">此地域的詳細說明，最多不應超過 191 個字元.</p>
+                            <p class="text-muted small">A longer description of this location. Must be less than 191 characters.</p>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     {!! csrf_field() !!}
-                    <button type="button" class="btn btn-default btn-sm pull-left" data-dismiss="modal">取消</button>
-                    <button type="submit" class="btn btn-success btn-sm">創建</button>
+                    <button type="button" class="btn btn-default btn-sm pull-left" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success btn-sm">Create</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 @endsection
-

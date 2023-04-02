@@ -1,10 +1,7 @@
-import type { AxiosError } from 'axios';
-import type { SWRConfiguration } from 'swr';
-import useSWR from 'swr';
-
+import useSWR, { ConfigInterface } from 'swr';
 import http, { FractalResponseList } from '@/api/http';
-import type { ServerEggVariable } from '@/api/server/types';
 import { rawDataToServerEggVariable } from '@/api/transformers';
+import { ServerEggVariable } from '@/api/server/types';
 
 interface Response {
     invocation: string;
@@ -12,7 +9,7 @@ interface Response {
     dockerImages: Record<string, string>;
 }
 
-export default (uuid: string, fallbackData?: Response, config?: SWRConfiguration<Response, AxiosError>) =>
+export default (uuid: string, initialData?: Response | null, config?: ConfigInterface<Response>) =>
     useSWR(
         [uuid, '/startup'],
         async (): Promise<Response> => {
@@ -26,5 +23,5 @@ export default (uuid: string, fallbackData?: Response, config?: SWRConfiguration
                 dockerImages: data.meta.docker_images || {},
             };
         },
-        { fallbackData, errorRetryCount: 3, ...(config ?? {}) },
+        { initialData: initialData || undefined, errorRetryCount: 3, ...(config || {}) }
     );

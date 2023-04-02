@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Server } from '@/api/server/getServer';
 import getServers from '@/api/getServers';
 import ServerRow from '@/components/dashboard/ServerRow';
@@ -20,13 +20,13 @@ export default () => {
 
     const [page, setPage] = useState(!isNaN(defaultPage) && defaultPage > 0 ? defaultPage : 1);
     const { clearFlashes, clearAndAddHttpError } = useFlash();
-    const uuid = useStoreState(state => state.user.data!.uuid);
-    const rootAdmin = useStoreState(state => state.user.data!.rootAdmin);
+    const uuid = useStoreState((state) => state.user.data!.uuid);
+    const rootAdmin = useStoreState((state) => state.user.data!.rootAdmin);
     const [showOnlyAdmin, setShowOnlyAdmin] = usePersistedState(`${uuid}:show_all_servers`, false);
 
     const { data: servers, error } = useSWR<PaginatedResult<Server>>(
         ['/api/client/servers', showOnlyAdmin && rootAdmin, page],
-        () => getServers({ page, type: showOnlyAdmin && rootAdmin ? 'admin' : undefined }),
+        () => getServers({ page, type: showOnlyAdmin && rootAdmin ? 'admin' : undefined })
     );
 
     useEffect(() => {
@@ -49,16 +49,16 @@ export default () => {
     }, [error]);
 
     return (
-        <PageContentBlock title={'儀錶盤'} showFlashKey={'dashboard'}>
+        <PageContentBlock title={'Dashboard'} showFlashKey={'dashboard'}>
             {rootAdmin && (
                 <div css={tw`mb-2 flex justify-end items-center`}>
                     <p css={tw`uppercase text-xs text-neutral-400 mr-2`}>
-                        {showOnlyAdmin ? '顯示其他人的伺服器' : '顯示你的伺服器'}
+                        {showOnlyAdmin ? "Showing others' servers" : 'Showing your servers'}
                     </p>
                     <Switch
                         name={'show_all_servers'}
                         defaultChecked={showOnlyAdmin}
-                        onChange={() => setShowOnlyAdmin(s => !s)}
+                        onChange={() => setShowOnlyAdmin((s) => !s)}
                     />
                 </div>
             )}
@@ -73,7 +73,9 @@ export default () => {
                             ))
                         ) : (
                             <p css={tw`text-center text-sm text-neutral-400`}>
-                                {showOnlyAdmin ? '這裡沒有伺服器可顯示。' : '你的帳戶下沒有關聯的伺服器。'}
+                                {showOnlyAdmin
+                                    ? 'There are no other servers to display.'
+                                    : 'There are no servers associated with your account.'}
                             </p>
                         )
                     }
@@ -82,4 +84,3 @@ export default () => {
         </PageContentBlock>
     );
 };
-

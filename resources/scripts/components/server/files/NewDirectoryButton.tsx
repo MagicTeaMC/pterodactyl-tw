@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ServerContext } from '@/state/server';
 import { Form, Formik, FormikHelpers } from 'formik';
 import Field from '@/components/elements/Field';
-import { join } from 'pathe';
+import { join } from 'path';
 import { object, string } from 'yup';
 import createDirectory from '@/api/server/files/createDirectory';
 import tw from 'twin.macro';
@@ -21,7 +21,7 @@ interface Values {
 }
 
 const schema = object().shape({
-    directoryName: string().required('必須提供有效的目錄名稱。'),
+    directoryName: string().required('A valid directory name must be provided.'),
 });
 
 const generateDirectoryData = (name: string): FileObject => ({
@@ -40,10 +40,10 @@ const generateDirectoryData = (name: string): FileObject => ({
 });
 
 const NewDirectoryDialog = asDialog({
-    title: '創建目錄',
+    title: 'Create Directory',
 })(() => {
-    const uuid = ServerContext.useStoreState(state => state.server.data!.uuid);
-    const directory = ServerContext.useStoreState(state => state.files.directory);
+    const uuid = ServerContext.useStoreState((state) => state.server.data!.uuid);
+    const directory = ServerContext.useStoreState((state) => state.files.directory);
 
     const { mutate } = useFileManagerSwr();
     const { close } = useContext(DialogWrapperContext);
@@ -57,9 +57,9 @@ const NewDirectoryDialog = asDialog({
 
     const submit = ({ directoryName }: Values, { setSubmitting }: FormikHelpers<Values>) => {
         createDirectory(uuid, directory, directoryName)
-            .then(() => mutate(data => [...data!, generateDirectoryData(directoryName)], false))
+            .then(() => mutate((data) => [...data, generateDirectoryData(directoryName)], false))
             .then(() => close())
-            .catch(error => {
+            .catch((error) => {
                 setSubmitting(false);
                 clearAndAddHttpError(error);
             });
@@ -71,9 +71,9 @@ const NewDirectoryDialog = asDialog({
                 <>
                     <FlashMessageRender key={'files:directory-modal'} />
                     <Form css={tw`m-0`}>
-                        <Field autoFocus id={'directoryName'} name={'directoryName'} label={'名稱'} />
+                        <Field autoFocus id={'directoryName'} name={'directoryName'} label={'Name'} />
                         <p css={tw`mt-2 text-sm md:text-base break-all`}>
-                            <span css={tw`text-neutral-200`}>該目錄將被創建為&nbsp;</span>
+                            <span css={tw`text-neutral-200`}>This directory will be created as&nbsp;</span>
                             <Code>
                                 /home/container/
                                 <span css={tw`text-cyan-200`}>
@@ -84,10 +84,10 @@ const NewDirectoryDialog = asDialog({
                     </Form>
                     <Dialog.Footer>
                         <Button.Text className={'w-full sm:w-auto'} onClick={close}>
-                            取消
+                            Cancel
                         </Button.Text>
                         <Button className={'w-full sm:w-auto'} onClick={submitForm}>
-                            創建
+                            Create
                         </Button>
                     </Dialog.Footer>
                 </>
@@ -103,9 +103,8 @@ export default ({ className }: WithClassname) => {
         <>
             <NewDirectoryDialog open={open} onClose={setOpen.bind(this, false)} />
             <Button.Text onClick={setOpen.bind(this, true)} className={className}>
-                創建目錄
+                Create Directory
             </Button.Text>
         </>
     );
 };
-

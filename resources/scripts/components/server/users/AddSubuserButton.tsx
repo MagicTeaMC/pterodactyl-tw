@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import EditSubuserModal from '@/components/server/users/EditSubuserModal';
 import { Button } from '@/components/elements/button/index';
 
@@ -8,7 +8,7 @@ export default () => {
     return (
         <>
             <EditSubuserModal visible={visible} onModalDismissed={() => setVisible(false)} />
-            <Button onClick={() => setVisible(true)}>新用戶</Button>
+            <Button onClick={() => setVisible(true)}>New User</Button>
         </>
     );
 };

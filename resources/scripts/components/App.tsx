@@ -1,20 +1,23 @@
+import React, { lazy } from 'react';
+import { hot } from 'react-hot-loader/root';
+import { Route, Router, Switch } from 'react-router-dom';
 import { StoreProvider } from 'easy-peasy';
-import { lazy } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
-import '@/assets/tailwind.css';
-import GlobalStylesheet from '@/assets/css/GlobalStylesheet';
-import AuthenticatedRoute from '@/components/elements/AuthenticatedRoute';
+import { store } from '@/state';
+import { SiteSettings } from '@/state/settings';
 import ProgressBar from '@/components/elements/ProgressBar';
 import { NotFound } from '@/components/elements/ScreenBlock';
-import Spinner from '@/components/elements/Spinner';
-import { store } from '@/state';
+import tw from 'twin.macro';
+import GlobalStylesheet from '@/assets/css/GlobalStylesheet';
+import { history } from '@/components/history';
+import { setupInterceptors } from '@/api/interceptors';
+import AuthenticatedRoute from '@/components/elements/AuthenticatedRoute';
 import { ServerContext } from '@/state/server';
-import { SiteSettings } from '@/state/settings';
+import '@/assets/tailwind.css';
+import Spinner from '@/components/elements/Spinner';
 
-const DashboardRouter = lazy(() => import('@/routers/DashboardRouter'));
-const ServerRouter = lazy(() => import('@/routers/ServerRouter'));
-const AuthenticationRouter = lazy(() => import('@/routers/AuthenticationRouter'));
+const DashboardRouter = lazy(() => import(/* webpackChunkName: "dashboard" */ '@/routers/DashboardRouter'));
+const ServerRouter = lazy(() => import(/* webpackChunkName: "server" */ '@/routers/ServerRouter'));
+const AuthenticationRouter = lazy(() => import(/* webpackChunkName: "auth" */ '@/routers/AuthenticationRouter'));
 
 interface ExtendedWindow extends Window {
     SiteConfiguration?: SiteSettings;
@@ -32,9 +35,9 @@ interface ExtendedWindow extends Window {
     };
 }
 
-// setupInterceptors(history);
+setupInterceptors(history);
 
-function App() {
+const App = () => {
     const { PterodactylUser, SiteConfiguration } = window as ExtendedWindow;
     if (PterodactylUser && !store.getState().user.data) {
         store.getActions().user.setUserData({
@@ -55,55 +58,38 @@ function App() {
 
     return (
         <>
-            {/* @ts-expect-error go away */}
             <GlobalStylesheet />
-
             <StoreProvider store={store}>
                 <ProgressBar />
-
-                <div className="mx-auto w-auto">
-                    <BrowserRouter>
-                        <Routes>
-                            <Route
-                                path="/auth/*"
-                                element={
-                                    <Spinner.Suspense>
-                                        <AuthenticationRouter />
-                                    </Spinner.Suspense>
-                                }
-                            />
-
-                            <Route
-                                path="/server/:id/*"
-                                element={
-                                    <AuthenticatedRoute>
-                                        <Spinner.Suspense>
-                                            <ServerContext.Provider>
-                                                <ServerRouter />
-                                            </ServerContext.Provider>
-                                        </Spinner.Suspense>
-                                    </AuthenticatedRoute>
-                                }
-                            />
-
-                            <Route
-                                path="/*"
-                                element={
-                                    <AuthenticatedRoute>
-                                        <Spinner.Suspense>
-                                            <DashboardRouter />
-                                        </Spinner.Suspense>
-                                    </AuthenticatedRoute>
-                                }
-                            />
-
-                            <Route path="*" element={<NotFound />} />
-                        </Routes>
-                    </BrowserRouter>
+                <div css={tw`mx-auto w-auto`}>
+                    <Router history={history}>
+                        <Switch>
+                            <Route path={'/auth'}>
+                                <Spinner.Suspense>
+                                    <AuthenticationRouter />
+                                </Spinner.Suspense>
+                            </Route>
+                            <AuthenticatedRoute path={'/server/:id'}>
+                                <Spinner.Suspense>
+                                    <ServerContext.Provider>
+                                        <ServerRouter />
+                                    </ServerContext.Provider>
+                                </Spinner.Suspense>
+                            </AuthenticatedRoute>
+                            <AuthenticatedRoute path={'/'}>
+                                <Spinner.Suspense>
+                                    <DashboardRouter />
+                                </Spinner.Suspense>
+                            </AuthenticatedRoute>
+                            <Route path={'*'}>
+                                <NotFound />
+                            </Route>
+                        </Switch>
+                    </Router>
                 </div>
             </StoreProvider>
         </>
     );
-}
+};
 
-export { App };
+export default hot(App);

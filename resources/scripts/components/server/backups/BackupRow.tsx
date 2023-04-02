@@ -1,3 +1,4 @@
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArchive, faEllipsisH, faLock } from '@fortawesome/free-solid-svg-icons';
 import { format, formatDistanceToNow } from 'date-fns';
@@ -20,14 +21,14 @@ interface Props {
 export default ({ backup, className }: Props) => {
     const { mutate } = getServerBackups();
 
-    useWebsocketEvent(`${SocketEvent.BACKUP_COMPLETED}:${backup.uuid}` as SocketEvent, async data => {
+    useWebsocketEvent(`${SocketEvent.BACKUP_COMPLETED}:${backup.uuid}` as SocketEvent, (data) => {
         try {
             const parsed = JSON.parse(data);
 
-            await mutate(
-                data => ({
-                    ...data!,
-                    items: data!.items.map(b =>
+            mutate(
+                (data) => ({
+                    ...data,
+                    items: data.items.map((b) =>
                         b.uuid !== backup.uuid
                             ? b
                             : {
@@ -36,10 +37,10 @@ export default ({ backup, className }: Props) => {
                                   checksum: (parsed.checksum_type || '') + ':' + (parsed.checksum || ''),
                                   bytes: parsed.file_size || 0,
                                   completedAt: new Date(),
-                              },
+                              }
                     ),
                 }),
-                false,
+                false
             );
         } catch (e) {
             console.warn(e);
@@ -66,7 +67,7 @@ export default ({ backup, className }: Props) => {
                             <span
                                 css={tw`bg-red-500 py-px px-2 rounded-full text-white text-xs uppercase border border-red-600 mr-2`}
                             >
-                                失敗
+                                Failed
                             </span>
                         )}
                         <p css={tw`break-words truncate`}>{backup.name}</p>

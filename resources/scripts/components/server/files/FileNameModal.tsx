@@ -1,9 +1,10 @@
+import React from 'react';
 import Modal, { RequiredModalProps } from '@/components/elements/Modal';
 import { Form, Formik, FormikHelpers } from 'formik';
 import { object, string } from 'yup';
 import Field from '@/components/elements/Field';
 import { ServerContext } from '@/state/server';
-import { join } from 'pathe';
+import { join } from 'path';
 import tw from 'twin.macro';
 import Button from '@/components/elements/Button';
 
@@ -16,7 +17,7 @@ interface Values {
 }
 
 export default ({ onFileNamed, onDismissed, ...props }: Props) => {
-    const directory = ServerContext.useStoreState(state => state.files.directory);
+    const directory = ServerContext.useStoreState((state) => state.files.directory);
 
     const submit = (values: Values, { setSubmitting }: FormikHelpers<Values>) => {
         onFileNamed(join(directory, values.fileName));
@@ -43,12 +44,12 @@ export default ({ onFileNamed, onDismissed, ...props }: Props) => {
                         <Field
                             id={'fileName'}
                             name={'fileName'}
-                            label={'文件名'}
-                            description={'請輸入此文件的文件名.'}
+                            label={'File Name'}
+                            description={'Enter the name that this file should be saved as.'}
                             autoFocus
                         />
                         <div css={tw`mt-6 text-right`}>
-                            <Button>創建文件</Button>
+                            <Button>Create File</Button>
                         </div>
                     </Form>
                 </Modal>

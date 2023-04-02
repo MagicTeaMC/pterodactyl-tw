@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useStoreState } from 'easy-peasy';
 import { ApplicationStore } from '@/state';
 import tw from 'twin.macro';
@@ -32,17 +32,16 @@ export default () => {
             <DisableTOTPDialog open={visible === 'disable'} onClose={() => setVisible(null)} />
             <p css={tw`text-sm`}>
                 {isEnabled
-                    ? '您的帳戶當前啟用了動態口令認證。'
-                    : '您目前沒有在您的帳戶上啟用動態口令認證，按一下下面的按鈕即可開始配置。'}
+                    ? 'Two-step verification is currently enabled on your account.'
+                    : 'You do not currently have two-step verification enabled on your account. Click the button below to begin configuring it.'}
             </p>
             <div css={tw`mt-6`}>
                 {isEnabled ? (
-                    <Button.Danger onClick={() => setVisible('disable')}>禁用動態口令認證</Button.Danger>
+                    <Button.Danger onClick={() => setVisible('disable')}>Disable Two-Step</Button.Danger>
                 ) : (
-                    <Button onClick={() => setVisible('enable')}>啟用動態口令認證</Button>
+                    <Button onClick={() => setVisible('enable')}>Enable Two-Step</Button>
                 )}
             </div>
         </div>
     );
 };
-

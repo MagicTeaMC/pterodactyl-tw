@@ -1,19 +1,19 @@
-import { useEffect, useState } from 'react';
-
-import compressFiles from '@/api/server/files/compressFiles';
-import deleteFiles from '@/api/server/files/deleteFiles';
-import { Button } from '@/components/elements/button';
-import { Dialog } from '@/components/elements/dialog';
-import Portal from '@/components/elements/Portal';
+import React, { useEffect, useState } from 'react';
+import tw from 'twin.macro';
+import { Button } from '@/components/elements/button/index';
+import Fade from '@/components/elements/Fade';
 import SpinnerOverlay from '@/components/elements/SpinnerOverlay';
-import RenameFileModal from '@/components/server/files/RenameFileModal';
 import useFileManagerSwr from '@/plugins/useFileManagerSwr';
 import useFlash from '@/plugins/useFlash';
+import compressFiles from '@/api/server/files/compressFiles';
 import { ServerContext } from '@/state/server';
-import FadeTransition from '@/components/elements/transitions/FadeTransition';
+import deleteFiles from '@/api/server/files/deleteFiles';
+import RenameFileModal from '@/components/server/files/RenameFileModal';
+import Portal from '@/components/elements/Portal';
+import { Dialog } from '@/components/elements/dialog';
 
 const MassActionsBar = () => {
-    const uuid = ServerContext.useStoreState(state => state.server.data!.uuid);
+    const uuid = ServerContext.useStoreState((state) => state.server.data!.uuid);
 
     const { mutate } = useFileManagerSwr();
     const { clearFlashes, clearAndAddHttpError } = useFlash();
@@ -21,10 +21,10 @@ const MassActionsBar = () => {
     const [loadingMessage, setLoadingMessage] = useState('');
     const [showConfirm, setShowConfirm] = useState(false);
     const [showMove, setShowMove] = useState(false);
-    const directory = ServerContext.useStoreState(state => state.files.directory);
+    const directory = ServerContext.useStoreState((state) => state.files.directory);
 
-    const selectedFiles = ServerContext.useStoreState(state => state.files.selectedFiles);
-    const setSelectedFiles = ServerContext.useStoreActions(actions => actions.files.setSelectedFiles);
+    const selectedFiles = ServerContext.useStoreState((state) => state.files.selectedFiles);
+    const setSelectedFiles = ServerContext.useStoreActions((actions) => actions.files.setSelectedFiles);
 
     useEffect(() => {
         if (!loading) setLoadingMessage('');
@@ -33,12 +33,12 @@ const MassActionsBar = () => {
     const onClickCompress = () => {
         setLoading(true);
         clearFlashes('files');
-        setLoadingMessage('正在壓縮文件...');
+        setLoadingMessage('Archiving files...');
 
         compressFiles(uuid, directory, selectedFiles)
             .then(() => mutate())
             .then(() => setSelectedFiles([]))
-            .catch(error => clearAndAddHttpError({ key: 'files', error }))
+            .catch((error) => clearAndAddHttpError({ key: 'files', error }))
             .then(() => setLoading(false));
     };
 
@@ -46,15 +46,15 @@ const MassActionsBar = () => {
         setLoading(true);
         setShowConfirm(false);
         clearFlashes('files');
-        setLoadingMessage('正在刪除文件...');
+        setLoadingMessage('Deleting files...');
 
         deleteFiles(uuid, directory, selectedFiles)
-            .then(async () => {
-                await mutate(files => files!.filter(f => selectedFiles.indexOf(f.name) < 0), false);
+            .then(() => {
+                mutate((files) => files.filter((f) => selectedFiles.indexOf(f.name) < 0), false);
                 setSelectedFiles([]);
             })
-            .catch(async error => {
-                await mutate();
+            .catch((error) => {
+                mutate();
                 clearAndAddHttpError({ key: 'files', error });
             })
             .then(() => setLoading(false));
@@ -62,26 +62,26 @@ const MassActionsBar = () => {
 
     return (
         <>
-            <div className="pointer-events-none fixed bottom-0 z-20 left-0 right-0 flex justify-center">
+            <div css={tw`pointer-events-none fixed bottom-0 z-20 left-0 right-0 flex justify-center`}>
                 <SpinnerOverlay visible={loading} size={'large'} fixed>
                     {loadingMessage}
                 </SpinnerOverlay>
                 <Dialog.Confirm
-                    title={'確定要刪除這些文件?'}
+                    title={'Delete Files'}
                     open={showConfirm}
-                    confirm={'刪除'}
+                    confirm={'Delete'}
                     onClose={() => setShowConfirm(false)}
                     onConfirmed={onClickConfirmDeletion}
                 >
-                    <p className="mb-2">
-                        你確定要刪除以下&nbsp;
-                        <span className="font-semibold text-gray-50">{selectedFiles.length} 個文件/目目錄</span>吗?
-                        這是不可逆轉的操作
+                    <p className={'mb-2'}>
+                        Are you sure you want to delete&nbsp;
+                        <span className={'font-semibold text-gray-50'}>{selectedFiles.length} files</span>? This is a
+                        permanent action and the files cannot be recovered.
                     </p>
-                    {selectedFiles.slice(0, 15).map(file => (
+                    {selectedFiles.slice(0, 15).map((file) => (
                         <li key={file}>{file}</li>
                     ))}
-                    {selectedFiles.length > 15 && <li>和另外 {selectedFiles.length - 15} 个</li>}
+                    {selectedFiles.length > 15 && <li>and {selectedFiles.length - 15} others</li>}
                 </Dialog.Confirm>
                 {showMove && (
                     <RenameFileModal
@@ -93,16 +93,16 @@ const MassActionsBar = () => {
                     />
                 )}
                 <Portal>
-                    <div className="fixed bottom-0 mb-6 flex justify-center w-full z-50">
-                        <FadeTransition duration="duration-75" show={selectedFiles.length > 0} appear unmount>
-                            <div className="flex items-center space-x-4 pointer-events-auto rounded p-4 bg-black/50">
-                                <Button onClick={() => setShowMove(true)}>移動</Button>
-                                <Button onClick={onClickCompress}>壓縮</Button>
+                    <div className={'fixed bottom-0 mb-6 flex justify-center w-full z-50'}>
+                        <Fade timeout={75} in={selectedFiles.length > 0} unmountOnExit>
+                            <div css={tw`flex items-center space-x-4 pointer-events-auto rounded p-4 bg-black/50`}>
+                                <Button onClick={() => setShowMove(true)}>Move</Button>
+                                <Button onClick={onClickCompress}>Archive</Button>
                                 <Button.Danger variant={Button.Variants.Secondary} onClick={() => setShowConfirm(true)}>
-                                    刪除
+                                    Delete
                                 </Button.Danger>
                             </div>
-                        </FadeTransition>
+                        </Fade>
                     </div>
                 </Portal>
             </div>

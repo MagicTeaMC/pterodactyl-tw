@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Schedule } from '@/api/server/schedules/getServerSchedules';
 import TaskDetailsModal from '@/components/server/schedules/TaskDetailsModal';
 import { Button } from '@/components/elements/button/index';
@@ -14,7 +14,7 @@ export default ({ schedule }: Props) => {
         <>
             <TaskDetailsModal schedule={schedule} visible={visible} onModalDismissed={() => setVisible(false)} />
             <Button onClick={() => setVisible(true)} className={'flex-1'}>
-                新任務
+                New Task
             </Button>
         </>
     );

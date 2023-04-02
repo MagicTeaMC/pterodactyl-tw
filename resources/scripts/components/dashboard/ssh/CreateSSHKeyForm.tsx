@@ -1,3 +1,4 @@
+import React from 'react';
 import { Field, Form, Formik, FormikHelpers } from 'formik';
 import { object, string } from 'yup';
 import FormikFieldWrapper from '@/components/elements/FormikFieldWrapper';
@@ -5,7 +6,7 @@ import SpinnerOverlay from '@/components/elements/SpinnerOverlay';
 import tw from 'twin.macro';
 import Button from '@/components/elements/Button';
 import Input, { Textarea } from '@/components/elements/Input';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { useFlashKey } from '@/plugins/useFlash';
 import { createSSHKey, useSSHKeys } from '@/api/account/ssh-keys';
 
@@ -26,11 +27,11 @@ export default () => {
         clearAndAddHttpError();
 
         createSSHKey(values.name, values.publicKey)
-            .then(key => {
+            .then((key) => {
                 resetForm();
-                mutate(data => (data || []).concat(key));
+                mutate((data) => (data || []).concat(key));
             })
-            .catch(error => clearAndAddHttpError(error))
+            .catch((error) => clearAndAddHttpError(error))
             .then(() => setSubmitting(false));
     };
 
@@ -47,14 +48,18 @@ export default () => {
                 {({ isSubmitting }) => (
                     <Form>
                         <SpinnerOverlay visible={isSubmitting} />
-                        <FormikFieldWrapper label={'SSH 金鑰名'} name={'name'} css={tw`mb-6`}>
+                        <FormikFieldWrapper label={'SSH Key Name'} name={'name'} css={tw`mb-6`}>
                             <Field name={'name'} as={Input} />
                         </FormikFieldWrapper>
-                        <FormikFieldWrapper label={'公開金鑰'} name={'publicKey'} description={'輸入你的公開金鑰.'}>
+                        <FormikFieldWrapper
+                            label={'Public Key'}
+                            name={'publicKey'}
+                            description={'Enter your public SSH key.'}
+                        >
                             <Field name={'publicKey'} as={CustomTextarea} />
                         </FormikFieldWrapper>
                         <div css={tw`flex justify-end mt-6`}>
-                            <Button>保存</Button>
+                            <Button>Save</Button>
                         </div>
                     </Form>
                 )}
@@ -62,4 +67,3 @@ export default () => {
         </>
     );
 };
-

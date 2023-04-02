@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import ConfirmationModal from '@/components/elements/ConfirmationModal';
 import { ServerContext } from '@/state/server';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,8 +14,8 @@ export default ({ subuser }: { subuser: Subuser }) => {
     const [loading, setLoading] = useState(false);
     const [showConfirmation, setShowConfirmation] = useState(false);
 
-    const uuid = ServerContext.useStoreState(state => state.server.data!.uuid);
-    const removeSubuser = ServerContext.useStoreActions(actions => actions.subusers.removeSubuser);
+    const uuid = ServerContext.useStoreState((state) => state.server.data!.uuid);
+    const removeSubuser = ServerContext.useStoreActions((actions) => actions.subusers.removeSubuser);
     const { addError, clearFlashes } = useStoreActions((actions: Actions<ApplicationStore>) => actions.flashes);
 
     const doDeletion = () => {
@@ -26,7 +26,7 @@ export default ({ subuser }: { subuser: Subuser }) => {
                 setLoading(false);
                 removeSubuser(subuser.uuid);
             })
-            .catch(error => {
+            .catch((error) => {
                 console.error(error);
                 addError({ key: 'users', message: httpErrorToHuman(error) });
                 setShowConfirmation(false);
@@ -36,18 +36,19 @@ export default ({ subuser }: { subuser: Subuser }) => {
     return (
         <>
             <ConfirmationModal
-                title={'刪除此子用戶?'}
-                buttonText={'確定'}
+                title={'Delete this subuser?'}
+                buttonText={'Yes, remove subuser'}
                 visible={showConfirmation}
                 showSpinnerOverlay={loading}
                 onConfirmed={() => doDeletion()}
                 onModalDismissed={() => setShowConfirmation(false)}
             >
-                您確定要刪除此子用戶嗎？ 他們將立即失去對該伺服器的所有存取權限。
+                Are you sure you wish to remove this subuser? They will have all access to this server revoked
+                immediately.
             </ConfirmationModal>
             <button
                 type={'button'}
-                aria-label={'刪除子用戶'}
+                aria-label={'Delete subuser'}
                 css={tw`block text-sm p-2 text-neutral-500 hover:text-red-600 transition-colors duration-150`}
                 onClick={() => setShowConfirmation(true)}
             >
@@ -56,5 +57,3 @@ export default ({ subuser }: { subuser: Subuser }) => {
         </>
     );
 };
-
-

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import rotateDatabasePassword from '@/api/server/databases/rotateDatabasePassword';
 import { Actions, useStoreActions } from 'easy-peasy';
 import { ApplicationStore } from '@/state';
@@ -11,7 +11,7 @@ import tw from 'twin.macro';
 export default ({ databaseId, onUpdate }: { databaseId: string; onUpdate: (database: ServerDatabase) => void }) => {
     const [loading, setLoading] = useState(false);
     const { addFlash, clearFlashes } = useStoreActions((actions: Actions<ApplicationStore>) => actions.flashes);
-    const server = ServerContext.useStoreState(state => state.server.data!);
+    const server = ServerContext.useStoreState((state) => state.server.data!);
 
     if (!databaseId) {
         return null;
@@ -22,12 +22,12 @@ export default ({ databaseId, onUpdate }: { databaseId: string; onUpdate: (datab
         clearFlashes();
 
         rotateDatabasePassword(server.uuid, databaseId)
-            .then(database => onUpdate(database))
-            .catch(error => {
+            .then((database) => onUpdate(database))
+            .catch((error) => {
                 console.error(error);
                 addFlash({
                     type: 'error',
-                    title: '错误',
+                    title: 'Error',
                     message: httpErrorToHuman(error),
                     key: 'database-connection-modal',
                 });
@@ -37,7 +37,7 @@ export default ({ databaseId, onUpdate }: { databaseId: string; onUpdate: (datab
 
     return (
         <Button isSecondary color={'primary'} css={tw`mr-2`} onClick={rotate} isLoading={loading}>
-            重新生成密碼
+            Rotate Password
         </Button>
     );
 };

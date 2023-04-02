@@ -1,15 +1,15 @@
 @extends('layouts.admin')
 
 @section('title')
-    新預設組
+    New Nest
 @endsection
 
 @section('content-header')
-    <h1>新預設組<small>配置一個新的預設部署到所有節點.</small></h1>
+    <h1>New Nest<small>Configure a new nest to deploy to all nodes.</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">管理</a></li>
-        <li><a href="{{ route('admin.nests') }}">預設組</a></li>
-        <li class="active">新建</li>
+        <li><a href="{{ route('admin.index') }}">Admin</a></li>
+        <li><a href="{{ route('admin.nests') }}">Nests</a></li>
+        <li class="active">New</li>
     </ol>
 @endsection
 
@@ -19,18 +19,18 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">新建預設組</h3>
+                    <h3 class="box-title">New Nest</h3>
                 </div>
                 <div class="box-body">
                     <div class="form-group">
-                        <label class="control-label">名稱</label>
+                        <label class="control-label">Name</label>
                         <div>
                             <input type="text" name="name" class="form-control" value="{{ old('name') }}" />
-                            <p class="text-muted"><small>預設組的名稱.</small></p>
+                            <p class="text-muted"><small>This should be a descriptive category name that encompasses all of the eggs within the nest.</small></p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">描述</label>
+                        <label class="control-label">Description</label>
                         <div>
                             <textarea name="description" class="form-control" rows="6">{{ old('description') }}</textarea>
                         </div>
@@ -38,11 +38,10 @@
                 </div>
                 <div class="box-footer">
                     {!! csrf_field() !!}
-                    <button type="submit" class="btn btn-primary pull-right">保存</button>
+                    <button type="submit" class="btn btn-primary pull-right">Save</button>
                 </div>
             </div>
         </div>
     </div>
 </form>
 @endsection
-

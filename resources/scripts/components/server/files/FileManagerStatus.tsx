@@ -1,13 +1,12 @@
+import React, { useContext, useEffect } from 'react';
+import { ServerContext } from '@/state/server';
 import { CloudUploadIcon, XIcon } from '@heroicons/react/solid';
-import { useSignal } from '@preact/signals-react';
-import { useContext, useEffect } from 'react';
-
-import { Button } from '@/components/elements/button/index';
+import asDialog from '@/hoc/asDialog';
 import { Dialog, DialogWrapperContext } from '@/components/elements/dialog';
+import { Button } from '@/components/elements/button/index';
 import Tooltip from '@/components/elements/tooltip/Tooltip';
 import Code from '@/components/elements/Code';
-import asDialog from '@/hoc/asDialog';
-import { ServerContext } from '@/state/server';
+import { useSignal } from '@preact/signals-react';
 
 const svgProps = {
     cx: 16,
@@ -33,10 +32,10 @@ const Spinner = ({ progress, className }: { progress: number; className?: string
 
 const FileUploadList = () => {
     const { close } = useContext(DialogWrapperContext);
-    const cancelFileUpload = ServerContext.useStoreActions(actions => actions.files.cancelFileUpload);
-    const clearFileUploads = ServerContext.useStoreActions(actions => actions.files.clearFileUploads);
-    const uploads = ServerContext.useStoreState(state =>
-        Object.entries(state.files.uploads).sort(([a], [b]) => a.localeCompare(b)),
+    const cancelFileUpload = ServerContext.useStoreActions((actions) => actions.files.cancelFileUpload);
+    const clearFileUploads = ServerContext.useStoreActions((actions) => actions.files.clearFileUploads);
+    const uploads = ServerContext.useStoreState((state) =>
+        Object.entries(state.files.uploads).sort(([a], [b]) => a.localeCompare(b))
     );
 
     return (
@@ -59,24 +58,24 @@ const FileUploadList = () => {
             ))}
             <Dialog.Footer>
                 <Button.Danger variant={Button.Variants.Secondary} onClick={() => clearFileUploads()}>
-                    取消上傳
+                    Cancel Uploads
                 </Button.Danger>
-                <Button.Text onClick={close}>關閉</Button.Text>
+                <Button.Text onClick={close}>Close</Button.Text>
             </Dialog.Footer>
         </div>
     );
 };
 
 const FileUploadListDialog = asDialog({
-    title: '文件上傳',
-    description: '正在將以下文件上傳到您的伺服器。',
+    title: 'File Uploads',
+    description: 'The following files are being uploaded to your server.',
 })(FileUploadList);
 
 export default () => {
     const open = useSignal(false);
 
-    const count = ServerContext.useStoreState(state => Object.keys(state.files.uploads).length);
-    const progress = ServerContext.useStoreState(state => ({
+    const count = ServerContext.useStoreState((state) => Object.keys(state.files.uploads).length);
+    const progress = ServerContext.useStoreState((state) => ({
         uploaded: Object.values(state.files.uploads).reduce((count, file) => count + file.loaded, 0),
         total: Object.values(state.files.uploads).reduce((count, file) => count + file.total, 0),
     }));
@@ -90,7 +89,7 @@ export default () => {
     return (
         <>
             {count > 0 && (
-                <Tooltip content={`${count} 個文件正在上傳，點擊查看`}>
+                <Tooltip content={`${count} files are uploading, click to view`}>
                     <button
                         className={'flex items-center justify-center w-10 h-10'}
                         onClick={() => (open.value = true)}

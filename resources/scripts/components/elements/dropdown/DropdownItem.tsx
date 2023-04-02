@@ -1,5 +1,4 @@
-import { forwardRef } from 'react';
-import * as React from 'react';
+import React, { forwardRef } from 'react';
 import { Menu } from '@headlessui/react';
 import styles from './style.module.css';
 import classNames from 'classnames';
@@ -27,7 +26,7 @@ const DropdownItem = forwardRef<HTMLAnchorElement, Props>(
                                 [styles.danger]: danger,
                                 [styles.disabled]: disabled,
                             },
-                            className,
+                            className
                         )}
                         onClick={onClick}
                     >
@@ -37,7 +36,7 @@ const DropdownItem = forwardRef<HTMLAnchorElement, Props>(
                 )}
             </Menu.Item>
         );
-    },
+    }
 );
 
 export default DropdownItem;

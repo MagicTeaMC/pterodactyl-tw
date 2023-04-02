@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
     faBoxOpen,
     faCloudDownloadAlt,
@@ -28,8 +28,8 @@ interface Props {
 }
 
 export default ({ backup }: Props) => {
-    const uuid = ServerContext.useStoreState(state => state.server.data!.uuid);
-    const setServerFromState = ServerContext.useStoreActions(actions => actions.server.setServerFromState);
+    const uuid = ServerContext.useStoreState((state) => state.server.data!.uuid);
+    const setServerFromState = ServerContext.useStoreActions((actions) => actions.server.setServerFromState);
     const [modal, setModal] = useState('');
     const [loading, setLoading] = useState(false);
     const [truncate, setTruncate] = useState(false);
@@ -40,11 +40,11 @@ export default ({ backup }: Props) => {
         setLoading(true);
         clearFlashes('backups');
         getBackupDownloadUrl(uuid, backup.uuid)
-            .then(url => {
+            .then((url) => {
                 // @ts-expect-error this is valid
                 window.location = url;
             })
-            .catch(error => {
+            .catch((error) => {
                 console.error(error);
                 clearAndAddHttpError({ key: 'backups', error });
             })
@@ -55,18 +55,17 @@ export default ({ backup }: Props) => {
         setLoading(true);
         clearFlashes('backups');
         deleteBackup(uuid, backup.uuid)
-            .then(
-                async () =>
-                    await mutate(
-                        data => ({
-                            ...data!,
-                            items: data!.items.filter(b => b.uuid !== backup.uuid),
-                            backupCount: data!.backupCount - 1,
-                        }),
-                        false,
-                    ),
+            .then(() =>
+                mutate(
+                    (data) => ({
+                        ...data,
+                        items: data.items.filter((b) => b.uuid !== backup.uuid),
+                        backupCount: data.backupCount - 1,
+                    }),
+                    false
+                )
             )
-            .catch(error => {
+            .catch((error) => {
                 console.error(error);
                 clearAndAddHttpError({ key: 'backups', error });
                 setLoading(false);
@@ -79,12 +78,12 @@ export default ({ backup }: Props) => {
         clearFlashes('backups');
         restoreServerBackup(uuid, backup.uuid, truncate)
             .then(() =>
-                setServerFromState(s => ({
+                setServerFromState((s) => ({
                     ...s,
                     status: 'restoring_backup',
-                })),
+                }))
             )
-            .catch(error => {
+            .catch((error) => {
                 console.error(error);
                 clearAndAddHttpError({ key: 'backups', error });
             })
@@ -98,24 +97,23 @@ export default ({ backup }: Props) => {
         }
 
         http.post(`/api/client/servers/${uuid}/backups/${backup.uuid}/lock`)
-            .then(
-                async () =>
-                    await mutate(
-                        data => ({
-                            ...data!,
-                            items: data!.items.map(b =>
-                                b.uuid !== backup.uuid
-                                    ? b
-                                    : {
-                                          ...b,
-                                          isLocked: !b.isLocked,
-                                      },
-                            ),
-                        }),
-                        false,
-                    ),
+            .then(() =>
+                mutate(
+                    (data) => ({
+                        ...data,
+                        items: data.items.map((b) =>
+                            b.uuid !== backup.uuid
+                                ? b
+                                : {
+                                      ...b,
+                                      isLocked: !b.isLocked,
+                                  }
+                        ),
+                    }),
+                    false
+                )
             )
-            .catch(error => alert(httpErrorToHuman(error)))
+            .catch((error) => alert(httpErrorToHuman(error)))
             .then(() => setModal(''));
     };
 
@@ -124,20 +122,21 @@ export default ({ backup }: Props) => {
             <Dialog.Confirm
                 open={modal === 'unlock'}
                 onClose={() => setModal('')}
-                title={`解鎖 "${backup.name}"`}
+                title={`Unlock "${backup.name}"`}
                 onConfirmed={onLockToggle}
             >
-                您確定要解鎖此備份嗎？ 它將不再受到意外刪除保護。
+                This backup will no longer be protected from automated or accidental deletions.
             </Dialog.Confirm>
             <Dialog.Confirm
                 open={modal === 'restore'}
                 onClose={() => setModal('')}
-                confirm={'回檔'}
-                title={`恢復 "${backup.name}"`}
+                confirm={'Restore'}
+                title={`Restore "${backup.name}"`}
                 onConfirmed={() => doRestorationAction()}
             >
                 <p>
-                    該伺服器將停止以恢復備份。備份開始後，您將無法控制伺服器電源狀態、訪問檔案管理員或創建其他備份直到它完成。
+                    Your server will be stopped. You will not be able to control the power state, access the file
+                    manager, or create additional backups until completed.
                 </p>
                 <p css={tw`mt-4 -mb-2 bg-gray-700 p-3 rounded`}>
                     <label htmlFor={'restore_truncate'} css={tw`text-base flex items-center cursor-pointer`}>
@@ -147,25 +146,25 @@ export default ({ backup }: Props) => {
                             id={'restore_truncate'}
                             value={'true'}
                             checked={truncate}
-                            onChange={() => setTruncate(s => !s)}
+                            onChange={() => setTruncate((s) => !s)}
                         />
-                        在恢復此備份之前刪除所有檔和資料夾。
+                        Delete all files before restoring backup.
                     </label>
                 </p>
             </Dialog.Confirm>
             <Dialog.Confirm
-                title={`刪除 "${backup.name}"`}
-                confirm={'繼續'}
+                title={`Delete "${backup.name}"`}
+                confirm={'Continue'}
                 open={modal === 'delete'}
                 onClose={() => setModal('')}
                 onConfirmed={doDeletion}
             >
-                您確定要刪除此備份嗎？ 這是一個永久性操作。
+                This is a permanent operation. The backup cannot be recovered once deleted.
             </Dialog.Confirm>
             <SpinnerOverlay visible={loading} fixed />
             {backup.isSuccessful ? (
                 <DropdownMenu
-                    renderToggle={onClick => (
+                    renderToggle={(onClick) => (
                         <button
                             onClick={onClick}
                             css={tw`text-gray-200 transition-colors duration-150 hover:text-gray-100 p-2`}
@@ -178,13 +177,13 @@ export default ({ backup }: Props) => {
                         <Can action={'backup.download'}>
                             <DropdownButtonRow onClick={doDownload}>
                                 <FontAwesomeIcon fixedWidth icon={faCloudDownloadAlt} css={tw`text-xs`} />
-                                <span css={tw`ml-2`}>下載</span>
+                                <span css={tw`ml-2`}>Download</span>
                             </DropdownButtonRow>
                         </Can>
                         <Can action={'backup.restore'}>
                             <DropdownButtonRow onClick={() => setModal('restore')}>
                                 <FontAwesomeIcon fixedWidth icon={faBoxOpen} css={tw`text-xs`} />
-                                <span css={tw`ml-2`}>恢復</span>
+                                <span css={tw`ml-2`}>Restore</span>
                             </DropdownButtonRow>
                         </Can>
                         <Can action={'backup.delete'}>
@@ -195,12 +194,12 @@ export default ({ backup }: Props) => {
                                         icon={backup.isLocked ? faUnlock : faLock}
                                         css={tw`text-xs mr-2`}
                                     />
-                                    {backup.isLocked ? '解鎖' : '鎖定'}
+                                    {backup.isLocked ? 'Unlock' : 'Lock'}
                                 </DropdownButtonRow>
                                 {!backup.isLocked && (
                                     <DropdownButtonRow danger onClick={() => setModal('delete')}>
                                         <FontAwesomeIcon fixedWidth icon={faTrashAlt} css={tw`text-xs`} />
-                                        <span css={tw`ml-2`}>刪除</span>
+                                        <span css={tw`ml-2`}>Delete</span>
                                     </DropdownButtonRow>
                                 )}
                             </>
@@ -218,4 +217,3 @@ export default ({ backup }: Props) => {
         </>
     );
 };
-

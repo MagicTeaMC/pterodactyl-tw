@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ServerContext } from '@/state/server';
 import Modal from '@/components/elements/Modal';
 import tw from 'twin.macro';
@@ -18,10 +18,10 @@ const GSLTokenModalFeature = () => {
     const [visible, setVisible] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    const uuid = ServerContext.useStoreState(state => state.server.data!.uuid);
-    const status = ServerContext.useStoreState(state => state.status.value);
+    const uuid = ServerContext.useStoreState((state) => state.server.data!.uuid);
+    const status = ServerContext.useStoreState((state) => state.status.value);
     const { clearFlashes, clearAndAddHttpError } = useFlash();
-    const { connected, instance } = ServerContext.useStoreState(state => state.socket);
+    const { connected, instance } = ServerContext.useStoreState((state) => state.socket);
 
     useEffect(() => {
         if (!connected || !instance || status === 'running') return;
@@ -29,7 +29,7 @@ const GSLTokenModalFeature = () => {
         const errors = ['(gsl token expired)', '(account not found)'];
 
         const listener = (line: string) => {
-            if (errors.some(p => line.toLowerCase().includes(p))) {
+            if (errors.some((p) => line.toLowerCase().includes(p))) {
                 setVisible(true);
             }
         };
@@ -54,7 +54,7 @@ const GSLTokenModalFeature = () => {
                 setLoading(false);
                 setVisible(false);
             })
-            .catch(error => {
+            .catch((error) => {
                 console.error(error);
                 clearAndAddHttpError({ key: 'feature:gslToken', error });
             })
@@ -75,20 +75,25 @@ const GSLTokenModalFeature = () => {
             >
                 <FlashMessageRender key={'feature:gslToken'} css={tw`mb-4`} />
                 <Form>
-                    <h2 css={tw`text-2xl mb-4 text-neutral-100`}>無效的 GSL 權杖！</h2>
-                    <p css={tw`mt-4`}>您的 Gameserver 登錄權杖（GSL 權杖）似乎無效或已過期。</p>
-                    <p css={tw`mt-4`}>您可以生成一個新的並在下面輸入，也可以將該欄位留空以完全刪除它。</p>
+                    <h2 css={tw`text-2xl mb-4 text-neutral-100`}>Invalid GSL token!</h2>
+                    <p css={tw`mt-4`}>
+                        It seems like your Gameserver Login Token (GSL token) is invalid or has expired.
+                    </p>
+                    <p css={tw`mt-4`}>
+                        You can either generate a new one and enter it below or leave the field blank to remove it
+                        completely.
+                    </p>
                     <div css={tw`sm:flex items-center mt-4`}>
                         <Field
                             name={'gslToken'}
                             label={'GSL Token'}
-                            description={'訪問 https://steamcommunity.com/dev/managegameservers 以生成權杖。'}
+                            description={'Visit https://steamcommunity.com/dev/managegameservers to generate a token.'}
                             autoFocus
                         />
                     </div>
                     <div css={tw`mt-8 sm:flex items-center justify-end`}>
                         <Button type={'submit'} css={tw`mt-4 sm:mt-0 sm:ml-4 w-full sm:w-auto`}>
-                            更新 GSL 權杖
+                            Update GSL Token
                         </Button>
                     </div>
                 </Form>
@@ -98,4 +103,3 @@ const GSLTokenModalFeature = () => {
 };
 
 export default GSLTokenModalFeature;
-

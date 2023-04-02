@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import deleteSchedule from '@/api/server/schedules/deleteSchedule';
 import { ServerContext } from '@/state/server';
 import { Actions, useStoreActions } from 'easy-peasy';
@@ -16,7 +16,7 @@ interface Props {
 export default ({ scheduleId, onDeleted }: Props) => {
     const [visible, setVisible] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const uuid = ServerContext.useStoreState(state => state.server.data!.uuid);
+    const uuid = ServerContext.useStoreState((state) => state.server.data!.uuid);
     const { addError, clearFlashes } = useStoreActions((actions: Actions<ApplicationStore>) => actions.flashes);
 
     const onDelete = () => {
@@ -27,7 +27,7 @@ export default ({ scheduleId, onDeleted }: Props) => {
                 setIsLoading(false);
                 onDeleted();
             })
-            .catch(error => {
+            .catch((error) => {
                 console.error(error);
 
                 addError({ key: 'schedules', message: httpErrorToHuman(error) });
@@ -41,21 +41,20 @@ export default ({ scheduleId, onDeleted }: Props) => {
             <Dialog.Confirm
                 open={visible}
                 onClose={() => setVisible(false)}
-                title={'刪除計畫?'}
-                confirm={'是'}
+                title={'Delete Schedule'}
+                confirm={'Delete'}
                 onConfirmed={onDelete}
             >
                 <SpinnerOverlay visible={isLoading} />
-                確定要刪除此計畫嗎？ 將刪除所有計劃下的任務和任何正在運行的進程將被終止。
+                All tasks will be removed and any running processes will be terminated.
             </Dialog.Confirm>
             <Button.Danger
                 variant={Button.Variants.Secondary}
                 className={'flex-1 sm:flex-none mr-4 border-transparent'}
                 onClick={() => setVisible(true)}
             >
-                刪除
+                Delete
             </Button.Danger>
         </>
     );
 };
-

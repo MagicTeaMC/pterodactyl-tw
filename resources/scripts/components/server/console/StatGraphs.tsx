@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ServerContext } from '@/state/server';
 import { SocketEvent } from '@/components/server/events';
 import useWebsocketEvent from '@/plugins/useWebsocketEvent';
@@ -12,8 +12,8 @@ import ChartBlock from '@/components/server/console/ChartBlock';
 import Tooltip from '@/components/elements/tooltip/Tooltip';
 
 export default () => {
-    const status = ServerContext.useStoreState(state => state.status.value);
-    const limits = ServerContext.useStoreState(state => state.server.data!.limits);
+    const status = ServerContext.useStoreState((state) => state.status.value);
+    const limits = ServerContext.useStoreState((state) => state.server.data!.limits);
     const previous = useRef<Record<'tx' | 'rx', number>>({ tx: -1, rx: -1 });
 
     const cpu = useChartTickLabel('CPU', limits.cpu, '%', 2);
@@ -68,20 +68,20 @@ export default () => {
 
     return (
         <>
-            <ChartBlock title={'CPU 使用率'}>
+            <ChartBlock title={'CPU Load'}>
                 <Line {...cpu.props} />
             </ChartBlock>
-            <ChartBlock title={'記憶體使用率'}>
+            <ChartBlock title={'Memory'}>
                 <Line {...memory.props} />
             </ChartBlock>
             <ChartBlock
-                title={'網路'}
+                title={'Network'}
                 legend={
                     <>
-                        <Tooltip arrow content={'入站'}>
+                        <Tooltip arrow content={'Inbound'}>
                             <CloudDownloadIcon className={'mr-2 w-4 h-4 text-yellow-400'} />
                         </Tooltip>
-                        <Tooltip arrow content={'出站'}>
+                        <Tooltip arrow content={'Outbound'}>
                             <CloudUploadIcon className={'w-4 h-4 text-cyan-400'} />
                         </Tooltip>
                     </>

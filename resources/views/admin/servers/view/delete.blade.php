@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 
 @section('title')
-    伺服器 — {{ $server->name }}: 刪除
+    Server — {{ $server->name }}: Delete
 @endsection
 
 @section('content-header')
-    <h1>{{ $server->name }}<small>將此伺服器從面板上刪除.</small></h1>
+    <h1>{{ $server->name }}<small>Delete this server from the panel.</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">管理</a></li>
-        <li><a href="{{ route('admin.servers') }}">伺服器</a></li>
+        <li><a href="{{ route('admin.index') }}">Admin</a></li>
+        <li><a href="{{ route('admin.servers') }}">Servers</a></li>
         <li><a href="{{ route('admin.servers.view', $server->id) }}">{{ $server->name }}</a></li>
-        <li class="active">刪除</li>
+        <li class="active">Delete</li>
     </ol>
 @endsection
 
@@ -20,16 +20,16 @@
     <div class="col-md-6">
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title">安全刪除伺服器</h3>
+                <h3 class="box-title">Safely Delete Server</h3>
             </div>
             <div class="box-body">
-                <p>此操作將嘗試從面板和守護程式中刪除伺服器。如果其中任何流程一個報告錯誤，則該操作將被取消.</p>
-                <p class="text-danger small">刪除伺服器是不可逆的操作. <strong>所有伺服器資料</strong> (包括檔和使用者) 都會被刪除.</p>
+                <p>This action will attempt to delete the server from both the panel and daemon. If either one reports an error the action will be cancelled.</p>
+                <p class="text-danger small">Deleting a server is an irreversible action. <strong>All server data</strong> (including files and users) will be removed from the system.</p>
             </div>
             <div class="box-footer">
                 <form id="deleteform" action="{{ route('admin.servers.view.delete', $server->id) }}" method="POST">
                     {!! csrf_field() !!}
-                    <button id="deletebtn" class="btn btn-danger">安全刪除此伺服器</button>
+                    <button id="deletebtn" class="btn btn-danger">Safely Delete This Server</button>
                 </form>
             </div>
         </div>
@@ -37,17 +37,17 @@
     <div class="col-md-6">
         <div class="box box-danger">
             <div class="box-header with-border">
-                <h3 class="box-title">強制刪除伺服器</h3>
+                <h3 class="box-title">Force Delete Server</h3>
             </div>
             <div class="box-body">
-                <p>此操作將嘗試從面板和守護程式中刪除伺服器。如果守護進程沒有回應，或報告錯誤，刪除操作將繼續.</p>
-                <p class="text-danger small">刪除伺服器是不可逆的操作. <strong>所有伺服器資料</strong> (包括檔和使用者) 都會被刪除. 如果出現錯誤報告，此方法可能會在您的守護程式伺服器上留下垃圾檔.</p>
+                <p>This action will attempt to delete the server from both the panel and daemon. If the daemon does not respond, or reports an error the deletion will continue.</p>
+                <p class="text-danger small">Deleting a server is an irreversible action. <strong>All server data</strong> (including files and users) will be removed from the system. This method may leave dangling files on your daemon if it reports an error.</p>
             </div>
             <div class="box-footer">
                 <form id="forcedeleteform" action="{{ route('admin.servers.view.delete', $server->id) }}" method="POST">
                     {!! csrf_field() !!}
                     <input type="hidden" name="force_delete" value="1" />
-                    <button id="forcedeletebtn"" class="btn btn-danger">強制刪除此伺服器</button>
+                    <button id="forcedeletebtn"" class="btn btn-danger">Forcibly Delete This Server</button>
                 </form>
             </div>
         </div>
@@ -63,9 +63,9 @@
         swal({
             title: '',
             type: 'warning',
-            text: '您確定要刪除此伺服器嗎？ 沒有回頭路，所有資料將立即被刪除。',
+            text: 'Are you sure that you want to delete this server? There is no going back, all data will immediately be removed.',
             showCancelButton: true,
-            confirmButtonText: '刪除',
+            confirmButtonText: 'Delete',
             confirmButtonColor: '#d9534f',
             closeOnConfirm: false
         }, function () {
@@ -78,9 +78,9 @@
         swal({
             title: '',
             type: 'warning',
-            text: '您確定要刪除此伺服器嗎？ 沒有回頭路，所有資料將立即被刪除。',
+            text: 'Are you sure that you want to delete this server? There is no going back, all data will immediately be removed.',
             showCancelButton: true,
-            confirmButtonText: '刪除',
+            confirmButtonText: 'Delete',
             confirmButtonColor: '#d9534f',
             closeOnConfirm: false
         }, function () {
@@ -89,4 +89,3 @@
     });
     </script>
 @endsection
-

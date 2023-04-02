@@ -1,13 +1,5 @@
 <?php
 
-/**
- * Pterodactyl CHINA - Panel
- * Copyright (c) 2018 - 2022 ValiantShishu <vlssu@vlssu.com>.
- *
- * This software is licensed under the terms of the MIT license.
- * https://opensource.org/licenses/MIT
- */
-
 return [
     /*
     |--------------------------------------------------------------------------
@@ -20,6 +12,6 @@ return [
     |
     */
 
-    'previous' => '&laquo; 上一頁',
-    'next' => '下一頁 &raquo;',
+    'previous' => '&laquo; Previous',
+    'next' => 'Next &raquo;',
 ];

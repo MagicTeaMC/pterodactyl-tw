@@ -1,20 +1,22 @@
-import type { ReactNode } from 'react';
-
+import React from 'react';
 import Can from '@/components/elements/Can';
 import { ServerError } from '@/components/elements/ScreenBlock';
 
 export interface RequireServerPermissionProps {
-    children?: ReactNode;
-
     permissions: string | string[];
 }
 
-function RequireServerPermission({ children, permissions }: RequireServerPermissionProps) {
+const RequireServerPermission: React.FC<RequireServerPermissionProps> = ({ children, permissions }) => {
     return (
-        <Can action={permissions} renderOnError={<ServerError title={'拒绝访问'} message={'您没有权限访问此页面。'} />}>
+        <Can
+            action={permissions}
+            renderOnError={
+                <ServerError title={'Access Denied'} message={'You do not have permission to access this page.'} />
+            }
+        >
             {children}
         </Can>
     );
-}
+};
 
 export default RequireServerPermission;

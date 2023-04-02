@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Field, Form, Formik, FormikHelpers } from 'formik';
 import { object, string } from 'yup';
 import FormikFieldWrapper from '@/components/elements/FormikFieldWrapper';
@@ -11,7 +11,7 @@ import { ApiKey } from '@/api/account/getApiKeys';
 import tw from 'twin.macro';
 import Button from '@/components/elements/Button';
 import Input, { Textarea } from '@/components/elements/Input';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import ApiKeyModal from '@/components/dashboard/ApiKeyModal';
 
 interface Values {
@@ -36,7 +36,7 @@ export default ({ onKeyCreated }: { onKeyCreated: (key: ApiKey) => void }) => {
                 setApiKey(`${key.identifier}${secretToken}`);
                 onKeyCreated(key);
             })
-            .catch(error => {
+            .catch((error) => {
                 console.error(error);
 
                 addError({ key: 'account', message: httpErrorToHuman(error) });
@@ -59,22 +59,24 @@ export default ({ onKeyCreated }: { onKeyCreated: (key: ApiKey) => void }) => {
                     <Form>
                         <SpinnerOverlay visible={isSubmitting} />
                         <FormikFieldWrapper
-                            label={'描述'}
+                            label={'Description'}
                             name={'description'}
-                            description={'此 API 金鑰的描述。'}
+                            description={'A description of this API key.'}
                             css={tw`mb-6`}
                         >
                             <Field name={'description'} as={Input} />
                         </FormikFieldWrapper>
                         <FormikFieldWrapper
-                            label={'IP 白名單'}
+                            label={'Allowed IPs'}
                             name={'allowedIps'}
-                            description={'留空以允許任何 IP 位址使用此 API 金鑰，否則在每一行中提供每個 IP 位址。'}
+                            description={
+                                'Leave blank to allow any IP address to use this API key, otherwise provide each IP address on a new line.'
+                            }
                         >
                             <Field name={'allowedIps'} as={CustomTextarea} />
                         </FormikFieldWrapper>
                         <div css={tw`flex justify-end mt-6`}>
-                            <Button>創建</Button>
+                            <Button>Create</Button>
                         </div>
                     </Form>
                 )}
@@ -82,4 +84,3 @@ export default ({ onKeyCreated }: { onKeyCreated: (key: ApiKey) => void }) => {
         </>
     );
 };
-

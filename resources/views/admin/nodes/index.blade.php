@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    節點列表
+    List Nodes
 @endsection
 
 @section('scripts')
@@ -10,10 +10,10 @@
 @endsection
 
 @section('content-header')
-    <h1>節點<small>連接到面板伺服器的所有節點.</small></h1>
+    <h1>Nodes<small>All nodes available on the system.</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">管理</a></li>
-        <li class="active">節點</li>
+        <li><a href="{{ route('admin.index') }}">Admin</a></li>
+        <li class="active">Nodes</li>
     </ol>
 @endsection
 
@@ -22,14 +22,14 @@
     <div class="col-xs-12">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">節點列表</h3>
+                <h3 class="box-title">Node List</h3>
                 <div class="box-tools search01">
                     <form action="{{ route('admin.nodes') }}" method="GET">
                         <div class="input-group input-group-sm">
-                            <input type="text" name="filter[name]" class="form-control pull-right" value="{{ request()->input('filter.name') }}" placeholder="搜索節點">
+                            <input type="text" name="filter[name]" class="form-control pull-right" value="{{ request()->input('filter.name') }}" placeholder="Search Nodes">
                             <div class="input-group-btn">
                                 <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                                <a href="{{ route('admin.nodes.new') }}"><button type="button" class="btn btn-sm btn-primary" style="border-radius: 0 3px 3px 0;margin-left:-1px;">新建</button></a>
+                                <a href="{{ route('admin.nodes.new') }}"><button type="button" class="btn btn-sm btn-primary" style="border-radius: 0 3px 3px 0;margin-left:-1px;">Create New</button></a>
                             </div>
                         </div>
                     </form>
@@ -40,13 +40,13 @@
                     <tbody>
                         <tr>
                             <th></th>
-                            <th>名稱</th>
-                            <th>地域</th>
-                            <th>記憶體容量</th>
-                            <th>存儲容量</th>
-                            <th class="text-center">伺服器</th>
+                            <th>Name</th>
+                            <th>Location</th>
+                            <th>Memory</th>
+                            <th>Disk</th>
+                            <th class="text-center">Servers</th>
                             <th class="text-center">SSL</th>
-                            <th class="text-center">公開</th>
+                            <th class="text-center">Public</th>
                         </tr>
                         @foreach ($nodes as $node)
                             <tr>
@@ -91,7 +91,7 @@
                 });
                 $(element).removeClass('text-muted').find('i').removeClass().addClass('fa fa-fw fa-heartbeat faa-pulse animated').css('color', '#50af51');
             }).fail(function (error) {
-                var errorText = '無法連接至節點! 查看流覽器開發控制台以瞭解更多.';
+                var errorText = 'Error connecting to node! Check browser console for details.';
                 try {
                     errorText = error.responseJSON.errors[0].detail || errorText;
                 } catch (ex) {}
@@ -105,4 +105,3 @@
     })();
     </script>
 @endsection
-

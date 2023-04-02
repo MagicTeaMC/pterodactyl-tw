@@ -1,3 +1,4 @@
+import React from 'react';
 import { ServerContext } from '@/state/server';
 import TitledGreyBox from '@/components/elements/TitledGreyBox';
 import { Field as FormikField, Form, Formik, FormikHelpers, useFormikContext } from 'formik';
@@ -23,18 +24,18 @@ const RenameServerBox = () => {
     const { isSubmitting } = useFormikContext<Values>();
 
     return (
-        <TitledGreyBox title={'更改伺服器詳細資訊'} css={tw`relative`}>
+        <TitledGreyBox title={'Change Server Details'} css={tw`relative`}>
             <SpinnerOverlay visible={isSubmitting} />
             <Form css={tw`mb-0`}>
-                <Field id={'name'} name={'name'} label={'伺服器名稱'} type={'text'} />
+                <Field id={'name'} name={'name'} label={'Server Name'} type={'text'} />
                 <div css={tw`mt-6`}>
-                    <Label>伺服器描述</Label>
+                    <Label>Server Description</Label>
                     <FormikFieldWrapper name={'description'}>
                         <FormikField as={Textarea} name={'description'} rows={3} />
                     </FormikFieldWrapper>
                 </div>
                 <div css={tw`mt-6 text-right`}>
-                    <Button type={'submit'}>保存</Button>
+                    <Button type={'submit'}>Save</Button>
                 </div>
             </Form>
         </TitledGreyBox>
@@ -42,15 +43,15 @@ const RenameServerBox = () => {
 };
 
 export default () => {
-    const server = ServerContext.useStoreState(state => state.server.data!);
-    const setServer = ServerContext.useStoreActions(actions => actions.server.setServer);
+    const server = ServerContext.useStoreState((state) => state.server.data!);
+    const setServer = ServerContext.useStoreActions((actions) => actions.server.setServer);
     const { addError, clearFlashes } = useStoreActions((actions: Actions<ApplicationStore>) => actions.flashes);
 
     const submit = ({ name, description }: Values, { setSubmitting }: FormikHelpers<Values>) => {
         clearFlashes('settings');
         renameServer(server.uuid, name, description)
             .then(() => setServer({ ...server, name, description }))
-            .catch(error => {
+            .catch((error) => {
                 console.error(error);
                 addError({ key: 'settings', message: httpErrorToHuman(error) });
             })
@@ -62,7 +63,7 @@ export default () => {
             onSubmit={submit}
             initialValues={{
                 name: server.name,
-                description: server.description ?? '',
+                description: server.description,
             }}
             validationSchema={object().shape({
                 name: string().required().min(1),
@@ -73,4 +74,3 @@ export default () => {
         </Formik>
     );
 };
-

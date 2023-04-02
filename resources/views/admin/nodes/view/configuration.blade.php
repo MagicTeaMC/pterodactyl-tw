@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 
 @section('title')
-    {{ $node->name }}: 配置
+    {{ $node->name }}: Configuration
 @endsection
 
 @section('content-header')
-    <h1>{{ $node->name }}<small>守護進程設定檔.</small></h1>
+    <h1>{{ $node->name }}<small>Your daemon configuration file.</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">管理</a></li>
-        <li><a href="{{ route('admin.nodes') }}">節點</a></li>
+        <li><a href="{{ route('admin.index') }}">Admin</a></li>
+        <li><a href="{{ route('admin.nodes') }}">Nodes</a></li>
         <li><a href="{{ route('admin.nodes.view', $node->id) }}">{{ $node->name }}</a></li>
-        <li class="active">配置</li>
+        <li class="active">Configuration</li>
     </ol>
 @endsection
 
@@ -19,11 +19,11 @@
     <div class="col-xs-12">
         <div class="nav-tabs-custom nav-tabs-floating">
             <ul class="nav nav-tabs">
-                <li><a href="{{ route('admin.nodes.view', $node->id) }}">關於</a></li>
-                <li><a href="{{ route('admin.nodes.view.settings', $node->id) }}">設置</a></li>
-                <li class="active"><a href="{{ route('admin.nodes.view.configuration', $node->id) }}">配置</a></li>
-                <li><a href="{{ route('admin.nodes.view.allocation', $node->id) }}">分配</a></li>
-                <li><a href="{{ route('admin.nodes.view.servers', $node->id) }}">伺服器</a></li>
+                <li><a href="{{ route('admin.nodes.view', $node->id) }}">About</a></li>
+                <li><a href="{{ route('admin.nodes.view.settings', $node->id) }}">Settings</a></li>
+                <li class="active"><a href="{{ route('admin.nodes.view.configuration', $node->id) }}">Configuration</a></li>
+                <li><a href="{{ route('admin.nodes.view.allocation', $node->id) }}">Allocation</a></li>
+                <li><a href="{{ route('admin.nodes.view.servers', $node->id) }}">Servers</a></li>
             </ul>
         </div>
     </div>
@@ -32,28 +32,29 @@
     <div class="col-sm-8">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">設定檔</h3>
+                <h3 class="box-title">Configuration File</h3>
             </div>
             <div class="box-body">
                 <pre class="no-margin">{{ $node->getYamlConfiguration() }}</pre>
             </div>
             <div class="box-footer">
-                <p class="no-margin">這個檔應該放在你的守護進程的根目錄中 (一般是 <code>/etc/pterodactyl</code>) 中的 <code>config.yml</code>.</p>
+                <p class="no-margin">This file should be placed in your daemon's root directory (usually <code>/etc/pterodactyl</code>) in a file called <code>config.yml</code>.</p>
             </div>
         </div>
     </div>
     <div class="col-sm-4">
         <div class="box box-success">
             <div class="box-header with-border">
-                <h3 class="box-title">自動部署</h3>
+                <h3 class="box-title">Auto-Deploy</h3>
             </div>
             <div class="box-body">
                 <p class="text-muted small">
-                    使用下方按鈕生成自訂部署命令，可用於自動配置 Wings 守護進程。
+                    Use the button below to generate a custom deployment command that can be used to configure
+                    wings on the target server with a single command.
                 </p>
             </div>
             <div class="box-footer">
-                <button type="button" id="configTokenBtn" class="btn btn-sm btn-default" style="width:100%;">生成自動部署指令</button>
+                <button type="button" id="configTokenBtn" class="btn btn-sm btn-default" style="width:100%;">Generate Token</button>
             </div>
         </div>
     </div>
@@ -71,18 +72,17 @@
         }).done(function (data) {
             swal({
                 type: 'success',
-                title: '指令已生成.',
-                text: '<p>要自動配置節點，請運行以下命令:<br /><small><pre>cd /etc/pterodactyl && sudo wings configure --panel-url {{ config('app.url') }} --token ' + data.token + ' --node ' + data.node + '{{ config('app.debug') ? ' --allow-insecure' : '' }}</pre></small></p>',
+                title: 'Token created.',
+                text: '<p>To auto-configure your node run the following command:<br /><small><pre>cd /etc/pterodactyl && sudo wings configure --panel-url {{ config('app.url') }} --token ' + data.token + ' --node ' + data.node + '{{ config('app.debug') ? ' --allow-insecure' : '' }}</pre></small></p>',
                 html: true
             })
         }).fail(function () {
             swal({
-                title: '錯誤',
-                text: '生成自動部署指令時發生錯誤，無法繼續此操作.',
+                title: 'Error',
+                text: 'Something went wrong creating your token.',
                 type: 'error'
             });
         });
     });
     </script>
 @endsection
-

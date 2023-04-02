@@ -1,34 +1,27 @@
 <?php
-/**
- * Pterodactyl CHINA - Panel
- * Copyright (c) 2018 - 2022 ValiantShishu <vlssu@vlssu.com>.
- *
- * This software is licensed under the terms of the MIT license.
- * https://opensource.org/licenses/MIT
- */
 
 return [
     'exceptions' => [
-        'no_new_default_allocation' => '您正在試圖刪除此伺服器的默認埠，但沒有可供使用的備用埠。',
-        'marked_as_failed' => '由於該伺服器之前被標記為安裝失敗。 在此狀態下無法切換當前狀態。',
-        'bad_variable' => ':name 變數驗證錯誤。',
-        'daemon_exception' => '嘗試與守護程式通信時出現異常，導致 HTTP/:code 回應碼。 已記錄此異常。(請求 id: :request_id)',
-        'default_allocation_not_found' => '在此伺服器的分配中找不到所請求的默認分配。',
+        'no_new_default_allocation' => 'You are attempting to delete the default allocation for this server but there is no fallback allocation to use.',
+        'marked_as_failed' => 'This server was marked as having failed a previous installation. Current status cannot be toggled in this state.',
+        'bad_variable' => 'There was a validation error with the :name variable.',
+        'daemon_exception' => 'There was an exception while attempting to communicate with the daemon resulting in a HTTP/:code response code. This exception has been logged. (request id: :request_id)',
+        'default_allocation_not_found' => 'The requested default allocation was not found in this server\'s allocations.',
     ],
     'alerts' => [
-        'startup_changed' => '該伺服器的啟動配置已經更新。如果此伺服器的預設組或預設被更改，現在將進行重新安裝。',
-        'server_deleted' => '伺服器已成功從系統中刪除。',
-        'server_created' => '伺服器已在面板上成功創建。請允許守護進程用幾分鐘的時間來完成安裝此伺服器。',
-        'build_updated' => '此伺服器的構建配置已更新。某些更改可能需要重新開機才能生效。',
-        'suspension_toggled' => '伺服器已從凍結狀態更改為 :status。',
-        'rebuild_on_boot' => '該伺服器已標記為需要 Docker 容器重建。這將在下次啟動伺服器時執行該操作。',
-        'install_toggled' => '該伺服器的安裝狀態已被切換。',
-        'server_reinstalled' => '此伺服器已進入等候佇列，馬上重新安裝。',
-        'details_updated' => '伺服器詳細資訊已成功更新。',
-        'docker_image_updated' => '已成功更改用於此伺服器的默認 Docker 鏡像。需要重新開機才能應用此更改。',
-        'node_required' => '您必須至少配置一個節點，然後才能將伺服器添加到此面板。',
-        'transfer_nodes_required' => '您必須至少配置兩個節點，然後才能轉移伺服器。',
-        'transfer_started' => '伺服器轉移已開始。',
-        'transfer_not_viable' => '您選擇的節點沒有足夠的存儲空間或記憶體來容納此伺服器。',
+        'startup_changed' => 'The startup configuration for this server has been updated. If this server\'s nest or egg was changed a reinstall will be occurring now.',
+        'server_deleted' => 'Server has successfully been deleted from the system.',
+        'server_created' => 'Server was successfully created on the panel. Please allow the daemon a few minutes to completely install this server.',
+        'build_updated' => 'The build details for this server have been updated. Some changes may require a restart to take effect.',
+        'suspension_toggled' => 'Server suspension status has been changed to :status.',
+        'rebuild_on_boot' => 'This server has been marked as requiring a Docker Container rebuild. This will happen the next time the server is started.',
+        'install_toggled' => 'The installation status for this server has been toggled.',
+        'server_reinstalled' => 'This server has been queued for a reinstallation beginning now.',
+        'details_updated' => 'Server details have been successfully updated.',
+        'docker_image_updated' => 'Successfully changed the default Docker image to use for this server. A reboot is required to apply this change.',
+        'node_required' => 'You must have at least one node configured before you can add a server to this panel.',
+        'transfer_nodes_required' => 'You must have at least two nodes configured before you can transfer servers.',
+        'transfer_started' => 'Server transfer has been started.',
+        'transfer_not_viable' => 'The node you selected does not have the required disk space or memory available to accommodate this server.',
     ],
 ];

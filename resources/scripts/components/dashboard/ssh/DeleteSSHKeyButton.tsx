@@ -1,7 +1,7 @@
 import tw from 'twin.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useFlashKey } from '@/plugins/useFlash';
 import { deleteSSHKey, useSSHKeys } from '@/api/account/ssh-keys';
 import { Dialog } from '@/components/elements/dialog';
@@ -16,9 +16,9 @@ export default ({ name, fingerprint }: { name: string; fingerprint: string }) =>
         clearAndAddHttpError();
 
         Promise.all([
-            mutate(data => data?.filter(value => value.fingerprint !== fingerprint), false),
+            mutate((data) => data?.filter((value) => value.fingerprint !== fingerprint), false),
             deleteSSHKey(fingerprint),
-        ]).catch(error => {
+        ]).catch((error) => {
             mutate(undefined, true).catch(console.error);
             clearAndAddHttpError(error);
         });
@@ -28,12 +28,12 @@ export default ({ name, fingerprint }: { name: string; fingerprint: string }) =>
         <>
             <Dialog.Confirm
                 open={visible}
-                title={'SSH 密钥删除确定'}
-                confirm={'确定删除'}
+                title={'Delete SSH Key'}
+                confirm={'Delete Key'}
                 onConfirmed={onClick}
                 onClose={() => setVisible(false)}
             >
-                刪除 <Code>{name}</Code> SSH 密鑰將使其在整個面板中的使用無效
+                Removing the <Code>{name}</Code> SSH key will invalidate its usage across the Panel.
             </Dialog.Confirm>
             <button css={tw`ml-4 p-2 text-sm`} onClick={() => setVisible(true)}>
                 <FontAwesomeIcon

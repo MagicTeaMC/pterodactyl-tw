@@ -1,33 +1,26 @@
 <?php
-/**
- * Pterodactyl - Panel
- * Copyright (c) 2015 - 2022 ValiantShishu <vlssu@vlssu.com>.
- *
- * This software is licensed under the terms of the MIT license.
- * https://opensource.org/licenses/MIT
- */
 
 return [
     'notices' => [
-        'created' => '已成功創建一个新的 :name 預設组。',
-        'deleted' => '已成功回覆面板請求，删除該預設组。',
-        'updated' => '已成功更新預設組配置選項。',
+        'created' => 'A new nest, :name, has been successfully created.',
+        'deleted' => 'Successfully deleted the requested nest from the Panel.',
+        'updated' => 'Successfully updated the nest configuration options.',
     ],
     'eggs' => [
         'notices' => [
-            'imported' => '已成功導入此預設及其相關變量。',
-            'updated_via_import' => '此預設已使用提供的文件進行了更新。',
-            'deleted' => '已成功響應面板請求，刪除該預設。',
-            'updated' => '預設配置已成功更新。',
-            'script_updated' => '預設的安裝腳本已更新，並將在安裝伺服器時運行。',
-            'egg_created' => '一個新的預設設置成功。 如果你要應用此新預設，記得將需要應用的服務器重新啟動哦，包括運行中或未運行的。',
+            'imported' => 'Successfully imported this Egg and its associated variables.',
+            'updated_via_import' => 'This Egg has been updated using the file provided.',
+            'deleted' => 'Successfully deleted the requested egg from the Panel.',
+            'updated' => 'Egg configuration has been updated successfully.',
+            'script_updated' => 'Egg install script has been updated and will run whenever servers are installed.',
+            'egg_created' => 'A new egg was laid successfully. You will need to restart any running daemons to apply this new egg.',
         ],
     ],
     'variables' => [
         'notices' => [
-            'variable_deleted' => '變數 ":variable" 已被刪除，一旦重建將不再為伺服器所用。',
-            'variable_updated' => '變數 ":variable" 已更新。 您需要重建使用此變量的服務器才能應用更改。',
-            'variable_created' => '已成功創建新變數並將其分配給此預設。',
+            'variable_deleted' => 'The variable ":variable" has been deleted and will no longer be available to servers once rebuilt.',
+            'variable_updated' => 'The variable ":variable" has been updated. You will need to rebuild any servers using this variable in order to apply changes.',
+            'variable_created' => 'New variable has successfully been created and assigned to this egg.',
         ],
     ],
 ];

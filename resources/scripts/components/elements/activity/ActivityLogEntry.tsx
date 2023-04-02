@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Tooltip from '@/components/elements/tooltip/Tooltip';
 import Translate from '@/components/elements/Translate';
@@ -65,12 +65,12 @@ export default ({ activity, children }: Props) => {
                         </Link>
                         <div className={classNames(style.icons, 'group-hover:text-gray-300')}>
                             {activity.isApi && (
-                                <Tooltip placement={'top'} content={'使用 API 金鑰'}>
+                                <Tooltip placement={'top'} content={'Using API Key'}>
                                     <TerminalIcon />
                                 </Tooltip>
                             )}
                             {activity.event.startsWith('server:sftp.') && (
-                                <Tooltip placement={'top'} content={'使用 SFTP'}>
+                                <Tooltip placement={'top'} content={'Using SFTP'}>
                                     <FolderOpenIcon />
                                 </Tooltip>
                             )}
@@ -97,4 +97,3 @@ export default ({ activity, children }: Props) => {
         </div>
     );
 };
-

@@ -1,23 +1,16 @@
 <?php
-/**
- * Pterodactyl - Panel
- * Copyright (c) 2015 - 2022 ValiantShishu <vlssu@vlssu.com>.
- *
- * This software is licensed under the terms of the MIT license.
- * https://opensource.org/licenses/MIT
- */
 
 return [
     'validation' => [
-        'fqdn_not_resolvable' => '提供的域名或IP無法解析。',
-        'fqdn_required_for_ssl' => '需要解析為外網IP的網域才能為此節點使用SSL。',
+        'fqdn_not_resolvable' => 'The FQDN or IP address provided does not resolve to a valid IP address.',
+        'fqdn_required_for_ssl' => 'A fully qualified domain name that resolves to a public IP address is required in order to use SSL for this node.',
     ],
     'notices' => [
-        'allocations_added' => '端口已成功添加到此節點。',
-        'node_deleted' => '節點已成功從面板中刪除。',
-        'location_required' => '您必須至少配置一個地域，然後才能將節點添加到此面板。',
-        'node_created' => '成功創建新節點。 您可以通過訪問“配置”選項卡自動配置此機器上的守護程序。<strong>您必須先分配至少一個IP 地址和端口，然後才能新增伺服器。</strong>',
-        'node_updated' => '節點訊息已更新。 如果更改了任何守護程序的設置，您將成功創建新節點。 您可以通過訪問“配置”選項卡自動配置此機器上的守護程序需要重新啟動它以使這些更改生效。',
-        'unallocated_deleted' => '删除了 <code>:ip</code> 的所有未分配端口。',
+        'allocations_added' => 'Allocations have successfully been added to this node.',
+        'node_deleted' => 'Node has been successfully removed from the panel.',
+        'location_required' => 'You must have at least one location configured before you can add a node to this panel.',
+        'node_created' => 'Successfully created new node. You can automatically configure the daemon on this machine by visiting the \'Configuration\' tab. <strong>Before you can add any servers you must first allocate at least one IP address and port.</strong>',
+        'node_updated' => 'Node information has been updated. If any daemon settings were changed you will need to reboot it for those changes to take effect.',
+        'unallocated_deleted' => 'Deleted all un-allocated ports for <code>:ip</code>.',
     ],
 ];

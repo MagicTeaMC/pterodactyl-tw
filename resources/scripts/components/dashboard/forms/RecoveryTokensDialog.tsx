@@ -1,3 +1,4 @@
+import React from 'react';
 import { Dialog, DialogProps } from '@/components/elements/dialog';
 import { Button } from '@/components/elements/button/index';
 import CopyOnClick from '@/components/elements/CopyOnClick';
@@ -19,15 +20,17 @@ export default ({ tokens, open, onClose }: RecoveryTokenDialogProps) => {
         <Dialog
             open={open}
             onClose={onClose}
-            title={'啟用動態口令認證'}
-            description={'將下面的代碼存儲在安全的地方。如果您無法使用手機，則可以使用這些備用代碼登錄。'}
+            title={'Two-Step Authentication Enabled'}
+            description={
+                'Store the codes below somewhere safe. If you lose access to your phone you can use these backup codes to sign in.'
+            }
             hideCloseIcon
             preventExternalClose
         >
             <Dialog.Icon position={'container'} type={'success'} />
             <CopyOnClick text={tokens.join('\n')} showInNotification={false}>
                 <pre className={'bg-gray-800 rounded p-2 mt-6'}>
-                    {grouped.map(value => (
+                    {grouped.map((value) => (
                         <span key={value.join('_')} className={'block'}>
                             {value[0]}
                             <span className={'mx-2 selection:bg-gray-800'}>&nbsp;</span>
@@ -38,12 +41,11 @@ export default ({ tokens, open, onClose }: RecoveryTokenDialogProps) => {
                 </pre>
             </CopyOnClick>
             <Alert type={'danger'} className={'mt-3'}>
-                這些代碼將不再會顯示。
+                These codes will not be shown again.
             </Alert>
             <Dialog.Footer>
-                <Button.Text onClick={onClose}>我知道了</Button.Text>
+                <Button.Text onClick={onClose}>Done</Button.Text>
             </Dialog.Footer>
         </Dialog>
     );
 };
-

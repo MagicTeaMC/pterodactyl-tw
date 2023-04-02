@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ServerContext } from '@/state/server';
 import Modal from '@/components/elements/Modal';
 import tw from 'twin.macro';
@@ -14,10 +14,10 @@ const PIDLimitModalFeature = () => {
     const [visible, setVisible] = useState(false);
     const [loading] = useState(false);
 
-    const status = ServerContext.useStoreState(state => state.status.value);
+    const status = ServerContext.useStoreState((state) => state.status.value);
     const { clearFlashes } = useFlash();
-    const { connected, instance } = ServerContext.useStoreState(state => state.socket);
-    const isAdmin = useStoreState(state => state.user.data!.rootAdmin);
+    const { connected, instance } = ServerContext.useStoreState((state) => state.socket);
+    const isAdmin = useStoreState((state) => state.user.data!.rootAdmin);
 
     useEffect(() => {
         if (!connected || !instance || status === 'running') return;
@@ -32,7 +32,7 @@ const PIDLimitModalFeature = () => {
         ];
 
         const listener = (line: string) => {
-            if (errors.some(p => line.toLowerCase().includes(p))) {
+            if (errors.some((p) => line.toLowerCase().includes(p))) {
                 setVisible(true);
             }
         };
@@ -60,19 +60,20 @@ const PIDLimitModalFeature = () => {
                 <>
                     <div css={tw`mt-4 sm:flex items-center`}>
                         <FontAwesomeIcon css={tw`pr-4`} icon={faExclamationTriangle} color={'orange'} size={'4x'} />
-                        <h2 css={tw`text-2xl mb-4 text-neutral-100 `}>已達到記憶體或進程限制...</h2>
+                        <h2 css={tw`text-2xl mb-4 text-neutral-100 `}>Memory or process limit reached...</h2>
                     </div>
-                    <p css={tw`mt-4`}>此伺服器已達到最大進程或記憶體限制。</p>
+                    <p css={tw`mt-4`}>This server has reached the maximum process or memory limit.</p>
                     <p css={tw`mt-4`}>
-                        在wings配置中增加 <code css={tw`font-mono bg-neutral-900`}>container_pid_limit</code> ,{' '}
-                        <code css={tw`font-mono bg-neutral-900`}>config.yml</code>, 可能有助於解決這個問題。
+                        Increasing <code css={tw`font-mono bg-neutral-900`}>container_pid_limit</code> in the wings
+                        configuration, <code css={tw`font-mono bg-neutral-900`}>config.yml</code>, might help resolve
+                        this issue.
                     </p>
                     <p css={tw`mt-4`}>
-                        <b>注意：必須重新啟動 Wings 才能使設定檔更改生效</b>
+                        <b>Note: Wings must be restarted for the configuration file changes to take effect</b>
                     </p>
                     <div css={tw`mt-8 sm:flex items-center justify-end`}>
                         <Button onClick={() => setVisible(false)} css={tw`w-full sm:w-auto border-transparent`}>
-                            關閉
+                            Close
                         </Button>
                     </div>
                 </>
@@ -80,17 +81,20 @@ const PIDLimitModalFeature = () => {
                 <>
                     <div css={tw`mt-4 sm:flex items-center`}>
                         <FontAwesomeIcon css={tw`pr-4`} icon={faExclamationTriangle} color={'orange'} size={'4x'} />
-                        <h2 css={tw`text-2xl mb-4 text-neutral-100`}>可能達到資源限制...</h2>
+                        <h2 css={tw`text-2xl mb-4 text-neutral-100`}>Possible resource limit reached...</h2>
                     </div>
-                    <p css={tw`mt-4`}>此伺服器嘗試使用的資源多於分配的資源。請聯繫管理員，並在下面給他們錯誤資訊。</p>
+                    <p css={tw`mt-4`}>
+                        This server is attempting to use more resources than allocated. Please contact the administrator
+                        and give them the error below.
+                    </p>
                     <p css={tw`mt-4`}>
                         <code css={tw`font-mono bg-neutral-900`}>
-                            pthread_create 失敗，可能記憶體不足或已達到進程/資源限制
+                            pthread_create failed, Possibly out of memory or process/resource limits reached
                         </code>
                     </p>
                     <div css={tw`mt-8 sm:flex items-center justify-end`}>
                         <Button onClick={() => setVisible(false)} css={tw`w-full sm:w-auto border-transparent`}>
-                            關閉
+                            Close
                         </Button>
                     </div>
                 </>
@@ -100,4 +104,3 @@ const PIDLimitModalFeature = () => {
 };
 
 export default PIDLimitModalFeature;
-

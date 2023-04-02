@@ -1,15 +1,15 @@
 @extends('layouts.admin')
 
 @section('title')
-    創建用戶
+    Create User
 @endsection
 
 @section('content-header')
-    <h1>創建用戶<small>創建一個新用戶.</small></h1>
+    <h1>Create User<small>Add a new user to the system.</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">管理</a></li>
-        <li><a href="{{ route('admin.users') }}">用戶</a></li>
-        <li class="active">新建</li>
+        <li><a href="{{ route('admin.index') }}">Admin</a></li>
+        <li><a href="{{ route('admin.users') }}">Users</a></li>
+        <li class="active">Create</li>
     </ol>
 @endsection
 
@@ -19,65 +19,65 @@
         <div class="col-md-6">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">身份</h3>
+                    <h3 class="box-title">Identity</h3>
                 </div>
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="email" class="control-label">電子郵箱位址</label>
+                        <label for="email" class="control-label">Email</label>
                         <div>
                             <input type="text" autocomplete="off" name="email" value="{{ old('email') }}" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="username" class="control-label">用戶名</label>
+                        <label for="username" class="control-label">Username</label>
                         <div>
                             <input type="text" autocomplete="off" name="username" value="{{ old('username') }}" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="name_first" class="control-label">姓</label>
+                        <label for="name_first" class="control-label">Client First Name</label>
                         <div>
                             <input type="text" autocomplete="off" name="name_first" value="{{ old('name_first') }}" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="name_last" class="control-label">名</label>
+                        <label for="name_last" class="control-label">Client Last Name</label>
                         <div>
                             <input type="text" autocomplete="off" name="name_last" value="{{ old('name_last') }}" class="form-control" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">預設語言</label>
+                        <label class="control-label">Default Language</label>
                         <div>
                             <select name="language" class="form-control">
                                 @foreach($languages as $key => $value)
                                     <option value="{{ $key }}" @if(config('app.locale') === $key) selected @endif>{{ $value }}</option>
                                 @endforeach
                             </select>
-                            <p class="text-muted"><small>使用者使用的預設語言.</small></p>
+                            <p class="text-muted"><small>The default language to use when rendering the Panel for this user.</small></p>
                         </div>
                     </div>
                 </div>
                 <div class="box-footer">
                     {!! csrf_field() !!}
-                    <input type="submit" value="創建用戶" class="btn btn-success btn-sm">
+                    <input type="submit" value="Create User" class="btn btn-success btn-sm">
                 </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">許可權</h3>
+                    <h3 class="box-title">Permissions</h3>
                 </div>
                 <div class="box-body">
                     <div class="form-group col-md-12">
-                        <label for="root_admin" class="control-label">系統管理員</label>
+                        <label for="root_admin" class="control-label">Administrator</label>
                         <div>
                             <select name="root_admin" class="form-control">
                                 <option value="0">@lang('strings.no')</option>
                                 <option value="1">@lang('strings.yes')</option>
                             </select>
-                            <p class="text-muted"><small>將此設置為“是”為用戶提供完全的管理存取權限.</small></p>
+                            <p class="text-muted"><small>Setting this to 'Yes' gives a user full administrative access.</small></p>
                         </div>
                     </div>
                 </div>
@@ -86,15 +86,15 @@
         <div class="col-md-6">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">密碼</h3>
+                    <h3 class="box-title">Password</h3>
                 </div>
                 <div class="box-body">
                     <div class="alert alert-info">
-                        <p>提供使用者密碼是可選的。新使用者將會收到電子郵件並提示使用者在首次登錄時創建密碼。如果此處提供了密碼，您將需要找到一種不同的方法將其提供給用戶.</p>
+                        <p>Providing a user password is optional. New user emails prompt users to create a password the first time they login. If a password is provided here you will need to find a different method of providing it to the user.</p>
                     </div>
                     <div id="gen_pass" class=" alert alert-success" style="display:none;margin-bottom: 10px;"></div>
                     <div class="form-group">
-                        <label for="pass" class="control-label">密碼</label>
+                        <label for="pass" class="control-label">Password</label>
                         <div>
                             <input type="password" name="password" class="form-control" />
                         </div>
@@ -126,4 +126,3 @@
         });
     </script>
 @endsection
-

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Schedule, Task } from '@/api/server/schedules/getServerSchedules';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -29,23 +29,23 @@ interface Props {
 const getActionDetails = (action: string): [string, any] => {
     switch (action) {
         case 'command':
-            return ['發送指令', faCode];
+            return ['Send Command', faCode];
         case 'power':
-            return ['發送電源操作', faToggleOn];
+            return ['Send Power Action', faToggleOn];
         case 'backup':
-            return ['創建備份', faFileArchive];
+            return ['Create Backup', faFileArchive];
         default:
-            return ['其他', faCode];
+            return ['Unknown Action', faCode];
     }
 };
 
 export default ({ schedule, task }: Props) => {
-    const uuid = ServerContext.useStoreState(state => state.server.data!.uuid);
+    const uuid = ServerContext.useStoreState((state) => state.server.data!.uuid);
     const { clearFlashes, addError } = useFlash();
     const [visible, setVisible] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
-    const appendSchedule = ServerContext.useStoreActions(actions => actions.schedules.appendSchedule);
+    const appendSchedule = ServerContext.useStoreActions((actions) => actions.schedules.appendSchedule);
 
     const onConfirmDeletion = () => {
         setIsLoading(true);
@@ -54,10 +54,10 @@ export default ({ schedule, task }: Props) => {
             .then(() =>
                 appendSchedule({
                     ...schedule,
-                    tasks: schedule.tasks.filter(t => t.id !== task.id),
-                }),
+                    tasks: schedule.tasks.filter((t) => t.id !== task.id),
+                })
             )
-            .catch(error => {
+            .catch((error) => {
                 console.error(error);
                 setIsLoading(false);
                 addError({ message: httpErrorToHuman(error), key: 'schedules' });
@@ -76,13 +76,13 @@ export default ({ schedule, task }: Props) => {
                 onModalDismissed={() => setIsEditing(false)}
             />
             <ConfirmationModal
-                title={'確定'}
-                buttonText={'刪除任務'}
+                title={'Confirm task deletion'}
+                buttonText={'Delete Task'}
                 onConfirmed={onConfirmDeletion}
                 visible={visible}
                 onModalDismissed={() => setVisible(false)}
             >
-                您確定要刪除此任務嗎？ 此操作無法撤銷。
+                Are you sure you want to delete this task? This action cannot be undone.
             </ConfirmationModal>
             <FontAwesomeIcon icon={icon} css={tw`text-lg text-white hidden md:block`} />
             <div css={tw`flex-none sm:flex-1 w-full sm:w-auto overflow-x-auto`}>
@@ -90,7 +90,7 @@ export default ({ schedule, task }: Props) => {
                 {task.payload && (
                     <div css={tw`md:ml-6 mt-2`}>
                         {task.action === 'backup' && (
-                            <p css={tw`text-xs uppercase text-neutral-400 mb-1`}>忽略的文件和資料夾:</p>
+                            <p css={tw`text-xs uppercase text-neutral-400 mb-1`}>Ignoring files & folders:</p>
                         )}
                         <div
                             css={tw`font-mono bg-neutral-800 rounded py-1 px-2 text-sm w-auto inline-block whitespace-pre-wrap break-all`}
@@ -105,7 +105,7 @@ export default ({ schedule, task }: Props) => {
                     <div css={tw`mr-6`}>
                         <div css={tw`flex items-center px-2 py-1 bg-yellow-500 text-yellow-800 text-sm rounded-full`}>
                             <Icon icon={faArrowCircleDown} css={tw`w-3 h-3 mr-2`} />
-                            即使失敗也繼續運行
+                            Continues on Failure
                         </div>
                     </div>
                 )}
@@ -113,14 +113,14 @@ export default ({ schedule, task }: Props) => {
                     <div css={tw`mr-6`}>
                         <div css={tw`flex items-center px-2 py-1 bg-neutral-500 text-sm rounded-full`}>
                             <Icon icon={faClock} css={tw`w-3 h-3 mr-2`} />
-                            {task.timeOffset} 秒後
+                            {task.timeOffset}s later
                         </div>
                     </div>
                 )}
                 <Can action={'schedule.update'}>
                     <button
                         type={'button'}
-                        aria-label={'編輯計畫任務'}
+                        aria-label={'Edit scheduled task'}
                         css={tw`block text-sm p-2 text-neutral-500 hover:text-neutral-100 transition-colors duration-150 mr-4 ml-auto sm:ml-0`}
                         onClick={() => setIsEditing(true)}
                     >
@@ -130,7 +130,7 @@ export default ({ schedule, task }: Props) => {
                 <Can action={'schedule.update'}>
                     <button
                         type={'button'}
-                        aria-label={'刪除計畫任務'}
+                        aria-label={'Delete scheduled task'}
                         css={tw`block text-sm p-2 text-neutral-500 hover:text-red-600 transition-colors duration-150`}
                         onClick={() => setVisible(true)}
                     >
@@ -141,4 +141,3 @@ export default ({ schedule, task }: Props) => {
         </div>
     );
 };
-

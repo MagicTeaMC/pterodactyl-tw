@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ServerContext } from '@/state/server';
 import Modal from '@/components/elements/Modal';
 import tw from 'twin.macro';
@@ -26,25 +26,25 @@ const JavaVersionModalFeature = () => {
     const [loading, setLoading] = useState(false);
     const [selectedVersion, setSelectedVersion] = useState('');
 
-    const uuid = ServerContext.useStoreState(state => state.server.data!.uuid);
-    const status = ServerContext.useStoreState(state => state.status.value);
+    const uuid = ServerContext.useStoreState((state) => state.server.data!.uuid);
+    const status = ServerContext.useStoreState((state) => state.status.value);
     const { clearFlashes, clearAndAddHttpError } = useFlash();
-    const { instance } = ServerContext.useStoreState(state => state.socket);
+    const { instance } = ServerContext.useStoreState((state) => state.socket);
 
-    const { data, isValidating, mutate } = getServerStartup(uuid, undefined, { revalidateOnMount: false });
+    const { data, isValidating, mutate } = getServerStartup(uuid, null, { revalidateOnMount: false });
 
     useEffect(() => {
         if (!visible) return;
 
-        mutate().then(value => {
+        mutate().then((value) => {
             setSelectedVersion(Object.values(value?.dockerImages || [])[0] || '');
         });
     }, [visible]);
 
-    useWebsocketEvent(SocketEvent.CONSOLE_OUTPUT, data => {
+    useWebsocketEvent(SocketEvent.CONSOLE_OUTPUT, (data) => {
         if (status === 'running') return;
 
-        if (MATCH_ERRORS.some(p => data.toLowerCase().includes(p.toLowerCase()))) {
+        if (MATCH_ERRORS.some((p) => data.toLowerCase().includes(p.toLowerCase()))) {
             setVisible(true);
         }
     });
@@ -60,7 +60,7 @@ const JavaVersionModalFeature = () => {
                 }
                 setVisible(false);
             })
-            .catch(error => clearAndAddHttpError({ key: 'feature:javaVersion', error }))
+            .catch((error) => clearAndAddHttpError({ key: 'feature:javaVersion', error }))
             .then(() => setLoading(false));
     };
 
@@ -76,21 +76,21 @@ const JavaVersionModalFeature = () => {
             showSpinnerOverlay={loading}
         >
             <FlashMessageRender key={'feature:javaVersion'} css={tw`mb-4`} />
-            <h2 css={tw`text-2xl mb-4 text-neutral-100`}>此服務端程式不相容該 Java 版本，更換 Docker 鏡像嗎?</h2>
+            <h2 css={tw`text-2xl mb-4 text-neutral-100`}>Unsupported Java Version</h2>
             <p css={tw`mt-4`}>
-                由於未滿足所需的 Java 版本，此伺服器無法啟動.
+                This server is currently running an unsupported version of Java and cannot be started.
                 <Can action={'startup.docker-image'}>
-                    &nbsp;請在下方選擇合適的 JDK 版本 Docker 鏡像以啟動服務端程式.
+                    &nbsp;Please select a supported version from the list below to continue starting the server.
                 </Can>
             </p>
             <Can action={'startup.docker-image'}>
                 <div css={tw`mt-4`}>
                     <InputSpinner visible={!data || isValidating}>
-                        <Select disabled={!data} onChange={e => setSelectedVersion(e.target.value)}>
+                        <Select disabled={!data} onChange={(e) => setSelectedVersion(e.target.value)}>
                             {!data ? (
                                 <option disabled />
                             ) : (
-                                Object.keys(data.dockerImages).map(key => (
+                                Object.keys(data.dockerImages).map((key) => (
                                     <option key={key} value={data.dockerImages[key]}>
                                         {key}
                                     </option>
@@ -102,11 +102,11 @@ const JavaVersionModalFeature = () => {
             </Can>
             <div css={tw`mt-8 flex flex-col sm:flex-row justify-end sm:space-x-4 space-y-4 sm:space-y-0`}>
                 <Button isSecondary onClick={() => setVisible(false)} css={tw`w-full sm:w-auto`}>
-                    取消
+                    Cancel
                 </Button>
                 <Can action={'startup.docker-image'}>
                     <Button onClick={updateJava} css={tw`w-full sm:w-auto`}>
-                        更新 Docker 鏡像
+                        Update Docker Image
                     </Button>
                 </Can>
             </div>
@@ -115,4 +115,3 @@ const JavaVersionModalFeature = () => {
 };
 
 export default JavaVersionModalFeature;
-

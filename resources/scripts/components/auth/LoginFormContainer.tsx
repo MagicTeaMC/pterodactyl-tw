@@ -1,11 +1,9 @@
-import { forwardRef } from 'react';
-import * as React from 'react';
+import React, { forwardRef } from 'react';
 import { Form } from 'formik';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { breakpoint } from '@/theme';
 import FlashMessageRender from '@/components/FlashMessageRender';
 import tw from 'twin.macro';
-import { useStoreState } from 'easy-peasy';
 
 type Props = React.DetailedHTMLProps<React.FormHTMLAttributes<HTMLFormElement>, HTMLFormElement> & {
     title?: string;
@@ -52,27 +50,6 @@ export default forwardRef<HTMLFormElement, Props>(({ title, ...props }, ref) => 
             >
                 Pterodactyl Software
             </a>
-            &nbsp;| 繁體中文翻譯來自&nbsp;
-            <a
-                rel={'noopener nofollow noreferrer'}
-                href={'https://github.com/MagicTeaMC'}
-                target={'_blank'}
-                css={tw`no-underline text-neutral-500 hover:text-neutral-300`}
-            >
-                Maoyue
-            </a>
         </p>
-        {useStoreState(state => state.settings.data?.icp.enabled) && (
-            <p css={tw`text-center text-neutral-500 text-xs mt-4`}>
-                <a
-                    rel={'noopener nofollow noreferrer'}
-                    href={'http://beian.miit.gov.cn'}
-                    target={'_blank'}
-                    css={tw`no-underline text-neutral-500 hover:text-neutral-300`}
-                >
-                    {useStoreState(state => state.settings.data?.icp.record)}
-                </a>
-            </p>
-        )}
     </Container>
 ));

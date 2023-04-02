@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import React from 'react';
 import { Actions, State, useStoreActions, useStoreState } from 'easy-peasy';
 import { Form, Formik, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
@@ -16,7 +16,7 @@ interface Values {
 
 const schema = Yup.object().shape({
     email: Yup.string().email().required(),
-    password: Yup.string().required('您必須提供您當前的帳戶密碼。'),
+    password: Yup.string().required('You must provide your current account password.'),
 });
 
 export default () => {
@@ -33,16 +33,16 @@ export default () => {
                 addFlash({
                     type: 'success',
                     key: 'account:email',
-                    message: '您的首選電子郵箱位址已更新。',
-                }),
+                    message: 'Your primary email has been updated.',
+                })
             )
-            .catch(error =>
+            .catch((error) =>
                 addFlash({
                     type: 'error',
                     key: 'account:email',
-                    title: '錯誤',
+                    title: 'Error',
                     message: httpErrorToHuman(error),
-                }),
+                })
             )
             .then(() => {
                 resetForm();
@@ -53,21 +53,24 @@ export default () => {
     return (
         <Formik onSubmit={submit} validationSchema={schema} initialValues={{ email: user!.email, password: '' }}>
             {({ isSubmitting, isValid }) => (
-                <Fragment>
+                <React.Fragment>
                     <SpinnerOverlay size={'large'} visible={isSubmitting} />
                     <Form css={tw`m-0`}>
-                        <Field id={'current_email'} type={'email'} name={'email'} label={'郵箱'} />
+                        <Field id={'current_email'} type={'email'} name={'email'} label={'Email'} />
                         <div css={tw`mt-6`}>
-                            <Field id={'confirm_password'} type={'password'} name={'password'} label={'確認密碼'} />
+                            <Field
+                                id={'confirm_password'}
+                                type={'password'}
+                                name={'password'}
+                                label={'Confirm Password'}
+                            />
                         </div>
                         <div css={tw`mt-6`}>
-                            <Button disabled={isSubmitting || !isValid}>更新郵箱位址</Button>
+                            <Button disabled={isSubmitting || !isValid}>Update Email</Button>
                         </div>
                     </Form>
-                </Fragment>
+                </React.Fragment>
             )}
         </Formik>
     );
 };
-
-
