@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'search' => '尋找伺服器...',
-    'no_matches' => '找不到伺服器',
+    'search' => 'Search for servers...',
+    'no_matches' => 'There were no servers found matching the search criteria provided.',
     'cpu_title' => 'CPU',
-    'memory_title' => '記憶體',
+    'memory_title' => 'Memory',
 ];
