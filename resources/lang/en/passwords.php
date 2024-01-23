@@ -3,17 +3,15 @@
 return [
     /*
     |--------------------------------------------------------------------------
-    | Password Reset Language Lines
+    | 密碼重設語言行
     |--------------------------------------------------------------------------
     |
-    | The following language lines are the default lines which match reasons
-    | that are given by the password broker for a password update attempt
-    | has failed, such as for an invalid token or invalid new password.
+    | 以下語言行是密碼經紀人為密碼更新嘗試給出的默認行，例如無效的令牌或無效的新密碼。
     |
     */
-    'password' => 'Passwords must be at least six characters and match the confirmation.',
-    'reset' => 'Your password has been reset!',
-    'sent' => 'We have e-mailed your password reset link!',
-    'token' => 'This password reset token is invalid.',
-    'user' => "We can't find a user with that e-mail address.",
+    'password' => '密碼必須至少六個字符並與確認密碼互相匹配。',
+    'reset' => '您的密碼已重設！',
+    'sent' => '我們已發送了您的密碼重設連結！',
+    'token' => '此密碼重設Token無效。',
+    'user' => "找不到使用該電子郵件地址的用戶。",
 ];
