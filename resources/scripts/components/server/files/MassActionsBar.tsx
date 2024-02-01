@@ -74,8 +74,8 @@ const MassActionsBar = () => {
                     onConfirmed={onClickConfirmDeletion}
                 >
                     <p className={'mb-2'}>
-                        Are you sure you want to delete&nbsp;
-                        <span className={'font-semibold text-gray-50'}>{selectedFiles.length} files</span>? 此操作不可被復原!
+                        你確定要刪除&nbsp;
+                        <span className={'font-semibold text-gray-50'}>{selectedFiles.length} 個檔案</span>? 此操作不可被復原!
                     </p>
                     {selectedFiles.slice(0, 15).map((file) => (
                         <li key={file}>{file}</li>

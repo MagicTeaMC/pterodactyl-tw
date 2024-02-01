@@ -74,8 +74,7 @@ const ConfigureTwoFactorForm = ({ onTokens }: Props) => {
                 </p>
             </CopyOnClick>
             <p id={'totp-code-description'} className={'mt-6'}>
-                Scan the QR code above using the two-step authentication app of your choice. Then, enter the 6-digit
-                code generated into the field below.
+                用雙重認證程式掃描以下 QR code，接下來輸入認證程式生成的6位數代碼
             </p>
             <Input.Text
                 aria-labelledby={'totp-code-description'}
@@ -90,7 +89,7 @@ const ConfigureTwoFactorForm = ({ onTokens }: Props) => {
                 pattern={'\\d{6}'}
             />
             <label htmlFor={'totp-password'} className={'block mt-3'}>
-                Account Password
+                密碼
             </label>
             <Input.Text
                 variant={Input.Text.Variants.Loose}
@@ -100,13 +99,13 @@ const ConfigureTwoFactorForm = ({ onTokens }: Props) => {
                 onChange={(e) => setPassword(e.currentTarget.value)}
             />
             <Dialog.Footer>
-                <Button.Text onClick={close}>Cancel</Button.Text>
+                <Button.Text onClick={close}>取消</Button.Text>
                 <Tooltip
                     disabled={password.length > 0 && value.length === 6}
                     content={
                         !token
-                            ? 'Waiting for QR code to load...'
-                            : 'You must enter the 6-digit code and your password to continue.'
+                            ? '正在等待 QR code 載入...'
+                            : '你必須輸入6位數代碼以及你的密碼才能繼續'
                     }
                     delay={100}
                 >
@@ -115,7 +114,7 @@ const ConfigureTwoFactorForm = ({ onTokens }: Props) => {
                         type={'submit'}
                         form={'enable-totp-form'}
                     >
-                        Enable
+                        啟用
                     </Button>
                 </Tooltip>
             </Dialog.Footer>
@@ -124,7 +123,7 @@ const ConfigureTwoFactorForm = ({ onTokens }: Props) => {
 };
 
 export default asDialog({
-    title: 'Enable Two-Step Verification',
+    title: '啟用雙重認證',
     description:
-        "Help protect your account from unauthorized access. You'll be prompted for a verification code each time you sign in.",
+        "為了保護你的帳號，你每次登入時將會被要求輸入6位數代碼",
 })(ConfigureTwoFactorForm);

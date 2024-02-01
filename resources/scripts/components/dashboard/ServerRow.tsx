@@ -84,9 +84,9 @@ export default ({ server, className }: { server: Server; className?: string }) =
         alarms.disk = server.limits.disk === 0 ? false : isAlarmState(stats.diskUsageInBytes, server.limits.disk);
     }
 
-    const diskLimit = server.limits.disk !== 0 ? bytesToString(mbToBytes(server.limits.disk)) : 'Unlimited';
-    const memoryLimit = server.limits.memory !== 0 ? bytesToString(mbToBytes(server.limits.memory)) : 'Unlimited';
-    const cpuLimit = server.limits.cpu !== 0 ? server.limits.cpu + ' %' : 'Unlimited';
+    const diskLimit = server.limits.disk !== 0 ? bytesToString(mbToBytes(server.limits.disk)) : '無限制';
+    const memoryLimit = server.limits.memory !== 0 ? bytesToString(mbToBytes(server.limits.memory)) : '無限制';
+    const cpuLimit = server.limits.cpu !== 0 ? server.limits.cpu + ' %' : '無限制';
 
     return (
         <StatusIndicatorBox as={Link} to={`/server/${server.id}`} className={className} $status={stats?.status}>
@@ -129,10 +129,10 @@ export default ({ server, className }: { server: Server; className?: string }) =
                                 {server.isTransferring
                                     ? 'Transferring'
                                     : server.status === 'installing'
-                                    ? 'Installing'
+                                    ? '安裝中'
                                     : server.status === 'restoring_backup'
-                                    ? 'Restoring Backup'
-                                    : 'Unavailable'}
+                                    ? '恢復備份中'
+                                    : '目前不可使用'}
                             </span>
                         </div>
                     ) : (

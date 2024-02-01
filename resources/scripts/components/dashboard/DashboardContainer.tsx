@@ -74,8 +74,8 @@ export default () => {
                         ) : (
                             <p css={tw`text-center text-sm text-neutral-400`}>
                                 {showOnlyAdmin
-                                    ? 'There are no other servers to display.'
-                                    : 'There are no servers associated with your account.'}
+                                    ? '沒有其他伺服器'
+                                    : '你沒有任何伺服器'}
                             </p>
                         )
                     }
