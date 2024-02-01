@@ -37,10 +37,9 @@ const ModalContent = ({ ...props }: RequiredModalProps) => {
                 <div css={tw`mt-6`}>
                     <FormikFieldWrapper
                         name={'ignored'}
-                        label={'Ignored Files & Directories'}
+                        label={'忽略檔案或資料夾'}
                         description={`
-                            Enter the files or folders to ignore while generating this backup. Leave blank to use
-                            the contents of the .pteroignore file in the root of the server directory if present.
+                            輸入檔案或資料夾名稱，創建備份時將會忽略這些檔案。如果 .pteroignore 檔案有包含也會忽略
                             Wildcard matching of files and folders is supported in addition to negating a rule by
                             prefixing the path with an exclamation point.
                         `}
@@ -52,14 +51,14 @@ const ModalContent = ({ ...props }: RequiredModalProps) => {
                     <div css={tw`mt-6 bg-neutral-700 border border-neutral-800 shadow-inner p-4 rounded`}>
                         <FormikSwitch
                             name={'isLocked'}
-                            label={'Locked'}
-                            description={'Prevents this backup from being deleted until explicitly unlocked.'}
+                            label={'已加密'}
+                            description={'解密之後才能刪除'}
                         />
                     </div>
                 </Can>
                 <div css={tw`flex justify-end mt-6`}>
                     <Button type={'submit'} disabled={isSubmitting}>
-                        Start backup
+                        開始備份
                     </Button>
                 </div>
             </Form>
