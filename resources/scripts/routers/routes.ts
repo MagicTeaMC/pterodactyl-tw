@@ -113,7 +113,7 @@ export default {
         {
             path: '/backups',
             permission: 'backup.*',
-            name: 'Backups',
+            name: '備份',
             component: BackupContainer,
         },
         {
