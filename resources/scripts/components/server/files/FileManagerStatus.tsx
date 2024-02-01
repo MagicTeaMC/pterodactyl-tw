@@ -58,9 +58,9 @@ const FileUploadList = () => {
             ))}
             <Dialog.Footer>
                 <Button.Danger variant={Button.Variants.Secondary} onClick={() => clearFileUploads()}>
-                    Cancel Uploads
+                    取消上傳
                 </Button.Danger>
-                <Button.Text onClick={close}>Close</Button.Text>
+                <Button.Text onClick={close}>關閉</Button.Text>
             </Dialog.Footer>
         </div>
     );
@@ -89,7 +89,7 @@ export default () => {
     return (
         <>
             {count > 0 && (
-                <Tooltip content={`${count} files are uploading, click to view`}>
+                <Tooltip content={`${count} 個檔案正在上傳，點擊查看`}>
                     <button
                         className={'flex items-center justify-center w-10 h-10'}
                         onClick={() => (open.value = true)}
