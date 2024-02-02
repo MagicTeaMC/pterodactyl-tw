@@ -66,17 +66,17 @@ const RenameFileModal = ({ files, useMoveTerminology, ...props }: OwnProps) => {
                                     type={'string'}
                                     id={'file_name'}
                                     name={'name'}
-                                    label={'File Name'}
+                                    label={'檔案名稱'}
                                     description={
                                         useMoveTerminology
-                                            ? 'Enter the new name and directory of this file or folder, relative to the current directory.'
+                                            ? '輸入新建檔案或資料夾的名稱'
                                             : undefined
                                     }
                                     autoFocus
                                 />
                             </div>
                             <div css={tw`w-full sm:w-auto mt-4 sm:mt-0`}>
-                                <Button css={tw`w-full`}>{useMoveTerminology ? 'Move' : 'Rename'}</Button>
+                                <Button css={tw`w-full`}>{useMoveTerminology ? '移動' : '重新命名'}</Button>
                             </div>
                         </div>
                         {useMoveTerminology && (
