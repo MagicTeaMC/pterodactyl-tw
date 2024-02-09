@@ -31,7 +31,7 @@
                                         <option value="true">啟用</option>
                                         <option value="false" @if(old('recaptcha:enabled', config('recaptcha.enabled')) == '0') selected @endif>停用</option>
                                     </select>
-                                    <p class="text-muted small">如果啟用，登入表單和密碼重設表單將進行無聲驗證並在需要時顯示可見驗證。</p>
+                                    <p class="text-muted small">如果啟用，登入表單和密碼重設表單將進行隱形驗證並在需要時顯示可見驗證</p>
                                 </div>
                             </div>
                             <div class="form-group col-md-4">
