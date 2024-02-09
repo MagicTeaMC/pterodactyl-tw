@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
 @section('title')
-    Administration
+    管理總覽
 @endsection
 
 @section('content-header')
-    <h1>管理總覽<small>快速瀏覽您的主機.</small></h1>
+    <h1>管理總覽<small>快速瀏覽您的系統.</small></h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('admin.index') }}">Admin</a></li>
         <li class="active">Index</li>
