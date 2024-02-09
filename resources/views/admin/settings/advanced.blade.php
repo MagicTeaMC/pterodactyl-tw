@@ -95,4 +95,33 @@
                                         <option value="false">停用</option>
                                         <option value="true" @if(old('pterodactyl:client_features:allocations:enabled', config('pterodactyl.client_features.allocations.enabled'))) selected @endif>啟用</option>
                                     </select>
-                                    <p
+                                    <p class="text-muted small">如果啟用，用戶將有選擇通過前端自動為其服務器創建新分配的選項。</p>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label class="control-label">起始端口</label>
+                                <div>
+                                    <input type="number" class="form-control" name="pterodactyl:client_features:allocations:range_start" value="{{ old('pterodactyl:client_features:allocations:range_start', config('pterodactyl.client_features.allocations.range_start')) }}">
+                                    <p class="text-muted small">自動分配的範圍中的起始端口。</p>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label class="control-label">結束端口</label>
+                                <div>
+                                    <input type="number" class="form-control" name="pterodactyl:client_features:allocations:range_end" value="{{ old('pterodactyl:client_features:allocations:range_end', config('pterodactyl.client_features.allocations.range_end')) }}">
+                                    <p class="text-muted small">自動分配的範圍中的結束端口。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box box-primary">
+                    <div class="box-footer">
+                        {{ csrf_field() }}
+                        <button type="submit" name="_method" value="PATCH" class="btn btn-sm btn-primary pull-right">儲存</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+@endsection
