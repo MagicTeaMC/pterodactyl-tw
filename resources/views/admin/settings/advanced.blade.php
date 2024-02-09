@@ -52,7 +52,7 @@
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="alert alert-warning no-margin">
-                                        您當前使用的是與此面板一起發送的 reCAPTCHA 金鑰。為了提高安全性，建議 <a href="https://www.google.com/recaptcha/admin">生成新的隱形 reCAPTCHA 金鑰</a>，專門綁定到您的網站。
+                                        您當前使用的金鑰是與此面板一起發送的 reCAPTCHA 金鑰。為了提高安全性，建議使用 <a href="https://www.google.com/recaptcha/admin">此網站</a>來生成新的隱形 reCAPTCHA 金鑰，來專門綁定到您的面板。
                                     </div>
                                 </div>
                             </div>
