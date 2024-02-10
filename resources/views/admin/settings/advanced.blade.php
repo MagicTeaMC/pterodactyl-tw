@@ -61,7 +61,7 @@
                 </div>
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">HTTP 連接線</h3>
+                        <h3 class="box-title">HTTP 連線</h3>
                     </div>
                     <div class="box-body">
                         <div class="row">
@@ -84,7 +84,7 @@
                 </div>
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">自動分配創建</h3>
+                        <h3 class="box-title">自動創建埠(Port)</h3>
                     </div>
                     <div class="box-body">
                         <div class="row">
@@ -95,21 +95,21 @@
                                         <option value="false">停用</option>
                                         <option value="true" @if(old('pterodactyl:client_features:allocations:enabled', config('pterodactyl.client_features.allocations.enabled'))) selected @endif>啟用</option>
                                     </select>
-                                    <p class="text-muted small">如果啟用，用戶將有選擇通過前端自動為其服務器創建新分配的選項。</p>
+                                    <p class="text-muted small">如果啟用，用戶將有選擇通過前端自動為其服務器創建新埠的選項。</p>
                                 </div>
                             </div>
                             <div class="form-group col-md-4">
-                                <label class="control-label">起始端口</label>
+                                <label class="control-label">起始埠(Port)</label>
                                 <div>
                                     <input type="number" class="form-control" name="pterodactyl:client_features:allocations:range_start" value="{{ old('pterodactyl:client_features:allocations:range_start', config('pterodactyl.client_features.allocations.range_start')) }}">
-                                    <p class="text-muted small">自動分配的範圍中的起始端口。</p>
+                                    <p class="text-muted small">自動分配的範圍中的起始埠(Port)。</p>
                                 </div>
                             </div>
                             <div class="form-group col-md-4">
-                                <label class="control-label">結束端口</label>
+                                <label class="control-label">結束埠(Port)</label>
                                 <div>
                                     <input type="number" class="form-control" name="pterodactyl:client_features:allocations:range_end" value="{{ old('pterodactyl:client_features:allocations:range_end', config('pterodactyl.client_features.allocations.range_end')) }}">
-                                    <p class="text-muted small">自動分配的範圍中的結束端口。</p>
+                                    <p class="text-muted small">自動分配的範圍中的結束埠(Port)。</p>
                                 </div>
                             </div>
                         </div>
