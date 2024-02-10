@@ -1,15 +1,15 @@
 @extends('layouts.admin')
 
 @section('title')
-    New Server
+    建立新伺服器
 @endsection
 
 @section('content-header')
-    <h1>Create Server<small>Add a new server to the panel.</small></h1>
+    <h1>建立伺服器<small>新增一個伺服器到面板</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Admin</a></li>
-        <li><a href="{{ route('admin.servers') }}">Servers</a></li>
-        <li class="active">Create Server</li>
+        <li><a href="{{ route('admin.index') }}">管理員</a></li>
+        <li><a href="{{ route('admin.servers') }}">伺服器</a></li>
+        <li class="active">建立伺服器</li>
     </ol>
 @endsection
 
@@ -25,29 +25,29 @@
                 <div class="box-body row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="pName">Server Name</label>
+                            <label for="pName">伺服器名稱</label>
                             <input type="text" class="form-control" id="pName" name="name" value="{{ old('name') }}" placeholder="Server Name">
-                            <p class="small text-muted no-margin">Character limits: <code>a-z A-Z 0-9 _ - .</code> and <code>[Space]</code>.</p>
+                            <p class="small text-muted no-margin">字元限制: <code>a-z A-Z 0-9 _ - .</code> 和 <code>[Space]</code>.</p>
                         </div>
 
                         <div class="form-group">
-                            <label for="pUserId">Server Owner</label>
+                            <label for="pUserId">伺服器擁有者</label>
                             <select id="pUserId" name="owner_id" class="form-control" style="padding-left:0;"></select>
-                            <p class="small text-muted no-margin">Email address of the Server Owner.</p>
+                            <p class="small text-muted no-margin">伺服器擁有者的電子郵件</p>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="pDescription" class="control-label">Server Description</label>
+                            <label for="pDescription" class="control-label">伺服器描述</label>
                             <textarea id="pDescription" name="description" rows="3" class="form-control">{{ old('description') }}</textarea>
-                            <p class="text-muted small">A brief description of this server.</p>
+                            <p class="text-muted small">伺服器的描述</p>
                         </div>
 
                         <div class="form-group">
                             <div class="checkbox checkbox-primary no-margin-bottom">
                                 <input id="pStartOnCreation" name="start_on_completion" type="checkbox" {{ \Pterodactyl\Helpers\Utilities::checked('start_on_completion', 1) }} />
-                                <label for="pStartOnCreation" class="strong">Start Server when Installed</label>
+                                <label for="pStartOnCreation" class="strong">安裝完成並開機</label>
                             </div>
                         </div>
                     </div>
@@ -61,12 +61,12 @@
             <div class="box">
                 <div class="overlay" id="allocationLoader" style="display:none;"><i class="fa fa-refresh fa-spin"></i></div>
                 <div class="box-header with-border">
-                    <h3 class="box-title">Allocation Management</h3>
+                    <h3 class="box-title">埠(Port)管理</h3>
                 </div>
 
                 <div class="box-body row">
                     <div class="form-group col-sm-4">
-                        <label for="pNodeId">Node</label>
+                        <label for="pNodeId">節點</label>
                         <select name="node_id" id="pNodeId" class="form-control">
                             @foreach($locations as $location)
                                 <optgroup label="{{ $location->long }} ({{ $location->short }})">
@@ -81,19 +81,19 @@
                             @endforeach
                         </select>
 
-                        <p class="small text-muted no-margin">The node which this server will be deployed to.</p>
+                        <p class="small text-muted no-margin">安裝伺服器的節點</p>
                     </div>
 
                     <div class="form-group col-sm-4">
-                        <label for="pAllocation">Default Allocation</label>
+                        <label for="pAllocation">預設埠(Port)</label>
                         <select id="pAllocation" name="allocation_id" class="form-control"></select>
-                        <p class="small text-muted no-margin">The main allocation that will be assigned to this server.</p>
+                        <p class="small text-muted no-margin">The main allocation that will be assigned to this server(尚未更改).</p>
                     </div>
 
                     <div class="form-group col-sm-4">
-                        <label for="pAllocationAdditional">Additional Allocation(s)</label>
+                        <label for="pAllocationAdditional">附加埠(Port)</label>
                         <select id="pAllocationAdditional" name="allocation_additional[]" class="form-control" multiple></select>
-                        <p class="small text-muted no-margin">Additional allocations to assign to this server on creation.</p>
+                        <p class="small text-muted no-margin">Additional allocations to assign to this server on creation.尚未更改</p>
                     </div>
                 </div>
             </div>
@@ -110,7 +110,7 @@
 
                 <div class="box-body row">
                     <div class="form-group col-xs-6">
-                        <label for="pDatabaseLimit" class="control-label">Database Limit</label>
+                        <label for="pDatabaseLimit" class="control-label">資料庫限制</label>
                         <div>
                             <input type="text" id="pDatabaseLimit" name="database_limit" class="form-control" value="{{ old('database_limit', 0) }}"/>
                         </div>
