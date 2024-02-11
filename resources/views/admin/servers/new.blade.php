@@ -87,13 +87,13 @@
                     <div class="form-group col-sm-4">
                         <label for="pAllocation">預設埠(Port)</label>
                         <select id="pAllocation" name="allocation_id" class="form-control"></select>
-                        <p class="small text-muted no-margin">The main allocation that will be assigned to this server(尚未更改).</p>
+                        <p class="small text-muted no-margin">主要的埠將被分配到此伺服器</p>
                     </div>
 
                     <div class="form-group col-sm-4">
                         <label for="pAllocationAdditional">附加埠(Port)</label>
                         <select id="pAllocationAdditional" name="allocation_additional[]" class="form-control" multiple></select>
-                        <p class="small text-muted no-margin">Additional allocations to assign to this server on creation.尚未更改</p>
+                        <p class="small text-muted no-margin">附加的埠將被分配到此伺服器</p>
                     </div>
                 </div>
             </div>
@@ -105,7 +105,7 @@
             <div class="box">
                 <div class="overlay" id="allocationLoader" style="display:none;"><i class="fa fa-refresh fa-spin"></i></div>
                 <div class="box-header with-border">
-                    <h3 class="box-title">Application Feature Limits</h3>
+                    <h3 class="box-title">應用功能限制</h3>
                 </div>
 
                 <div class="box-body row">
@@ -114,21 +114,21 @@
                         <div>
                             <input type="text" id="pDatabaseLimit" name="database_limit" class="form-control" value="{{ old('database_limit', 0) }}"/>
                         </div>
-                        <p class="text-muted small">The total number of databases a user is allowed to create for this server.</p>
+                        <p class="text-muted small">允許用戶為此伺服器新增的資料庫總數</p>
                     </div>
                     <div class="form-group col-xs-6">
                         <label for="pAllocationLimit" class="control-label">埠(Port)限制</label>
                         <div>
                             <input type="text" id="pAllocationLimit" name="allocation_limit" class="form-control" value="{{ old('allocation_limit', 0) }}"/>
                         </div>
-                        <p class="text-muted small">The total number of allocations a user is allowed to create for this server.</p>
+                        <p class="text-muted small">允許用戶為此伺服器新增的埠(Port)總數</p>
                     </div>
                     <div class="form-group col-xs-6">
                         <label for="pBackupLimit" class="control-label">備份限制</label>
                         <div>
                             <input type="text" id="pBackupLimit" name="backup_limit" class="form-control" value="{{ old('backup_limit', 0) }}"/>
                         </div>
-                        <p class="text-muted small">The total number of backups that can be created for this server.</p>
+                        <p class="text-muted small">允許用戶為此伺服器新增的備份總數</p>
                     </div>
                 </div>
             </div>
@@ -150,11 +150,11 @@
                             <span class="input-group-addon">%</span>
                         </div>
 
-                        <p class="text-muted small">If you do not want to limit CPU usage, set the value to <code>0</code>. To determine a value, take the number of threads and multiply it by 100. For example, on a quad core system without hyperthreading <code>(4 * 100 = 400)</code> there is <code>400%</code> available. To limit a server to using half of a single thread, you would set the value to <code>50</code>. To allow a server to use up to two threads, set the value to <code>200</code>.<p>
+                        <p class="text-muted small">如果不想限制 CPU 使用率，請將值設定為 <code>0</code>。要確定一個值，請將線程數乘以 100。例如，在沒有超線程的四核系統上 <code>(4 * 100 = 400)</code> 可用的是 <code>400%</code>。要將服務器限制在使用單個線程的一半上，您將把值設置為 <code>50</code>。要允許服務器使用多達兩個線程，請將值設定為 <code>200</code><p>
                     </div>
 
                     <div class="form-group col-xs-6">
-                        <label for="pThreads">CPU Pinning</label>
+                        <label for="pThreads">CPU固定</label>
 
                         <div>
                             <input type="text" id="pThreads" name="threads" class="form-control" value="{{ old('threads') }}" />
