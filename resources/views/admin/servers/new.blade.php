@@ -19,7 +19,7 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Core Details</h3>
+                    <h3 class="box-title">核心(Core)資訊</h3>
                 </div>
 
                 <div class="box-body row">
@@ -150,7 +150,7 @@
                             <span class="input-group-addon">%</span>
                         </div>
 
-                        <p class="text-muted small">如果不想限制 CPU 使用率，請將值設定為 <code>0</code>。要確定一個值，請將線程數乘以 100。例如，在沒有超線程的四核系統上 <code>(4 * 100 = 400)</code> 可用的是 <code>400%</code>。要將服務器限制在使用單個線程的一半上，您將把值設置為 <code>50</code>。要允許服務器使用多達兩個線程，請將值設定為 <code>200</code><p>
+                        <p class="text-muted small">如果不想限制 CPU 使用率，請將值設定為 <code>0</code>。要確定一個值，請將線程數乘以 100。例如，在沒有超線程的四核系統上 <code>(4 * 100 = 400)</code> 可用的是 <code>400%</code>。要將服務器限制在使用單個線程的一半上，您將把值設定為 <code>50</code>。要允許服務器使用多達兩個線程，請將值設定為 <code>200</code><p>
                     </div>
 
                     <div class="form-group col-xs-6">
@@ -160,7 +160,7 @@
                             <input type="text" id="pThreads" name="threads" class="form-control" value="{{ old('threads') }}" />
                         </div>
 
-                        <p class="text-muted small"><strong>Advanced:</strong> Enter the specific CPU threads that this process can run on, or leave blank to allow all threads. This can be a single number, or a comma separated list. Example: <code>0</code>, <code>0-1,3</code>, or <code>0,1,3,4</code>.</p>
+                        <p class="text-muted small"><strong>Advanced:</strong>輸入此進程可以運行的特定 CPU 線程，或留空以允許所有線程。這可以是單個數字，也可以是用逗號分隔的列表。例如：<code>0</code>、<code>0-1,3</code> 或 <code>0,1,3,4</code></p>
                     </div>
                 </div>
 
@@ -173,18 +173,18 @@
                             <span class="input-group-addon">MiB</span>
                         </div>
 
-                        <p class="text-muted small">The maximum amount of memory allowed for this container. Setting this to <code>0</code> will allow unlimited memory in a container.</p>
+                        <p class="text-muted small">此容器允許的最大記憶體量。將其設定為 <code>0</code> 將允許容器中的無限記憶體</p>
                     </div>
 
                     <div class="form-group col-xs-6">
-                        <label for="pSwap">Swap</label>
+                        <label for="pSwap">交換(Swap)</label>
 
                         <div class="input-group">
                             <input type="text" id="pSwap" name="swap" class="form-control" value="{{ old('swap', 0) }}" />
                             <span class="input-group-addon">MiB</span>
                         </div>
 
-                        <p class="text-muted small">Setting this to <code>0</code> will disable swap space on this server. Setting to <code>-1</code> will allow unlimited swap.</p>
+                        <p class="text-muted small">將此設定為 <code>0</code> 將禁用此伺服器上的交換空間。將其設定為 <code>-1</code> 將允許無限交換</p>
                     </div>
                 </div>
 
@@ -197,25 +197,25 @@
                             <span class="input-group-addon">MiB</span>
                         </div>
 
-                        <p class="text-muted small">This server will not be allowed to boot if it is using more than this amount of space. If a server goes over this limit while running it will be safely stopped and locked until enough space is available. Set to <code>0</code> to allow unlimited disk usage.</p>
+                        <p class="text-muted small">如果此伺服器使用的空間超過此限制，將不允許其啟動。如果伺服器在運行時超過此限制，將會安全地停止並鎖定，直到有足夠的空間可用。將其設定為 <code>0</code> 以允許無限使用磁碟空間</p>
                     </div>
 
                     <div class="form-group col-xs-6">
-                        <label for="pIO">Block IO Weight</label>
+                        <label for="pIO">IO阻塞權重(Block IO Weight)</label>
 
                         <div>
                             <input type="text" id="pIO" name="io" class="form-control" value="{{ old('io', 500) }}" />
                         </div>
 
-                        <p class="text-muted small"><strong>Advanced</strong>: The IO performance of this server relative to other <em>running</em> containers on the system. Value should be between <code>10</code> and <code>1000</code>. Please see <a href="https://docs.docker.com/engine/reference/run/#block-io-bandwidth-blkio-constraint" target="_blank">this documentation</a> for more information about it.</p>
+                        <p class="text-muted small"><strong>Advanced</strong>: 該伺服器相對於系統上其他<em>運行中</em>容器的IO性能。值應該在 <code>10</code> 和 <code>1000</code> 之間。請參閱<a href="https://docs.docker.com/engine/reference/run/#block-io-bandwidth-blkio-constraint" target="_blank">此文檔</a>以獲取更多有關此資訊的資訊</p>
                     </div>
                     <div class="form-group col-xs-12">
                         <div class="checkbox checkbox-primary no-margin-bottom">
                             <input type="checkbox" id="pOomDisabled" name="oom_disabled" value="0" {{ \Pterodactyl\Helpers\Utilities::checked('oom_disabled', 0) }} />
-                            <label for="pOomDisabled" class="strong">Enable OOM Killer</label>
+                            <label for="pOomDisabled" class="strong">開啟OOM Killer</label>
                         </div>
 
-                        <p class="small text-muted no-margin">Terminates the server if it breaches the memory limits. Enabling OOM killer may cause server processes to exit unexpectedly.</p>
+                        <p class="small text-muted no-margin">如果超出記憶體限制，將終止伺服器。啟用 OOM Killer 可能會導致伺服器進程意外退出</p>
                     </div>
                 </div>
             </div>
@@ -243,21 +243,21 @@
                             @endforeach
                         </select>
 
-                        <p class="small text-muted no-margin">Select the Nest that this server will be grouped under.</p>
+                        <p class="small text-muted no-margin">選擇此伺服器將分組在其中的Nest</p>
                     </div>
 
                     <div class="form-group col-xs-12">
                         <label for="pEggId">Egg</label>
                         <select id="pEggId" name="egg_id" class="form-control"></select>
-                        <p class="small text-muted no-margin">Select the Egg that will define how this server should operate.</p>
+                        <p class="small text-muted no-margin">選擇定義此伺服器應如何運作的 Egg.</p>
                     </div>
                     <div class="form-group col-xs-12">
                         <div class="checkbox checkbox-primary no-margin-bottom">
                             <input type="checkbox" id="pSkipScripting" name="skip_scripts" value="1" {{ \Pterodactyl\Helpers\Utilities::checked('skip_scripts', 0) }} />
-                            <label for="pSkipScripting" class="strong">Skip Egg Install Script</label>
+                            <label for="pSkipScripting" class="strong">跳過Egg安裝代碼</label>
                         </div>
 
-                        <p class="small text-muted no-margin">If the selected Egg has an install script attached to it, the script will run during the install. If you would like to skip this step, check this box.</p>
+                        <p class="small text-muted no-margin">如果所選的 Egg 附帶安裝腳本，則該腳本將在安裝期間運行。如果您想跳過此步驟，請勾選此框</p>
                     </div>
                 </div>
             </div>
@@ -266,7 +266,7 @@
         <div class="col-md-6">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Docker Configuration</h3>
+                    <h3 class="box-title">Docker設定</h3>
                 </div>
 
                 <div class="box-body row">
@@ -274,7 +274,7 @@
                         <label for="pDefaultContainer">Docker Image</label>
                         <select id="pDefaultContainer" name="image" class="form-control"></select>
                         <input id="pDefaultContainerCustom" name="custom_image" value="{{ old('custom_image') }}" class="form-control" placeholder="Or enter a custom image..." style="margin-top:1rem"/>
-                        <p class="small text-muted no-margin">This is the default Docker image that will be used to run this server. Select an image from the dropdown above, or enter a custom image in the text field above.</p>
+                        <p class="small text-muted no-margin">這是將用於運行此伺服器的預設 Docker 映像。從上面的下拉選單中選擇一個映像，或在上面的文本字段中輸入自定義映像</p>
                     </div>
                 </div>
             </div>
@@ -285,19 +285,19 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Startup Configuration</h3>
+                    <h3 class="box-title">開機設定</h3>
                 </div>
 
                 <div class="box-body row">
                     <div class="form-group col-xs-12">
-                        <label for="pStartup">Startup Command</label>
+                        <label for="pStartup">Startup 指令</label>
                         <input type="text" id="pStartup" name="startup" value="{{ old('startup') }}" class="form-control" />
-                        <p class="small text-muted no-margin">The following data substitutes are available for the startup command: <code>@{{SERVER_MEMORY}}</code>, <code>@{{SERVER_IP}}</code>, and <code>@{{SERVER_PORT}}</code>. They will be replaced with the allocated memory, server IP, and server port respectively.</p>
+                        <p class="small text-muted no-margin">以下數據替換可用於啟動指令：<code>@{{SERVER_MEMORY}}</code>、<code>@{{SERVER_IP}}</code> 和 <code>@{{SERVER_PORT}}</code>。它們分別將被替換為分配的記憶體、伺服器 IP 和伺服器端口。</p>
                     </div>
                 </div>
 
                 <div class="box-header with-border" style="margin-top:-10px;">
-                    <h3 class="box-title">Service Variables</h3>
+                    <h3 class="box-title">服務變數(Service Variables)</h3>
                 </div>
 
                 <div class="box-body row" id="appendVariablesTo"></div>
