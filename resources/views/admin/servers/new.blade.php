@@ -117,14 +117,14 @@
                         <p class="text-muted small">The total number of databases a user is allowed to create for this server.</p>
                     </div>
                     <div class="form-group col-xs-6">
-                        <label for="pAllocationLimit" class="control-label">Allocation Limit</label>
+                        <label for="pAllocationLimit" class="control-label">埠(Port)限制</label>
                         <div>
                             <input type="text" id="pAllocationLimit" name="allocation_limit" class="form-control" value="{{ old('allocation_limit', 0) }}"/>
                         </div>
                         <p class="text-muted small">The total number of allocations a user is allowed to create for this server.</p>
                     </div>
                     <div class="form-group col-xs-6">
-                        <label for="pBackupLimit" class="control-label">Backup Limit</label>
+                        <label for="pBackupLimit" class="control-label">備份限制</label>
                         <div>
                             <input type="text" id="pBackupLimit" name="backup_limit" class="form-control" value="{{ old('backup_limit', 0) }}"/>
                         </div>
@@ -138,12 +138,12 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Resource Management</h3>
+                    <h3 class="box-title">資源管理</h3>
                 </div>
 
                 <div class="box-body row">
                     <div class="form-group col-xs-6">
-                        <label for="pCPU">CPU Limit</label>
+                        <label for="pCPU">CPU限制</label>
 
                         <div class="input-group">
                             <input type="text" id="pCPU" name="cpu" class="form-control" value="{{ old('cpu', 0) }}" />
@@ -166,7 +166,7 @@
 
                 <div class="box-body row">
                     <div class="form-group col-xs-6">
-                        <label for="pMemory">Memory</label>
+                        <label for="pMemory">記憶體</label>
 
                         <div class="input-group">
                             <input type="text" id="pMemory" name="memory" class="form-control" value="{{ old('memory') }}" />
@@ -226,7 +226,7 @@
         <div class="col-md-6">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Nest Configuration</h3>
+                    <h3 class="box-title">Nest設定</h3>
                 </div>
 
                 <div class="box-body row">
