@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('title')
-    程式API
+    應用程式API
 @endsection
 
 @section('content-header')
-    <h1>程式API<small>管理此面板的 API 存取憑證</small></h1>
+    <h1>應用程式API<small>管理此面板的 API 存取憑證</small></h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('admin.index') }}">Admin</a></li>
-        <li class="active">程式API</li>
+        <li class="active">應用程式API</li>
     </ol>
 @endsection
 
@@ -67,7 +67,7 @@
                 swal({
                     type: 'error',
                     title: '撤銷API金鑰',
-                    text: '一旦撤銷此 API 金鑰，目前正在使用它的任何程式將停止運作',
+                    text: '一旦撤銷此 API 金鑰，目前正在使用它的任何應用程式將停止運作',
                     showCancelButton: true,
                     allowOutsideClick: true,
                     closeOnConfirm: false,
