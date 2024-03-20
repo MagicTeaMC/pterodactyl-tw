@@ -58,7 +58,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <label for="pShortModal" class="form-label">代碼</label>
+                            <label for="pShortModal" class="form-label">代號</label>
                             <input type="text" name="short" id="pShortModal" class="form-control" />
                             <p class="text-muted small">用於區分此位置與其他位置的簡短標識。必須介於 1 到 60 個字元之間，例如 <code>us.nyc.lvl3</code></p>
                         </div>
