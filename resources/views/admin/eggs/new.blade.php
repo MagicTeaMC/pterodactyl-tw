@@ -104,19 +104,19 @@
                             <div class="form-group">
                                 <label for="pConfigLogs" class="form-label">紀錄設定</label>
                                 <textarea data-action="handle-tabs" id="pConfigLogs" name="config_logs" class="form-control" rows="6">{{ old('config_logs') }}</textarea>
-                                <p class="text-muted small">這應該是日誌文件存儲位置的JSON表示，以及守護進程是否應該創建自定義日誌</p>
+                                <p class="text-muted small">這應該是紀錄文件存儲位置的JSON表示，以及Daemon 進程是否應該創建自定義紀錄</p>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="pConfigFiles" class="form-label">Configuration Files</label>
                                 <textarea data-action="handle-tabs" id="pConfigFiles" name="config_files" class="form-control" rows="6">{{ old('config_files') }}</textarea>
-                                <p class="text-muted small">This should be a JSON representation of configuration files to modify and what parts should be changed.</p>
+                                <p class="text-muted small">這應該是要修改的設定檔以及應更改哪些部分的JSON表示形式</p>
                             </div>
                             <div class="form-group">
-                                <label for="pConfigStartup" class="form-label">Start Configuration</label>
+                                <label for="pConfigStartup" class="form-label">啟動設定</label>
                                 <textarea data-action="handle-tabs" id="pConfigStartup" name="config_startup" class="form-control" rows="6">{{ old('config_startup') }}</textarea>
-                                <p class="text-muted small">This should be a JSON representation of what values the daemon should be looking for when booting a server to determine completion.</p>
+                                <p class="text-muted small">這應該是Daemon程式在啟動伺服器以確定完成時應尋找的值的JSON表示形式</p>
                             </div>
                         </div>
                     </div>
