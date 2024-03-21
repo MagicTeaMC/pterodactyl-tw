@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('title')
-    Database Hosts &rarr; View &rarr; {{ $host->name }}
+    資料庫主機 &rarr; 查看 &rarr; {{ $host->name }}
 @endsection
 
 @section('content-header')
-    <h1>{{ $host->name }}<small>Viewing associated databases and details for this database host.</small></h1>
+    <h1>{{ $host->name }}<small>查看此資料庫主機關聯的資料庫和詳細資訊。</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Admin</a></li>
-        <li><a href="{{ route('admin.databases') }}">Database Hosts</a></li>
+        <li><a href="{{ route('admin.index') }}">管理員</a></li>
+        <li><a href="{{ route('admin.databases') }}">資料庫主機</a></li>
         <li class="active">{{ $host->name }}</li>
     </ol>
 @endsection
@@ -19,27 +19,27 @@
         <div class="col-sm-6">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Host Details</h3>
+                    <h3 class="box-title">主機詳細資訊</h3>
                 </div>
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="pName" class="form-label">Name</label>
+                        <label for="pName" class="form-label">名稱</label>
                         <input type="text" id="pName" name="name" class="form-control" value="{{ old('name', $host->name) }}" />
                     </div>
                     <div class="form-group">
-                        <label for="pHost" class="form-label">Host</label>
+                        <label for="pHost" class="form-label">主機</label>
                         <input type="text" id="pHost" name="host" class="form-control" value="{{ old('host', $host->host) }}" />
-                        <p class="text-muted small">The IP address or FQDN that should be used when attempting to connect to this MySQL host <em>from the panel</em> to add new databases.</p>
+                        <p class="text-muted small">從面板連接到此MySQL主機以添加新資料庫時應使用的 IP 地址或FQDN。</p>
                     </div>
                     <div class="form-group">
-                        <label for="pPort" class="form-label">Port</label>
+                        <label for="pPort" class="form-label">埠</label>
                         <input type="text" id="pPort" name="port" class="form-control" value="{{ old('port', $host->port) }}" />
-                        <p class="text-muted small">The port that MySQL is running on for this host.</p>
+                        <p class="text-muted small">此主機上MySQL運行的埠。</p>
                     </div>
                     <div class="form-group">
-                        <label for="pNodeId" class="form-label">Linked Node</label>
+                        <label for="pNodeId" class="form-label">連結節點</label>
                         <select name="node_id" id="pNodeId" class="form-control">
-                            <option value="">None</option>
+                            <option value="">無</option>
                             @foreach($locations as $location)
                                 <optgroup label="{{ $location->short }}">
                                     @foreach($location->nodes as $node)
@@ -48,7 +48,7 @@
                                 </optgroup>
                             @endforeach
                         </select>
-                        <p class="text-muted small">This setting does nothing other than default to this database host when adding a database to a server on the selected node.</p>
+                        <p class="text-muted small">此設置僅在將資料庫添加到所選節點上的伺服器時默認為此資料庫主機。</p>
                     </div>
                 </div>
             </div>
@@ -56,25 +56,25 @@
         <div class="col-sm-6">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">User Details</h3>
+                    <h3 class="box-title">使用者詳細資訊</h3>
                 </div>
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="pUsername" class="form-label">Username</label>
+                        <label for="pUsername" class="form-label">使用者名稱</label>
                         <input type="text" name="username" id="pUsername" class="form-control" value="{{ old('username', $host->username) }}" />
-                        <p class="text-muted small">The username of an account that has enough permissions to create new users and databases on the system.</p>
+                        <p class="text-muted small">具有足夠權限在系統上創建新使用者和資料庫的帳戶的使用者名稱。</p>
                     </div>
                     <div class="form-group">
-                        <label for="pPassword" class="form-label">Password</label>
+                        <label for="pPassword" class="form-label">密碼</label>
                         <input type="password" name="password" id="pPassword" class="form-control" />
-                        <p class="text-muted small">The password to the account defined. Leave blank to continue using the assigned password.</p>
+                        <p class="text-muted small">定義帳戶的密碼。留空以繼續使用指定的密碼。</p>
                     </div>
                     <hr />
-                    <p class="text-danger small text-left">The account defined for this database host <strong>must</strong> have the <code>WITH GRANT OPTION</code> permission. If the defined account does not have this permission requests to create databases <em>will</em> fail. <strong>Do not use the same account details for MySQL that you have defined for this panel.</strong></p>
+                    <p class="text-danger small text-left">為此資料庫主機定義的帳戶<strong>必須</strong>具有<code>WITH GRANT OPTION</code>權限。如果所定義的帳戶沒有此權限，則創建資料庫的請求<strong>將</strong>失敗。 <strong>請勿使用您為此面板定義的 MySQL 相同帳戶詳細資料。</strong></p>
                 </div>
                 <div class="box-footer">
                     {!! csrf_field() !!}
-                    <button name="_method" value="PATCH" class="btn btn-sm btn-primary pull-right">Save</button>
+                    <button name="_method" value="PATCH" class="btn btn-sm btn-primary pull-right">儲存</button>
                     <button name="_method" value="DELETE" class="btn btn-sm btn-danger pull-left muted muted-hover"><i class="fa fa-trash-o"></i></button>
                 </div>
             </div>
@@ -85,16 +85,16 @@
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title">Databases</h3>
+                <h3 class="box-title">資料庫</h3>
             </div>
             <div class="box-body table-responsive no-padding">
                 <table class="table table-hover">
                     <tr>
-                        <th>Server</th>
-                        <th>Database Name</th>
-                        <th>Username</th>
-                        <th>Connections From</th>
-                        <th>Max Connections</th>
+                        <th>伺服器</th>
+                        <th>資料庫名稱</th>
+                        <th>使用者名稱</th>
+                        <th>連線來源</th>
+                        <th>最大連線數</th>
                         <th></th>
                     </tr>
                     @foreach($databases as $database)
@@ -106,11 +106,11 @@
                             @if($database->max_connections != null)
                                 <td class="middle">{{ $database->max_connections }}</td>
                             @else
-                                <td class="middle">Unlimited</td>
+                                <td class="middle">無限制</td>
                             @endif
                             <td class="text-center">
                                 <a href="{{ route('admin.servers.view.database', $database->getRelation('server')->id) }}">
-                                    <button class="btn btn-xs btn-primary">Manage</button>
+                                    <button class="btn btn-xs btn-primary">管理</button>
                                 </a>
                             </td>
                         </tr>

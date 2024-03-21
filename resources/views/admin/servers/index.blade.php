@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('title')
-    List Servers
+    伺服器列表
 @endsection
 
 @section('content-header')
-    <h1>Servers<small>All servers available on the system.</small></h1>
+    <h1>Servers<small>所有系統上的伺服器</small></h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('admin.index') }}">Admin</a></li>
-        <li class="active">Servers</li>
+        <li class="active">伺服器</li>
     </ol>
 @endsection
 
@@ -17,7 +17,7 @@
     <div class="col-xs-12">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Server List</h3>
+                <h3 class="box-title">伺服器列表</h3>
                 <div class="box-tools search01">
                     <form action="{{ route('admin.servers') }}" method="GET">
                         <div class="input-group input-group-sm">
@@ -34,11 +34,11 @@
                 <table class="table table-hover">
                     <tbody>
                         <tr>
-                            <th>Server Name</th>
+                            <th>伺服器名稱</th>
                             <th>UUID</th>
-                            <th>Owner</th>
-                            <th>Node</th>
-                            <th>Connection</th>
+                            <th>擁有者</th>
+                            <th>節點</th>
+                            <th>連線</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -53,11 +53,11 @@
                                 </td>
                                 <td class="text-center">
                                     @if($server->isSuspended())
-                                        <span class="label bg-maroon">Suspended</span>
+                                        <span class="label bg-maroon">已停用</span>
                                     @elseif(! $server->isInstalled())
-                                        <span class="label label-warning">Installing</span>
+                                        <span class="label label-warning">安裝中</span>
                                     @else
-                                        <span class="label label-success">Active</span>
+                                        <span class="label label-success">活躍(正常)</span>
                                     @endif
                                 </td>
                                 <td class="text-center">

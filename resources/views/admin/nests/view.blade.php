@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Nests &rarr; {{ $nest->name }}
+    Nest &rarr; {{ $nest->name }}
 @endsection
 
 @section('content-header')
@@ -20,14 +20,14 @@
             <div class="box">
                 <div class="box-body">
                     <div class="form-group">
-                        <label class="control-label">Name <span class="field-required"></span></label>
+                        <label class="control-label">名稱 <span class="field-required"></span></label>
                         <div>
                             <input type="text" name="name" class="form-control" value="{{ $nest->name }}" />
-                            <p class="text-muted"><small>This should be a descriptive category name that encompasses all of the options within the service.</small></p>
+                            <p class="text-muted"><small>這應該是一個描述性類別名稱，包含服務中的所有選項</small></p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">Description</label>
+                        <label class="control-label">描述</label>
                         <div>
                             <textarea name="description" class="form-control" rows="7">{{ $nest->description }}</textarea>
                         </div>
@@ -48,21 +48,21 @@
                     <label class="control-label">Nest ID</label>
                     <div>
                         <input type="text" readonly class="form-control" value="{{ $nest->id }}" />
-                        <p class="text-muted small">A unique ID used for identification of this nest internally and through the API.</p>
+                        <p class="text-muted small">用於在內部和透過API識別此Nest的唯一ID</p>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label">Author</label>
+                    <label class="control-label">作者</label>
                     <div>
                         <input type="text" readonly class="form-control" value="{{ $nest->author }}" />
-                        <p class="text-muted small">The author of this service option. Please direct questions and issues to them unless this is an official option authored by <code>support@pterodactyl.io</code>.</p>
+                        <p class="text-muted small">此服務選項的作者。請將問題直接向他們提出，除非這是由 <code>support@pterodactyl.io</code> 創作的官方選項</p>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label">UUID</label>
                     <div>
                         <input type="text" readonly class="form-control" value="{{ $nest->uuid }}" />
-                        <p class="text-muted small">A UUID that all servers using this option are assigned for identification purposes.</p>
+                        <p class="text-muted small">所有使用此選項的伺服器都指派一個UUID以用於識別目的。</p>
                     </div>
                 </div>
             </div>
@@ -73,15 +73,15 @@
     <div class="col-xs-12">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Nest Eggs</h3>
+                <h3 class="box-title">Nest Egg</h3>
             </div>
             <div class="box-body table-responsive no-padding">
                 <table class="table table-hover">
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th class="text-center">Servers</th>
+                        <th>名稱</th>
+                        <th>描述</th>
+                        <th class="text-center">伺服器</th>
                         <th class="text-center"></th>
                     </tr>
                     @foreach($nest->eggs as $egg)

@@ -1,15 +1,15 @@
 @extends('layouts.admin')
 
 @section('title')
-    Nests &rarr; New Egg
+    Nest &rarr; 建立新Egg
 @endsection
 
 @section('content-header')
-    <h1>New Egg<small>Create a new Egg to assign to servers.</small></h1>
+    <h1>New Egg<small>建立一個新的Egg分配給伺服器</small></h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('admin.index') }}">Admin</a></li>
         <li><a href="{{ route('admin.nests') }}">Nests</a></li>
-        <li class="active">New Egg</li>
+        <li class="active">建立新Egg</li>
     </ol>
 @endsection
 
@@ -19,43 +19,42 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Configuration</h3>
+                    <h3 class="box-title">設定</h3>
                 </div>
                 <div class="box-body">
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="pNestId" class="form-label">Associated Nest</label>
+                                <label for="pNestId" class="form-label">綁定的Nest</label>
                                 <div>
                                     <select name="nest_id" id="pNestId">
                                         @foreach($nests as $nest)
                                             <option value="{{ $nest->id }}" {{ old('nest_id') != $nest->id ?: 'selected' }}>{{ $nest->name }} &lt;{{ $nest->author }}&gt;</option>
                                         @endforeach
                                     </select>
-                                    <p class="text-muted small">Think of a Nest as a category. You can put multiple Eggs in a nest, but consider putting only Eggs that are related to each other in each Nest.</p>
+                                    <p class="text-muted small">把Nest想像成一個類別。 你可以把很多Egg放入Nest, 但請考慮每個Nest只放相關的Egg</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="pName" class="form-label">Name</label>
                                 <input type="text" id="pName" name="name" value="{{ old('name') }}" class="form-control" />
-                                <p class="text-muted small">A simple, human-readable name to use as an identifier for this Egg. This is what users will see as their game server type.</p>
+                                <p class="text-muted small">給Egg一個簡而易懂的標示 這些名稱會對應到玩家看到的遊戲伺服器類別.</p>
                             </div>
                             <div class="form-group">
-                                <label for="pDescription" class="form-label">Description</label>
+                                <label for="pDescription" class="form-label">描述</label>
                                 <textarea id="pDescription" name="description" class="form-control" rows="8">{{ old('description') }}</textarea>
-                                <p class="text-muted small">A description of this Egg.</p>
+                                <p class="text-muted small">Egg的描述</p>
                             </div>
                             <div class="form-group">
                                 <div class="checkbox checkbox-primary no-margin-bottom">
                                     <input id="pForceOutgoingIp" name="force_outgoing_ip" type="checkbox" value="1" {{ \Pterodactyl\Helpers\Utilities::checked('force_outgoing_ip', 0) }} />
-                                    <label for="pForceOutgoingIp" class="strong">Force Outgoing IP</label>
+                                    <label for="pForceOutgoingIp" class="strong">強制傳出IP</label>
                                     <p class="text-muted small">
-                                        Forces all outgoing network traffic to have its Source IP NATed to the IP of the server's primary allocation IP.
-                                        Required for certain games to work properly when the Node has multiple public IP addresses.
+                                        將所有外發網路流量的源 IP 強制經過 NAT 轉換為伺服器的主要分配 IP 的 IP
+                                        在節點擁有多個公共 IP 地址時，對某些遊戲正常運行至關重要
                                         <br>
                                         <strong>
-                                            Enabling this option will disable internal networking for any servers using this egg,
-                                            causing them to be unable to internally access other servers on the same node.
+                                            啟用此選項將會禁用使用此 Egg 的任何伺服器的內部網路功能，導致它們無法在同一節點上內部訪問其他伺服器
                                         </strong>
                                     </p>
                                 </div>
@@ -63,14 +62,14 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="pDockerImage" class="control-label">Docker Images</label>
+                                <label for="pDockerImage" class="control-label">Docker鏡像</label>
                                 <textarea id="pDockerImages" name="docker_images" rows="4" placeholder="quay.io/pterodactyl/service" class="form-control">{{ old('docker_images') }}</textarea>
-                                <p class="text-muted small">The docker images available to servers using this egg. Enter one per line. Users will be able to select from this list of images if more than one value is provided.</p>
+                                <p class="text-muted small">使用此Egg的伺服器可用的Docker鏡像。每行輸入一個。如果提供了多個值，使用者將能夠從此清單中進行選擇</p>
                             </div>
                             <div class="form-group">
-                                <label for="pStartup" class="control-label">Startup Command</label>
+                                <label for="pStartup" class="control-label">開機指令</label>
                                 <textarea id="pStartup" name="startup" class="form-control" rows="10">{{ old('startup') }}</textarea>
-                                <p class="text-muted small">The default startup command that should be used for new servers created with this Egg. You can change this per-server as needed.</p>
+                                <p class="text-muted small">建立使用此Egg創建的伺服器應使用的預設啟動指令。您可以根據需要逐個伺服器更改此指令。</p>
                             </div>
                         </div>
                     </div>
@@ -80,51 +79,51 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Process Management</h3>
+                    <h3 class="box-title">進程管理</h3>
                 </div>
                 <div class="box-body">
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="alert alert-warning">
-                                <p>All fields are required unless you select a separate option from the 'Copy Settings From' dropdown, in which case fields may be left blank to use the values from that option.</p>
+                                <p>除非您從“複製設置來源”選單中選擇了單獨的選項，否則所有字段都是必填的，在這種情況下，字段可以留空以使用該選項的值</p>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label for="pConfigFrom" class="form-label">Copy Settings From</label>
+                                <label for="pConfigFrom" class="form-label">複製設置來源</label>
                                 <select name="config_from" id="pConfigFrom" class="form-control">
-                                    <option value="">None</option>
+                                    <option value="">無</option>
                                 </select>
-                                <p class="text-muted small">If you would like to default to settings from another Egg select it from the dropdown above.</p>
+                                <p class="text-muted small">如果您希望將設定預設為另一個Egg，請從上面的選單中選擇它</p>
                             </div>
                             <div class="form-group">
-                                <label for="pConfigStop" class="form-label">Stop Command</label>
+                                <label for="pConfigStop" class="form-label">停止指令</label>
                                 <input type="text" id="pConfigStop" name="config_stop" class="form-control" value="{{ old('config_stop') }}" />
-                                <p class="text-muted small">The command that should be sent to server processes to stop them gracefully. If you need to send a <code>SIGINT</code> you should enter <code>^C</code> here.</p>
+                                <p class="text-muted small">應發送到伺服器器進程以"優雅"地停止它們的命令。如果您需要發送 <code>SIGINT</code>，您應該在這裡輸入 <code>^C</code></p>
                             </div>
                             <div class="form-group">
-                                <label for="pConfigLogs" class="form-label">Log Configuration</label>
+                                <label for="pConfigLogs" class="form-label">紀錄設定</label>
                                 <textarea data-action="handle-tabs" id="pConfigLogs" name="config_logs" class="form-control" rows="6">{{ old('config_logs') }}</textarea>
-                                <p class="text-muted small">This should be a JSON representation of where log files are stored, and whether or not the daemon should be creating custom logs.</p>
+                                <p class="text-muted small">這應該是紀錄文件存儲位置的JSON表示，以及Daemon 進程是否應該創建自定義紀錄</p>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="pConfigFiles" class="form-label">Configuration Files</label>
                                 <textarea data-action="handle-tabs" id="pConfigFiles" name="config_files" class="form-control" rows="6">{{ old('config_files') }}</textarea>
-                                <p class="text-muted small">This should be a JSON representation of configuration files to modify and what parts should be changed.</p>
+                                <p class="text-muted small">這應該是要修改的設定檔以及應更改哪些部分的JSON表示形式</p>
                             </div>
                             <div class="form-group">
-                                <label for="pConfigStartup" class="form-label">Start Configuration</label>
+                                <label for="pConfigStartup" class="form-label">啟動設定</label>
                                 <textarea data-action="handle-tabs" id="pConfigStartup" name="config_startup" class="form-control" rows="6">{{ old('config_startup') }}</textarea>
-                                <p class="text-muted small">This should be a JSON representation of what values the daemon should be looking for when booting a server to determine completion.</p>
+                                <p class="text-muted small">這應該是Daemon程式在啟動伺服器以確定完成時應尋找的值的JSON表示形式</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="box-footer">
                     {!! csrf_field() !!}
-                    <button type="submit" class="btn btn-success btn-sm pull-right">Create</button>
+                    <button type="submit" class="btn btn-success btn-sm pull-right">建立</button>
                 </div>
             </div>
         </div>
