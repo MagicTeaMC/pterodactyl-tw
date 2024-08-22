@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
 @section('title')
-    Administration
+    管理總覽
 @endsection
 
 @section('content-header')
-    <h1>Administrative Overview<small>A quick glance at your system.</small></h1>
+    <h1>管理總覽<small>快速瀏覽您的系統.</small></h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('admin.index') }}">Admin</a></li>
         <li class="active">Index</li>
@@ -23,13 +23,13 @@
             @endif
         ">
             <div class="box-header with-border">
-                <h3 class="box-title">System Information</h3>
+                <h3 class="box-title">系統資訊</h3>
             </div>
             <div class="box-body">
                 @if ($version->isLatestPanel())
                     You are running Pterodactyl Panel version <code>{{ config('app.version') }}</code>. Your panel is up-to-date!
                 @else
-                    Your panel is <strong>not up-to-date!</strong> The latest version is <a href="https://github.com/Pterodactyl/Panel/releases/v{{ $version->getPanel() }}" target="_blank"><code>{{ $version->getPanel() }}</code></a> and you are currently running version <code>{{ config('app.version') }}</code>.
+                    您的面板 <strong>不是最新版!</strong> 最新的版本為 <a href="https://github.com/Pterodactyl/Panel/releases/v{{ $version->getPanel() }}" target="_blank"><code>{{ $version->getPanel() }}</code></a> 而你正在運行的版本為 <code>{{ config('app.version') }}</code>.
                 @endif
             </div>
         </div>
